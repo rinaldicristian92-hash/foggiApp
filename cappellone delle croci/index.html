@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Cappellone delle Croci · foggiApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/fovea-ui.css">
+</head>
+<body>
+
+    <!-- ── PAGE LOADER ── -->
+    <div id="page-loader">
+        <img class="pl-logo" src="../shared/logo.png" alt="foggiApp" aria-hidden="true"
+             onerror="this.style.display='none'">
+        <p class="pl-name">foggiApp</p>
+        <div class="pl-bar"></div>
+    </div>
+
+    <!-- ── HEADER ── -->
+    <header>
+        <div class="header-left">
+            <button class="icon-btn" id="btn-home" aria-label="Torna alla Home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <div class="header-center">
+            <a href="../pagina home/index.html" style="display:inline-block;margin-bottom:2px;"><img src="../shared/logo.png" alt="foggiApp" style="height:28px;width:auto;display:block;margin:0 auto;" onerror="this.style.display='none'"></a>
+            <h1 data-i18n="title">Il Cappellone delle Croci</h1>
+            <hr class="title-line">
+        </div>
+
+        <div class="header-right">
+            <a href="#" target="_blank" class="icon-btn" id="btn-chatbot" aria-label="Apri Chatbot">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M12 7v4"></path>
+                    <line x1="8" y1="16" x2="8" y2="16"></line>
+                    <line x1="16" y1="16" x2="16" y2="16"></line>
+                </svg>
+            </a>
+            <button class="icon-btn" id="btn-menu-open" aria-label="Apri Menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ── TABS NAV ── -->
+    <nav class="section-options-bar" aria-label="Sezioni rapide">
+        <button class="section-option  active" data-action="home"><span data-i18n="menuHome">Home</span></button>
+        <button class="section-option" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
+        <button class="section-option" data-action="video"><span data-i18n="menuVideo">Video</span></button>
+        <button class="section-option" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
+        <button class="section-option" data-action="3d"><span data-i18n="menu3D">Modello 3D</span></button>
+    </nav>
+
+    <!-- ── IFRAME WARNING ── -->
+    <div id="iframe-warning">
+        ⚠️ Modalità Anteprima: i file locali non possono essere caricati qui. Salva i file sul tuo PC per vederli.
+    </div>
+
+    <!-- ── DRAWER OVERLAY ── -->
+    <div id="drawer-overlay"></div>
+
+    <!-- ── DRAWER MENU ── -->
+    <nav id="drawer-menu" aria-label="Menu principale">
+        <div class="drawer-header">
+            <button class="close-btn" id="btn-menu-close" aria-label="Chiudi menu">&times;</button>
+        </div>
+
+        <div class="menu-nav">
+            <button class="menu-item  active" data-action="home">
+                <span data-i18n="menuHome">Home</span>
+            </button>
+            <button class="menu-item" data-action="map">
+                <span data-i18n="menuMap">Mappa</span>
+            </button>
+            <button class="menu-item" data-action="video">
+                <span data-i18n="menuVideo">Video</span>
+            </button>
+            <button class="menu-item" data-action="images">
+                <span data-i18n="menuImages">Immagini (Galleria)</span>
+            </button>
+            <button class="menu-item" data-action="3d">
+                <span data-i18n="menu3D">Modello 3D</span>
+            </button>
+            <button class="menu-item" id="btn-menu-chatbot">
+                <span data-i18n="menuBot">Chatbot</span>
+            </button>
+        </div>
+
+        <div class="lang-selector-container">
+            <div class="lang-header">
+                <span data-i18n="langSel">Lingua</span>
+                <span class="lang-badge" id="current-lang-badge">IT</span>
+            </div>
+            <div class="lang-buttons">
+                <button class="lang-btn active" data-lang="IT">Italiano</button>
+                <button class="lang-btn" data-lang="EN">English</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main>
+        <section id="riquadro-3" class="panel"></section>
+        <section id="riquadro-4" class="panel">
+            <div id="text-content">
+                <div class="loader" data-i18n="loading">Caricamento in corso...</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+
+        /* ── LOADER HIDE (affidabile, esecuzione immediata) ── */
+        (function () {
+            var pl = document.getElementById('page-loader');
+            if (!pl) return;
+            function hideLoader() {
+                pl.classList.add('hidden');
+                setTimeout(function () { pl.style.display = 'none'; }, 700);
+            }
+            // Nascondi dopo l'animazione (900ms) oppure al load della pagina
+            var hideTimer = setTimeout(hideLoader, 950);
+            window.addEventListener('load', function () {
+                clearTimeout(hideTimer);
+                setTimeout(hideLoader, 300);
+            });
+        })();
+
+        /* ==========================================================================
+           1. COSTANTI E CONFIGURAZIONI
+           ========================================================================== */
+        const CONSTANTS = {
+            MAP_LAT: 41.4658, // Coordinate aggiornate: 41°27′56.88″N
+            MAP_LNG: 15.5444, // Coordinate aggiornate: 15°32′39.84″E
+            MAP_ZOOM: 16,
+            LOCAL_VIDEO_PATH: 'assets/Il Segreto della Chiesa delle Croci.mp4',
+            BOT_LINK: 'https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica',
+            MODEL_3D_URL: 'https://sketchfab.com/models/c2e4aae984aa462f81993e089648866d/embed', // Nuovo modello 3D Borgo Croci
+            // Fallbacks grafici provvisori (usati SOLO SE manca il file locale o si è in anteprima)
+            FALLBACK_COVER: 'https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_GAL_1: 'https://images.unsplash.com/photo-1544253155-70fa9a1f81d8?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_GAL_2: 'https://images.unsplash.com/photo-1505322022379-7c3353ee6291?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_GAL_3: 'https://images.unsplash.com/photo-1604312684814-1fc634a4751f?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_IMG_COLOR: 'F2F2F2',
+            FALLBACK_TXT_COLOR: '961B2B'
+        };
+        const TRANSLATIONS = {
+            IT: {
+                title: "Il Cappellone delle Croci",
+                menuHome: "Home",
+                menuMap: "Mappa",
+                menuVideo: "Video",
+                menuImages: "Immagini (Galleria)",
+                menu3D: "Modello 3D",
+                menuBot: "Chatbot",
+                langSel: "Lingua di lettura",
+                loading: "Caricamento in corso...",
+                errorLoad: "Impossibile caricare il testo. Assicurati che il file esista nella cartella txt/."
+            },
+            EN: {
+                title: "The Chapel of the Crosses",
+                menuHome: "Home",
+                menuMap: "Map",
+                menuVideo: "Video",
+                menuImages: "Images (Gallery)",
+                menu3D: "3D Model",
+                menuBot: "Chatbot",
+                langSel: "Reading Language",
+                loading: "Loading content...",
+                errorLoad: "Unable to load text. Ensure the file exists in the txt/ folder."
+            }
+        };
+
+        // Mostra avviso se siamo in un iFrame (es. Preview di Canvas)
+        if (window.self !== window.top) {
+            document.getElementById('iframe-warning').style.display = 'block';
+        }
+
+        /* ==========================================================================
+           2. STATO GLOBALE E MULTILINGUA
+           ========================================================================== */
+        let currentLanguage = localStorage.getItem('app_lang') || 'IT';
+        function initLanguage() {
+            setLanguage(currentLanguage);
+            
+            // Event Listeners pulsanti lingua
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = e.target.getAttribute('data-lang');
+                    if(lang !== currentLanguage) setLanguage(lang);
+                });
+            });
+        }
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('app_lang', lang);
+            // Aggiorna UI testi hardcoded
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (TRANSLATIONS[lang][key]) {
+                    el.textContent = TRANSLATIONS[lang][key];
+                }
+            });
+            // Aggiorna titolo documento e badge
+            document.title = TRANSLATIONS[lang].title;
+            document.getElementById('current-lang-badge').textContent = lang;
+            // Aggiorna classi pulsanti lingua
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if(btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            // Ricarica il testo del riquadro 4
+            loadTextContent();
+        }
+        /* ==========================================================================
+           3. GESTIONE FETCH TESTO (RIQUADRO 4)
+           ========================================================================== */
+        async function loadTextContent() {
+            const textContainer = document.getElementById('text-content');
+            textContainer.innerHTML = `<div class="loader">${TRANSLATIONS[currentLanguage].loading}</div>`;
+            const fileName = currentLanguage === 'IT' ? 'txt/storia_foggia.txt' : 'txt/storia_foggia_en.txt';
+            try {
+                const response = await fetch(fileName);
+                if (!response.ok) throw new Error('File not found');
+                let text = await response.text();
+                
+                // Formattazione base del file txt (sostituisce i ritorni a capo con <br>)
+                text = text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+                textContainer.innerHTML = `<p>${text}</p>`;
+            } catch (error) {
+                // FALLBACK: Inserimento del testo direttamente nel codice
+                console.warn("Fetch fallito o assente. Caricamento testo integrato.");
+                
+                const fallbackIT = `
+                    <h2>Il Cappellone delle Croci</h2>
+                    <p>La costruzione della chiesa risale al 1693 e venne eretta sul luogo in cui il padre cappuccino Antonio da Olivadi piantò sette croci lungo il percorso di una processione penitenziale[1]. Tale Via Crucis venne fatta per scongiurare la carestia che imperversava nel Tavoliere delle Puglie in quegli anni a causa della siccità; la storia narra che al termine del percorso penitenziale un temporale si abbatté sulla città.</p>
+                    
+                    <h3>Caratteristiche</h3>
+                    <p>Dove erano le croci oggi si trovano i cinque monumenti di cui è composto il complesso monumentale, in quanto due furono abbattuti per far posto alla Chiesa. Il complesso è formato da un arco trionfale in stile barocco, cinque cappelle e una chiesa con pianta a croce latina. All'interno della chiesa è conservata una reliquia del S. Legno della Croce di Gesù, e una tela di scuola napoletana che raffigura la Salita al Calvario. Al disotto della chiesa vi è una cripta dove sono custodite le spoglie dei soldati della I guerra mondiale, e dove si dice avvenissero le riunioni dei carbonari dauni durante il Risorgimento.</p>
+                    <p>Monumento impresso per singolarità e particolarità. Fermarsi sotto le sue cappelle significa certamente respirare un po’ la vita dei pastori, rivivere i loro percorsi, immaginare le speranze di una città che cresceva intorno: tutto questo perchè la vita dei pastori non va disgiunta appunto dalla Chiesa delle Croci. Quando Alfonso d’Aragona, nel 1447, istituì la Dogana delle pecore, numerosi pastori della Puglia, della Basilicata e dell’Abruzzo scendevano nella pianura foggiana con decine di migliaia di greggi al pascolo. Ebbene, all’incrocio di due importanti tratturi, appena fuori la città di allora, nacque codesta Chiesa meta quindi di tutti questi forestieri che entravano in ogni luogo sacro che incontrassero lungo il loro lungo tragitto. Infatti sulla sommità dell’arco trionfale, da un lato del cornicione si legge una scritta in latino: “O vos omnes qui transitis per viam attendite et vidite si est dolor sicut dolor meus” (O voi che passate per questa via, ponete attenzione e vedete se c’è un dolore simile al mio).</p>
+                    <p>Sembrerebbe che la costruzione della chiesa ebbe inizio nel 1615.</p>
+                `;
+                
+                const fallbackEN = `
+                    <h2>The Chapel of the Crosses</h2>
+                    <p>The construction of the church dates back to 1693 and was erected on the site where the Capuchin father Antonio da Olivadi planted seven crosses along the route of a penitential procession[1]. This Way of the Cross was made to ward off the famine that was raging in the Tavoliere delle Puglie in those years due to drought; history tells that at the end of the penitential path a thunderstorm hit the city.</p>
+                    
+                    <h3>Characteristics</h3>
+                    <p>Where the crosses once stood, today there are the five monuments that make up the monumental complex, as two were torn down to make way for the Church. The complex consists of a Baroque-style triumphal arch, five chapels, and a church with a Latin cross plan. Inside the church, a relic of the Holy Wood of the Cross of Jesus is preserved, along with a Neapolitan school canvas depicting the Ascent to Calvary. Below the church, there is a crypt where the remains of World War I soldiers are kept, and where it is said the meetings of the Daunian Carbonari took place during the Risorgimento.</p>
+                    <p>A monument striking for its singularity and particularity. Stopping under its chapels certainly means breathing a little of the shepherds' life, reliving their journeys, imagining the hopes of a city growing around it: all this because the life of the shepherds cannot be separated from the Church of the Crosses. When Alfonso of Aragon established the Sheep Customs (Dogana delle pecore) in 1447, numerous shepherds from Apulia, Basilicata, and Abruzzo would descend into the Foggia plain with tens of thousands of flocks to pasture. Well, at the intersection of two important sheep tracks (tratturi), just outside the city of that time, this Church was born, thus becoming a destination for all these strangers who entered every sacred place they encountered along their long journey. In fact, at the top of the triumphal arch, on one side of the cornice, there is an inscription in Latin: "O vos omnes qui transitis per viam attendite et vidite si est dolor sicut dolor meus" (O all you who pass by this way, look and see if there is any sorrow like my sorrow).</p>
+                    <p>It would seem that the construction of the church began in 1615.</p>
+                `;
+                
+                textContainer.innerHTML = currentLanguage === 'IT' ? fallbackIT : fallbackEN;
+            }
+        }
+        /* ==========================================================================
+           4. MENU HAMBURGER E NAVIGAZIONE
+           ========================================================================== */
+        const overlay = document.getElementById('drawer-overlay');
+        const menu = document.getElementById('drawer-menu');
+        const btnOpen = document.getElementById('btn-menu-open');
+        const btnClose = document.getElementById('btn-menu-close');
+        function toggleMenu() {
+            overlay.classList.toggle('open');
+            menu.classList.toggle('open');
+            document.body.classList.toggle('drawer-open');
+        }
+        btnOpen.addEventListener('click', toggleMenu);
+        btnClose.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        // Imposta link chatbot nell'header e nel menu
+        document.getElementById('btn-chatbot').href = CONSTANTS.BOT_LINK;
+        document.getElementById('btn-menu-chatbot').addEventListener('click', () => {
+            window.open(CONSTANTS.BOT_LINK, '_blank');
+            toggleMenu();
+        });
+        /* ==========================================================================
+           5. RENDERING DINAMICO (RIQUADRO 3)
+           ========================================================================== */
+        const riquadro3 = document.getElementById('riquadro-3');
+        // Funzione helper per ottenere URL immagine o fallback placeholder d'emergenza
+        function getImgSrc(path, fallbackUrl) {
+            return `src="${path}" onerror="this.onerror=null; this.src='${fallbackUrl}'"`;
+        }
+        const renderFunctions = {
+            home: () => {
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper">
+                        <img class="cover-img" ${getImgSrc('assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_20).jpg', CONSTANTS.FALLBACK_COVER)} alt="Copertina Borgo Croci">
+                    </div>`;
+            },
+            map: () => {
+                const mapUrl = `https://maps.google.com/maps?q=${CONSTANTS.MAP_LAT},${CONSTANTS.MAP_LNG}&z=${CONSTANTS.MAP_ZOOM}&output=embed`;
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper" style="padding: 20px;">
+                        <div class="ratio-16-9">
+                            <iframe src="${mapUrl}" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>`;
+            },
+            video: () => {
+                const safeVideoPath = encodeURI(CONSTANTS.LOCAL_VIDEO_PATH);
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper" style="padding: 20px;">
+                        <div class="ratio-16-9" style="background-color: #000; border-radius: var(--border-radius); overflow: hidden;">
+                            <video controls autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius);">
+                                <source src="${safeVideoPath}" type="video/mp4">
+                                Il tuo browser non supporta il tag video.
+                            </video>
+                        </div>
+                    </div>`;
+            },
+            images: () => {
+                riquadro3.innerHTML = `
+                    <div class="gallery-container">
+                        <img id="main-gallery-img" class="gallery-main" ${getImgSrc('assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_20).jpg', CONSTANTS.FALLBACK_GAL_1)} alt="Galleria Principale">
+                        <div class="gallery-thumbs">
+                            <img class="thumb active" ${getImgSrc('assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_20).jpg', CONSTANTS.FALLBACK_GAL_1)} onclick="changeGalleryImage(this, 'assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_20).jpg', '${CONSTANTS.FALLBACK_GAL_1}')">
+                            <img class="thumb" ${getImgSrc('assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_18).jpg', CONSTANTS.FALLBACK_GAL_2)} onclick="changeGalleryImage(this, 'assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_18).jpg', '${CONSTANTS.FALLBACK_GAL_2}')">
+                            <img class="thumb" ${getImgSrc('assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_19) (1).jpg', CONSTANTS.FALLBACK_GAL_3)} onclick="changeGalleryImage(this, 'assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_19) (1).jpg', '${CONSTANTS.FALLBACK_GAL_3}')">
+                            <img class="thumb" ${getImgSrc('assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_19).jpg', CONSTANTS.FALLBACK_GAL_1)} onclick="changeGalleryImage(this, 'assets/Team 3) CONTENT MANAGER (Ricerca & Testi) (23 gen 2026 alle ore 13_19).jpg', '${CONSTANTS.FALLBACK_GAL_1}')">
+                        </div>
+                    </div>`;
+            },
+            '3d': () => {
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper" style="padding: 20px;">
+                        <div class="sketchfab-embed-wrapper" style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div class="ratio-16-9">
+                                <iframe title="Cappellone Delle Croci (FIX)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="${CONSTANTS.MODEL_3D_URL}"> </iframe>
+                            </div>
+                            <p style="font-size: 13px; font-weight: normal; margin: 10px 5px 5px; color: #4A4A4A; text-align: center;"> 
+                                <a href="https://sketchfab.com/3d-models/cappellone-delle-croci-fix-c2e4aae984aa462f81993e089648866d?utm_medium=embed&utm_campaign=share-popup&utm_content=c2e4aae984aa462f81993e089648866d" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> Cappellone Delle Croci (FIX) </a> by <a href="https://sketchfab.com/Peppegiochi871?utm_medium=embed&utm_campaign=share-popup&utm_content=c2e4aae984aa462f81993e089648866d" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> Giuseppe Ferrazzano </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=c2e4aae984aa462f81993e089648866d" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);">Sketchfab</a>
+                            </p>
+                        </div>
+                    </div>`;
+            }
+        };
+        // Gestione cambio immagine galleria (Vanilla JS)
+        window.changeGalleryImage = function(thumbElement, imgPath, fallbackUrl) {
+            // Aggiorna immagine grande
+            const mainImg = document.getElementById('main-gallery-img');
+            mainImg.src = imgPath;
+            // Aggiorna fallback in caso manchi l'asset
+            mainImg.onerror = function() { 
+                this.onerror=null; 
+                this.src = fallbackUrl; 
+            };
+            // Gestisci classe active sulle miniature
+            document.querySelectorAll('.gallery-thumbs .thumb').forEach(t => t.classList.remove('active'));
+            thumbElement.classList.add('active');
+        };
+        function setActiveAction(action) {
+            document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-action') === action);
+            });
+        }
+
+        // Event listener per voci di menu (drawer + header fisso sezioni)
+        document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const action = e.currentTarget.getAttribute('data-action');
+                
+                // Rimuovi active a tutti e mettilo a quello cliccato
+                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+                if (action === 'home') {
+                    goToMainHomePage();
+                    return;
+                }
+
+                // Renderizza contenuto
+                if(renderFunctions[action]) {
+                    renderFunctions[action]();
+                }
+
+                if (menu.classList.contains('open')) {
+                    toggleMenu();
+                }
+            });
+        });
+        // Home: porta alla pagina principale del progetto
+        function goToMainHomePage() {
+            window.location.href = '../pagina home/index.html';
+        }
+
+        // Tasto home nell'header
+        document.getElementById('btn-home').addEventListener('click', goToMainHomePage);
+        /* ==========================================================================
+           6. INIZIALIZZAZIONE APP
+           ========================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            initLanguage();
+            renderFunctions.home(); // Carica immagine copertina all'avvio
+        });
+    
+
+        /* ── PAGE TRANSITIONS & FLUIDITY ── */
+        (function () {
+            // Crea overlay transizione
+            var overlay = document.getElementById('page-transition');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'page-transition';
+                document.body.appendChild(overlay);
+            }
+
+            // Intercetta click su link che escono dalla pagina
+            document.addEventListener('click', function (e) {
+                var link = e.target.closest('a[href]');
+                if (!link) return;
+                var href = link.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('javascript') ||
+                    href.startsWith('http') || link.target === '_blank') return;
+                e.preventDefault();
+                overlay.classList.add('active');
+                setTimeout(function () {
+                    window.location.href = href;
+                }, 260);
+            });
+
+            // Fade-in quando si arriva sulla pagina
+            document.addEventListener('DOMContentLoaded', function () {
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity .35s ease';
+                setTimeout(function () { document.body.style.opacity = '1'; }, 20);
+            });
+
+            // Smooth content-panel fade per switch sezioni (riquadro-3)
+            var r3 = document.getElementById('riquadro-3');
+            if (r3) {
+                var origInner = r3.innerHTML;
+                var observer = new MutationObserver(function () {
+                    r3.style.opacity = '0';
+                    r3.style.transform = 'translateY(6px)';
+                    setTimeout(function () {
+                        r3.style.transition = 'opacity .3s ease, transform .3s ease';
+                        r3.style.opacity = '1';
+                        r3.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+                observer.observe(r3, { childList: true, subtree: false });
+            }
+        })();
+
+    </script>
+
+<div id="page-transition"></div>
+
+    <!-- ── TORNA AI PERCORSI ── -->
+    <a href="../pagina home/index.html#percorsi"
+       class="btn-back-percorsi"
+       aria-label="Torna alla selezione dei percorsi">
+        <span class="back-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 1L3 6L8 11" stroke="white" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+        Scegli un altro percorso
+    </a>
+</body>
+</html>

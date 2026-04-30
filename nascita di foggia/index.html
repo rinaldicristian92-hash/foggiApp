@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Origini di Foggia · foggiApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/fovea-ui.css">
+</head>
+<body>
+
+    <!-- ── PAGE LOADER ── -->
+    <div id="page-loader">
+        <img class="pl-logo" src="../shared/logo.png" alt="foggiApp" aria-hidden="true"
+             onerror="this.style.display='none'">
+        <p class="pl-name">foggiApp</p>
+        <div class="pl-bar"></div>
+    </div>
+
+    <!-- ── HEADER ── -->
+    <header>
+        <div class="header-left">
+            <button class="icon-btn" id="btn-home" aria-label="Torna alla Home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <div class="header-center">
+            <a href="../pagina home/index.html" style="display:inline-block;margin-bottom:2px;"><img src="../shared/logo.png" alt="foggiApp" style="height:28px;width:auto;display:block;margin:0 auto;" onerror="this.style.display='none'"></a>
+            <h1 data-i18n="title">Le Origini di Foggia</h1>
+            <hr class="title-line">
+        </div>
+
+        <div class="header-right">
+            <a href="#" target="_blank" class="icon-btn" id="btn-chatbot" aria-label="Apri Chatbot">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                    <circle cx="12" cy="5" r="2"></circle>
+                    <path d="M12 7v4"></path>
+                    <line x1="8" y1="16" x2="8" y2="16"></line>
+                    <line x1="16" y1="16" x2="16" y2="16"></line>
+                </svg>
+            </a>
+            <button class="icon-btn" id="btn-menu-open" aria-label="Apri Menu" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ── TABS NAV ── -->
+    <nav class="section-options-bar" aria-label="Sezioni rapide">
+        <button class="section-option  active" data-action="home"><span data-i18n="menuHome">Home</span></button>
+        <button class="section-option" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
+        <button class="section-option" data-action="video"><span data-i18n="menuVideo">Video</span></button>
+        <button class="section-option" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
+        <button class="section-option" data-action="3d"><span data-i18n="menu3D">Modello 3D</span></button>
+    </nav>
+
+    <!-- ── IFRAME WARNING ── -->
+    <div id="iframe-warning">
+        ⚠️ Modalità Anteprima: i file locali non possono essere caricati qui. Salva i file sul tuo PC per vederli.
+    </div>
+
+    <!-- ── DRAWER OVERLAY ── -->
+    <div id="drawer-overlay"></div>
+
+    <!-- ── DRAWER MENU ── -->
+    <nav id="drawer-menu" aria-label="Menu principale">
+        <div class="drawer-header">
+            <button class="close-btn" id="btn-menu-close" aria-label="Chiudi menu">&times;</button>
+        </div>
+
+        <div class="menu-nav">
+            <button class="menu-item  active" data-action="home">
+                <span data-i18n="menuHome">Home</span>
+            </button>
+            <button class="menu-item" data-action="map">
+                <span data-i18n="menuMap">Mappa</span>
+            </button>
+            <button class="menu-item" data-action="video">
+                <span data-i18n="menuVideo">Video</span>
+            </button>
+            <button class="menu-item" data-action="images">
+                <span data-i18n="menuImages">Immagini (Galleria)</span>
+            </button>
+            <button class="menu-item" data-action="3d">
+                <span data-i18n="menu3D">Modello 3D</span>
+            </button>
+            <button class="menu-item" id="btn-menu-chatbot">
+                <span data-i18n="menuBot">Chatbot</span>
+            </button>
+        </div>
+
+        <div class="lang-selector-container">
+            <div class="lang-header">
+                <span data-i18n="langSel">Lingua</span>
+                <span class="lang-badge" id="current-lang-badge">IT</span>
+            </div>
+            <div class="lang-buttons">
+                <button class="lang-btn active" data-lang="IT">Italiano</button>
+                <button class="lang-btn" data-lang="EN">English</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main>
+        <section id="riquadro-3" class="panel"></section>
+        <section id="riquadro-4" class="panel">
+            <div id="text-content">
+                <div class="loader" data-i18n="loading">Caricamento in corso...</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+
+        /* ── LOADER HIDE (affidabile, esecuzione immediata) ── */
+        (function () {
+            var pl = document.getElementById('page-loader');
+            if (!pl) return;
+            function hideLoader() {
+                pl.classList.add('hidden');
+                setTimeout(function () { pl.style.display = 'none'; }, 700);
+            }
+            // Nascondi dopo l'animazione (900ms) oppure al load della pagina
+            var hideTimer = setTimeout(hideLoader, 950);
+            window.addEventListener('load', function () {
+                clearTimeout(hideTimer);
+                setTimeout(hideLoader, 300);
+            });
+        })();
+
+        /* ==========================================================================
+           1. COSTANTI E CONFIGURAZIONI
+           ========================================================================== */
+        const CONSTANTS = {
+            MAP_LAT: 41.46307834564095, // Coordinate di Borgo Croci, Foggia
+            MAP_LNG: 15.544403586147633,
+            MAP_ZOOM: 16,
+            LOCAL_VIDEO_PATH: 'assets/borgo croci .mp4',
+            BOT_LINK: 'https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica',
+            MODEL_3D_URL: 'https://sketchfab.com/models/75b8e067b6b440d5b2bcf517d8ab800e/embed', // Nuovo modello 3D Borgo Croci
+            // Fallbacks grafici provvisori (usati SOLO SE manca il file locale o si è in anteprima)
+            FALLBACK_COVER: 'https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_GAL_1: 'https://images.unsplash.com/photo-1544253155-70fa9a1f81d8?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_GAL_2: 'https://images.unsplash.com/photo-1505322022379-7c3353ee6291?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_GAL_3: 'https://images.unsplash.com/photo-1604312684814-1fc634a4751f?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_IMG_COLOR: 'F2F2F2',
+            FALLBACK_TXT_COLOR: '961B2B'
+        };
+        const TRANSLATIONS = {
+            IT: {
+                title: "Le Origini di Foggia",
+                menuHome: "Home",
+                menuMap: "Mappa",
+                menuVideo: "Video",
+                menuImages: "Immagini (Galleria)",
+                menu3D: "Modello 3D",
+                menuBot: "Chatbot",
+                langSel: "Lingua di lettura",
+                loading: "Caricamento in corso...",
+                errorLoad: "Impossibile caricare il testo. Assicurati che il file esista nella cartella txt/."
+            },
+            EN: {
+                title: "The Origins of Foggia",
+                menuHome: "Home",
+                menuMap: "Map",
+                menuVideo: "Video",
+                menuImages: "Images (Gallery)",
+                menu3D: "3D Model",
+                menuBot: "Chatbot",
+                langSel: "Reading Language",
+                loading: "Loading content...",
+                errorLoad: "Unable to load text. Ensure the file exists in the txt/ folder."
+            }
+        };
+
+        // Mostra avviso se siamo in un iFrame (es. Preview di Canvas)
+        if (window.self !== window.top) {
+            document.getElementById('iframe-warning').style.display = 'block';
+        }
+
+        /* ==========================================================================
+           2. STATO GLOBALE E MULTILINGUA
+           ========================================================================== */
+        let currentLanguage = localStorage.getItem('app_lang') || 'IT';
+        function initLanguage() {
+            setLanguage(currentLanguage);
+            
+            // Event Listeners pulsanti lingua
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = e.target.getAttribute('data-lang');
+                    if(lang !== currentLanguage) setLanguage(lang);
+                });
+            });
+        }
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('app_lang', lang);
+            // Aggiorna UI testi hardcoded
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (TRANSLATIONS[lang][key]) {
+                    el.textContent = TRANSLATIONS[lang][key];
+                }
+            });
+            // Aggiorna titolo documento e badge
+            document.title = TRANSLATIONS[lang].title;
+            document.getElementById('current-lang-badge').textContent = lang;
+            // Aggiorna classi pulsanti lingua
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if(btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            // Ricarica il testo del riquadro 4
+            loadTextContent();
+        }
+        /* ==========================================================================
+           3. GESTIONE FETCH TESTO (RIQUADRO 4)
+           ========================================================================== */
+        async function loadTextContent() {
+            const textContainer = document.getElementById('text-content');
+            textContainer.innerHTML = `<div class="loader">${TRANSLATIONS[currentLanguage].loading}</div>`;
+            const fileName = currentLanguage === 'IT' ? 'txt/storia_foggia.txt' : 'txt/storia_foggia_en.txt';
+            try {
+                const response = await fetch(fileName);
+                if (!response.ok) throw new Error('File not found');
+                let text = await response.text();
+                
+                // Formattazione base del file txt (sostituisce i ritorni a capo con <br>)
+                text = text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+                textContainer.innerHTML = `<p>${text}</p>`;
+            } catch (error) {
+                // FALLBACK: Inserimento del testo direttamente nel codice
+                console.warn("Fetch fallito o assente. Caricamento testo integrato.");
+                
+                const fallbackIT = `
+                    <h2>Le Origini di Foggia tra Storia e Leggenda</h2>
+                    <p>La città di Foggia, nel cuore del Tavoliere delle Puglie, presenta origini che intrecciano dati storici documentati e tradizioni leggendarie. Le ricerche storiografiche collocano la nascita dell’abitato nella seconda metà dell’XI secolo, in epoca normanna. Un documento del 1066 attesta l’esistenza della “villa Fogiam” con le sue chiese, donata da papa Alessandro II al vescovo di Troia: ciò dimostra che a quella data esisteva già una comunità stabile. La fondazione non fu dunque un evento improvviso, ma il risultato di un processo graduale favorito dalle bonifiche promosse dai Normanni nelle aree paludose circostanti l’antica Arpi. Il nome “Foggia” deriverebbe dal latino fovea (“fossa”), probabilmente riferito a un bacino d’acqua naturale presente nella zona.</p>
+                    <p>La posizione geografica, al centro di importanti vie tratturali e strade locali, favorì lo sviluppo economico del nuovo insediamento, basato su agricoltura, allevamento e commercio. Un momento decisivo fu l’età di Federico II (XIII secolo), che fece di Foggia una delle sedi privilegiate del suo regno. L’imperatore vi costruì un palazzo monumentale e nel 1240 convocò una Dieta generale, elevando la città a centro politico-amministrativo di primo piano nell’Italia meridionale. Anche in epoca angioina e aragonese Foggia mantenne un ruolo rilevante, soprattutto grazie alla Regia Dogana della Mena delle Pecore (1447), che ne fece il fulcro del sistema della transumanza.</p>
+                    <p>Parallelamente alla storia documentata, Foggia ha elaborato una forte tradizione leggendaria legata al ritrovamento dell’Icona Vetere, detta Madonna dei Sette Veli. Secondo il racconto popolare, intorno all’anno Mille alcuni pastori avrebbero visto un bue inginocchiarsi presso uno stagno illuminato da tre fiammelle; scavando nel pantano, avrebbero scoperto una tavola raffigurante la Vergine. Attorno a quel luogo sacro sarebbe poi sorta la città. Le tre fiammelle sono divenute simbolo civico e parte integrante dello stemma comunale.</p>
+                    <p>Le fonti scritte della leggenda compaiono però solo nel XVII secolo, segno che il racconto fu codificato tardi, pur basandosi probabilmente su tradizioni orali precedenti. L’icona, tuttora conservata, è stata datata tra XI e XII secolo e presenta caratteri stilistici bizantini, confermando l’antichità del culto mariano ma non l’episodio miracoloso così come narrato. Eventi come il terremoto del 1731 rafforzarono ulteriormente la devozione popolare, contribuendo alla diffusione del titolo di “Madonna dei Sette Veli”.</p>
+                    <p>Il confronto tra storia e leggenda mostra dunque una doppia dimensione: da un lato, una fondazione medievale spiegabile attraverso dinamiche politiche, economiche e territoriali; dall’altro, un mito identitario che ha dato significato simbolico alla nascita della città. Pur non trovando riscontro nei documenti coevi, la leggenda ha svolto un ruolo fondamentale nella costruzione dell’identità collettiva foggiana, influenzando stemma, devozioni religiose e patrimonio artistico.</p>
+                    <p>In conclusione, la nascita di Foggia va compresa come il risultato di un processo storico concreto, arricchito però da una narrazione mitica che ne ha rafforzato il senso di appartenenza. Verità storica e memoria popolare non si escludono, ma convivono, contribuendo insieme a definire l’eredità culturale della città.</p>
+                `;
+                
+                const fallbackEN = `
+                    <h2>The Origins of Foggia between History and Legend</h2>
+                    <p>The city of Foggia, in the heart of the Tavoliere delle Puglie, has origins that intertwine documented historical data and legendary traditions. Historiographical research places the birth of the settlement in the second half of the 11th century, during the Norman era. A document from 1066 attests to the existence of "villa Fogiam" with its churches, donated by Pope Alexander II to the bishop of Troia: this shows that a stable community already existed at that date. The foundation was therefore not a sudden event, but the result of a gradual process favored by land reclamation promoted by the Normans in the marshy areas surrounding ancient Arpi. The name "Foggia" likely derives from the Latin <i>fovea</i> ("pit" or "trench"), probably referring to a natural water basin present in the area.</p>
+                    <p>The geographical position, at the center of important sheep-tracks and local roads, favored the economic development of the new settlement, based on agriculture, livestock, and commerce. A decisive moment was the era of Frederick II (13th century), who made Foggia one of the privileged seats of his kingdom. The emperor built a monumental palace there and in 1240 convened a general Diet, elevating the city to a leading political-administrative center in southern Italy. Even in the Angevin and Aragonese eras, Foggia maintained a significant role, above all thanks to the Royal Customs of the Sheep Toll (Regia Dogana della Mena delle Pecore, 1447), which made it the fulcrum of the transhumance system.</p>
+                    <p>Alongside documented history, Foggia has developed a strong legendary tradition linked to the discovery of the Icona Vetere, known as the Madonna of the Seven Veils (Madonna dei Sette Veli). According to popular tale, around the year 1000 some shepherds saw an ox kneeling near a pond illuminated by three flames; digging in the mud, they discovered a wooden panel depicting the Virgin Mary. The city supposedly arose around that sacred place. The three flames have become a civic symbol and an integral part of the municipal coat of arms.</p>
+                    <p>However, written sources of the legend only appear in the 17th century, a sign that the story was codified late, although probably based on earlier oral traditions. The icon, still preserved today, has been dated between the 11th and 12th centuries and features Byzantine stylistic elements, confirming the antiquity of the Marian cult but not the miraculous episode exactly as narrated. Events such as the 1731 earthquake further strengthened popular devotion, contributing to the spread of the title "Madonna of the Seven Veils".</p>
+                    <p>The comparison between history and legend thus shows a double dimension: on the one hand, a medieval foundation explainable through political, economic, and territorial dynamics; on the other, an identity myth that gave symbolic meaning to the birth of the city. Although not corroborated by contemporary documents, the legend has played a fundamental role in building Foggia's collective identity, influencing its coat of arms, religious devotions, and artistic heritage.</p>
+                    <p>In conclusion, the birth of Foggia must be understood as the result of a concrete historical process, yet enriched by a mythical narrative that has strengthened its sense of belonging. Historical truth and popular memory are not mutually exclusive but coexist, contributing together to define the city's cultural legacy.</p>
+                `;
+                
+                textContainer.innerHTML = currentLanguage === 'IT' ? fallbackIT : fallbackEN;
+            }
+        }
+        /* ==========================================================================
+           4. MENU HAMBURGER E NAVIGAZIONE
+           ========================================================================== */
+        const overlay = document.getElementById('drawer-overlay');
+        const menu = document.getElementById('drawer-menu');
+        const btnOpen = document.getElementById('btn-menu-open');
+        const btnClose = document.getElementById('btn-menu-close');
+        function toggleMenu() {
+            overlay.classList.toggle('open');
+            menu.classList.toggle('open');
+            document.body.classList.toggle('drawer-open');
+        }
+        btnOpen.addEventListener('click', toggleMenu);
+        btnClose.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        // Imposta link chatbot nell'header e nel menu
+        document.getElementById('btn-chatbot').href = CONSTANTS.BOT_LINK;
+        document.getElementById('btn-menu-chatbot').addEventListener('click', () => {
+            window.open(CONSTANTS.BOT_LINK, '_blank');
+            toggleMenu();
+        });
+        /* ==========================================================================
+           5. RENDERING DINAMICO (RIQUADRO 3)
+           ========================================================================== */
+        const riquadro3 = document.getElementById('riquadro-3');
+        // Funzione helper per ottenere URL immagine o fallback placeholder d'emergenza
+        function getImgSrc(path, fallbackUrl) {
+            return `src="${path}" onerror="this.onerror=null; this.src='${fallbackUrl}'"`;
+        }
+        const renderFunctions = {
+            home: () => {
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper">
+                        <img class="cover-img" ${getImgSrc('assets/quadro-realistico_1.jpg', CONSTANTS.FALLBACK_COVER)} alt="Copertina Borgo Croci">
+                    </div>`;
+            },
+            map: () => {
+                const mapUrl = `https://maps.google.com/maps?q=${CONSTANTS.MAP_LAT},${CONSTANTS.MAP_LNG}&z=${CONSTANTS.MAP_ZOOM}&output=embed`;
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper" style="padding: 20px;">
+                        <div class="ratio-16-9">
+                            <iframe src="${mapUrl}" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>`;
+            },
+            video: () => {
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper" style="padding: 20px;">
+                        <div class="ratio-16-9" style="background-color: #000; border-radius: var(--border-radius); overflow: hidden;">
+                            <iframe width="560" height="315" src="https://app.heygen.com/embeds/357821d6ce1c4395a29438ee3922a19e" title="HeyGen video player" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>
+                        </div>
+                    </div>`;
+            },
+            images: () => {
+                riquadro3.innerHTML = `
+                    <div class="gallery-container">
+                        <img id="main-gallery-img" class="gallery-main" ${getImgSrc('assets/quadro-realistico_1.jpg', CONSTANTS.FALLBACK_COVER)} alt="Galleria Principale">
+                        <div class="gallery-thumbs">
+                            <img class="thumb active" ${getImgSrc('assets/quadro-realistico_1.jpg', CONSTANTS.FALLBACK_COVER)} onclick="changeGalleryImage(this, 'assets/quadro-realistico_1.jpg', '${CONSTANTS.FALLBACK_COVER}')">
+                            <img class="thumb" ${getImgSrc('assets/ChatGPT-Image-24-feb-2026_-15_34_02.jpg', CONSTANTS.FALLBACK_GAL_1)} onclick="changeGalleryImage(this, 'assets/ChatGPT-Image-24-feb-2026_-15_34_02.jpg', '${CONSTANTS.FALLBACK_GAL_1}')">
+                            <img class="thumb" ${getImgSrc('assets/bufali-con-fiammelle-e-quadro_1.jpg', CONSTANTS.FALLBACK_GAL_2)} onclick="changeGalleryImage(this, 'assets/bufali-con-fiammelle-e-quadro_1.jpg', '${CONSTANTS.FALLBACK_GAL_2}')">
+                            <img class="thumb" ${getImgSrc('assets/bufali-con-fiammelle_1.jpg', CONSTANTS.FALLBACK_GAL_3)} onclick="changeGalleryImage(this, 'assets/bufali-con-fiammelle_1.jpg', '${CONSTANTS.FALLBACK_GAL_3}')">
+                            <img class="thumb" ${getImgSrc('assets/foggia-distrutta-da-un-terremoto_1.jpg', CONSTANTS.FALLBACK_GAL_1)} onclick="changeGalleryImage(this, 'assets/foggia-distrutta-da-un-terremoto_1.jpg', '${CONSTANTS.FALLBACK_GAL_1}')">
+                            <img class="thumb" ${getImgSrc('assets/ChatGPT-Image-24-feb-2026_-15_42_28.jpg', CONSTANTS.FALLBACK_GAL_2)} onclick="changeGalleryImage(this, 'assets/ChatGPT-Image-24-feb-2026_-15_42_28.jpg', '${CONSTANTS.FALLBACK_GAL_2}')">
+                            <img class="thumb" ${getImgSrc('assets/ChatGPT-Image-24-feb-2026_-15_38_38.jpg', CONSTANTS.FALLBACK_GAL_3)} onclick="changeGalleryImage(this, 'assets/ChatGPT-Image-24-feb-2026_-15_38_38.jpg', '${CONSTANTS.FALLBACK_GAL_3}')">
+                        </div>
+                    </div>`;
+            },
+            '3d': () => {
+                riquadro3.innerHTML = `
+                    <div class="content-wrapper" style="padding: 20px;">
+                        <div class="sketchfab-embed-wrapper" style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div class="ratio-16-9">
+                                <iframe title="Scena-iconavetere-01" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="${CONSTANTS.MODEL_3D_URL}"> </iframe>
+                            </div>
+                            <p style="font-size: 13px; font-weight: normal; margin: 10px 5px 5px; color: #4A4A4A; text-align: center;"> 
+                                <a href="https://sketchfab.com/3d-models/scena-iconavetere-01-75b8e067b6b440d5b2bcf517d8ab800e?utm_medium=embed&utm_campaign=share-popup&utm_content=75b8e067b6b440d5b2bcf517d8ab800e" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> Scena-iconavetere-01 </a> by <a href="https://sketchfab.com/gb.prof.69?utm_medium=embed&utm_campaign=share-popup&utm_content=75b8e067b6b440d5b2bcf517d8ab800e" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> gb.prof.69 </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=75b8e067b6b440d5b2bcf517d8ab800e" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);">Sketchfab</a>
+                            </p>
+                        </div>
+                    </div>`;
+            }
+        };
+        // Gestione cambio immagine galleria (Vanilla JS)
+        window.changeGalleryImage = function(thumbElement, imgPath, fallbackUrl) {
+            // Aggiorna immagine grande
+            const mainImg = document.getElementById('main-gallery-img');
+            mainImg.src = imgPath;
+            // Aggiorna fallback in caso manchi l'asset
+            mainImg.onerror = function() { 
+                this.onerror=null; 
+                this.src = fallbackUrl; 
+            };
+            // Gestisci classe active sulle miniature
+            document.querySelectorAll('.gallery-thumbs .thumb').forEach(t => t.classList.remove('active'));
+            thumbElement.classList.add('active');
+        };
+        function setActiveAction(action) {
+            document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-action') === action);
+            });
+        }
+
+        // Event listener per voci di menu (drawer + header fisso sezioni)
+        document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const action = e.currentTarget.getAttribute('data-action');
+                
+                // Rimuovi active a tutti e mettilo a quello cliccato
+                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+                if (action === 'home') {
+                    goToMainHomePage();
+                    return;
+                }
+
+                // Renderizza contenuto
+                if(renderFunctions[action]) {
+                    renderFunctions[action]();
+                }
+
+                if (menu.classList.contains('open')) {
+                    toggleMenu();
+                }
+            });
+        });
+        // Home: porta alla pagina principale del progetto
+        function goToMainHomePage() {
+            window.location.href = '../pagina home/index.html';
+        }
+
+        // Tasto home nell'header
+        document.getElementById('btn-home').addEventListener('click', goToMainHomePage);
+        /* ==========================================================================
+           6. INIZIALIZZAZIONE APP
+           ========================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            initLanguage();
+            renderFunctions.home(); // Carica immagine copertina all'avvio
+        });
+    
+
+        /* ── PAGE TRANSITIONS & FLUIDITY ── */
+        (function () {
+            // Crea overlay transizione
+            var overlay = document.getElementById('page-transition');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'page-transition';
+                document.body.appendChild(overlay);
+            }
+
+            // Intercetta click su link che escono dalla pagina
+            document.addEventListener('click', function (e) {
+                var link = e.target.closest('a[href]');
+                if (!link) return;
+                var href = link.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('javascript') ||
+                    href.startsWith('http') || link.target === '_blank') return;
+                e.preventDefault();
+                overlay.classList.add('active');
+                setTimeout(function () {
+                    window.location.href = href;
+                }, 260);
+            });
+
+            // Fade-in quando si arriva sulla pagina
+            document.addEventListener('DOMContentLoaded', function () {
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity .35s ease';
+                setTimeout(function () { document.body.style.opacity = '1'; }, 20);
+            });
+
+            // Smooth content-panel fade per switch sezioni (riquadro-3)
+            var r3 = document.getElementById('riquadro-3');
+            if (r3) {
+                var origInner = r3.innerHTML;
+                var observer = new MutationObserver(function () {
+                    r3.style.opacity = '0';
+                    r3.style.transform = 'translateY(6px)';
+                    setTimeout(function () {
+                        r3.style.transition = 'opacity .3s ease, transform .3s ease';
+                        r3.style.opacity = '1';
+                        r3.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+                observer.observe(r3, { childList: true, subtree: false });
+            }
+        })();
+
+    </script>
+
+<div id="page-transition"></div>
+
+    <!-- ── TORNA AI PERCORSI ── -->
+    <a href="../pagina home/index.html#percorsi"
+       class="btn-back-percorsi"
+       aria-label="Torna alla selezione dei percorsi">
+        <span class="back-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 1L3 6L8 11" stroke="white" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+        Scegli un altro percorso
+    </a>
+</body>
+</html>
