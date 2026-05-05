@@ -52,6 +52,7 @@
         <button class="section-option" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
         <button class="section-option" data-action="video"><span data-i18n="menuVideo">Video</span></button>
         <button class="section-option" data-action="3d"><span data-i18n="menu3d">3D</span></button>
+        <button class="section-option" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
 </nav>
 
 <!-- DRAWER OVERLAY -->
@@ -71,6 +72,7 @@
             <button class="menu-item" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
             <button class="menu-item" data-action="video"><span data-i18n="menuVideo">Video</span></button>
             <button class="menu-item" data-action="3d"><span data-i18n="menu3d">3D</span></button>
+            <button class="menu-item" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
     <button class="menu-item" id="btn-menu-chatbot">Chatbot</button>
   </div>
   <div class="drawer-lang">
@@ -128,10 +130,12 @@
             MAP_LAT: 41.465244185438635,
             MAP_LNG: 15.545172254742855,
             MAP_ZOOM: 16,
-            LOCAL_VIDEO_PATH: 'assets/1771942298',
+            LOCAL_VIDEO_PATH: 'assets/FoggiApp_-_museo_2.mp4',
             BOT_LINK: 'https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica',
             MODEL_3D_URL: 'https://sketchfab.com/models/dd7280d0abee4e4892f8ad709e33add5/embed',
-            FALLBACK_COVER: 'https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=800&q=80'
+            FALLBACK_COVER: 'https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=800&q=80',
+            FALLBACK_GAL_1: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=600&q=80',
+            FALLBACK_GAL_2: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=600&q=80'
         };
         const TRANSLATIONS = {
             IT: {
@@ -140,6 +144,7 @@
                 menuMap: "Mappa",
                 menuVideo: "Video",
                 menu3D: "3D",
+                menuImages: "Immagini (Galleria)",
                 menuBot: "Chatbot",
                 langSel: "Lingua di lettura",
                 loading: "Caricamento in corso...",
@@ -151,6 +156,7 @@
                 menuMap: "Map",
                 menuVideo: "Video",
                 menu3D: "3D",
+                menuImages: "Immagini (Galleria)",
                 menuBot: "Chatbot",
                 langSel: "Reading Language",
                 loading: "Loading content...",
@@ -281,10 +287,20 @@
                 riquadro3.innerHTML = `
                     <div class="content-wrapper" style="padding: 20px;">
                         <div class="ratio-16-9" style="background-color: #000;">
-                            <video controls autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius);">
+                            <video controls playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius);">
                                 <source src="${safeVideoPath}" type="video/mp4">
                                 Il tuo browser non supporta il tag video.
                             </video>
+                        </div>
+                    </div>`;
+            },
+                        images: () => {
+                riquadro3.innerHTML = `
+                    <div class="gallery-container">
+                        <img id="main-gallery-img" class="gallery-main" ${getImgSrc('assets/copertina.jpg', CONSTANTS.FALLBACK_COVER)} alt="Galleria Museo Civico" style="width:100%;flex:1;object-fit:cover;display:block;min-height:200px;cursor:pointer;">
+                        <div class="gallery-thumbnails" style="display:flex;gap:2px;background:#000;padding:2px;flex-shrink:0;">
+                            <img class="thumb active" ${getImgSrc('assets/copertina.jpg', CONSTANTS.FALLBACK_COVER)} onclick="changeGalleryImage(this, 'assets/copertina.jpg', '${CONSTANTS.FALLBACK_COVER}')" style="flex:1;height:70px;object-fit:cover;cursor:pointer;">
+                            <img class="thumb" ${getImgSrc('assets/WhatsApp Image 2026-04-30 at 13.11.46.jpeg', CONSTANTS.FALLBACK_GAL_1)} onclick="changeGalleryImage(this, 'assets/WhatsApp Image 2026-04-30 at 13.11.46.jpeg', '${CONSTANTS.FALLBACK_GAL_1}')" style="flex:1;height:70px;object-fit:cover;cursor:pointer;">
                         </div>
                     </div>`;
             },

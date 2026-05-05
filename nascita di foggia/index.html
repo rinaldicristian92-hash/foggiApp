@@ -130,7 +130,7 @@
             MAP_LAT: 41.46307834564095, // Coordinate di Borgo Croci, Foggia
             MAP_LNG: 15.544403586147633,
             MAP_ZOOM: 16,
-            LOCAL_VIDEO_PATH: 'assets/borgo croci .mp4',
+            LOCAL_VIDEO_PATH: 'assets/FoggiaApp_nascita.mp4',
             BOT_LINK: 'https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica',
             MODEL_3D_URL: 'https://sketchfab.com/models/75b8e067b6b440d5b2bcf517d8ab800e/embed', // Nuovo modello 3D Borgo Croci
             // Fallbacks grafici provvisori (usati SOLO SE manca il file locale o si è in anteprima)
@@ -298,11 +298,15 @@
                         </div>
                     </div>`;
             },
-            video: () => {
+                        video: () => {
+                const safeVideoPath = encodeURI(CONSTANTS.LOCAL_VIDEO_PATH);
                 riquadro3.innerHTML = `
                     <div class="content-wrapper" style="padding: 20px;">
-                        <div class="ratio-16-9" style="background-color: #000; border-radius: var(--border-radius); overflow: hidden;">
-                            <iframe width="560" height="315" src="https://app.heygen.com/embeds/357821d6ce1c4395a29438ee3922a19e" title="HeyGen video player" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>
+                        <div class="ratio-16-9" style="background-color: #000;">
+                            <video controls playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius);">
+                                <source src="${safeVideoPath}" type="video/mp4">
+                                Il tuo browser non supporta il tag video.
+                            </video>
                         </div>
                     </div>`;
             },
