@@ -439,6 +439,203 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
 .risk-title { font-family: 'Gilroy', sans-serif; font-size: 17px; font-weight: 700; color: var(--dark); }
 .risk-desc  { font-family: 'Gilroy', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.7; color: var(--gray); }
 
+
+/* ═══ BRAND IDENTITY GALLERY ═══ */
+#brand-identity {
+  padding: 120px 60px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+#brand-identity::before {
+  content: 'IDENTITY';
+  position: absolute;
+  top: 58px;
+  right: -28px;
+  font-family: 'Gilroy', sans-serif;
+  font-size: clamp(70px, 14vw, 190px);
+  font-weight: 900;
+  letter-spacing: -7px;
+  color: rgba(11,13,43,.035);
+  line-height: .8;
+  pointer-events: none;
+  user-select: none;
+}
+.brand-gallery-intro {
+  max-width: 760px;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--gray);
+  margin: 0 0 54px;
+  position: relative;
+  z-index: 1;
+}
+.brand-gallery-intro strong { color: var(--dark); font-weight: 800; }
+.brand-gallery-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.brand-carousel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  gap: 20px;
+  align-items: center;
+}
+.brand-carousel-viewport {
+  overflow: hidden;
+  border: 1px solid rgba(11,13,43,.1);
+  background: linear-gradient(135deg, #f7f7f7 0%, #fff 100%);
+  box-shadow: 0 26px 70px rgba(11,13,43,.09);
+}
+.brand-carousel-track {
+  display: flex;
+  transition: transform .5s var(--ease);
+  will-change: transform;
+}
+.brand-slide {
+  min-width: 100%;
+  padding: clamp(18px, 3.4vw, 46px);
+  display: grid;
+  place-items: center;
+}
+.brand-slide img {
+  width: 100%;
+  max-height: min(72vh, 780px);
+  object-fit: contain;
+  display: block;
+  background: var(--white);
+  box-shadow: 0 18px 40px rgba(11,13,43,.12);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.brand-slide img:hover {
+  transform: scale(.985);
+  box-shadow: 0 10px 28px rgba(11,13,43,.18);
+}
+.brand-carousel-btn {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Gilroy', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s var(--ease), background .25s, opacity .25s;
+}
+.brand-carousel-btn:hover { transform: translateY(-2px); background: #b82e30; }
+.brand-carousel-btn:disabled { opacity: .42; pointer-events: none; }
+.brand-carousel-status {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(11,13,43,.2);
+  transition: width .3s var(--ease), background .3s;
+}
+.brand-dot.active {
+  width: 26px;
+  border-radius: 999px;
+  background: var(--red);
+}
+.brand-actions {
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
+}
+.brand-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 34px;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Gilroy', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .25s var(--ease), background .25s, box-shadow .25s;
+  box-shadow: 0 16px 34px rgba(217,60,62,.22);
+}
+.brand-download-btn:hover {
+  transform: translateY(-2px);
+  background: #b82e30;
+  box-shadow: 0 18px 38px rgba(217,60,62,.28);
+}
+.brand-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(4, 6, 24, .88);
+  backdrop-filter: blur(12px);
+}
+.brand-lightbox.open { display: flex; }
+.brand-lightbox-img {
+  max-width: min(1100px, 94vw);
+  max-height: 88vh;
+  object-fit: contain;
+  background: var(--white);
+  box-shadow: 0 28px 90px rgba(0,0,0,.42);
+}
+.brand-lightbox-close {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255,255,255,.28);
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Gilroy', sans-serif;
+  font-size: 25px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s var(--ease), background .25s;
+}
+.brand-lightbox-close:hover { transform: rotate(90deg); background: #b82e30; }
+@media (max-width: 900px) {
+  #brand-identity { padding: 80px 24px; }
+  .brand-carousel { grid-template-columns: 1fr; gap: 14px; }
+  .brand-carousel-btn {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    box-shadow: 0 12px 30px rgba(0,0,0,.22);
+  }
+  .brand-carousel-btn:hover { transform: translateY(-50%); }
+  .brand-prev { left: 10px; }
+  .brand-next { right: 10px; }
+  .brand-slide { padding: 14px; }
+  .brand-slide img { max-height: 62vh; }
+  .brand-download-btn { width: 100%; padding: 0 22px; text-align: center; }
+}
+
 /* ═══ CTA ═══ */
 .cta-section { background: var(--dark); text-align: center; padding: 160px 60px; position: relative; overflow: hidden; }
 .cta-section .section-label { color: var(--red); display: block; margin-bottom: 16px; }
@@ -918,6 +1115,43 @@ footer { padding: 40px 60px; border-top: 1px solid rgba(0,0,0,.08); display: fle
   </div>
 </section>
 
+
+<section id="brand-identity">
+  <span class="section-label reveal">Brand Identity</span>
+  <h2 class="section-heading reveal">La parte visiva<br>del progetto <em>foggiApp</em>.</h2>
+  <p class="brand-gallery-intro reveal">Una raccolta degli elaborati grafici finali: mockup, manifesti, card promozionali e materiali coordinati della <strong>Brand Identity</strong>. Usa le frecce per scorrere la galleria e clicca su un'immagine per aprirla in grande.</p>
+
+  <div class="brand-gallery-shell reveal" aria-label="Galleria Brand Identity foggiApp">
+    <div class="brand-carousel" data-brand-carousel>
+      <button class="brand-carousel-btn brand-prev" type="button" aria-label="Immagine precedente">&#8249;</button>
+      <div class="brand-carousel-viewport">
+        <div class="brand-carousel-track">
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-01.jpg" alt="Materiale stampato foggiApp con copertina e QR code" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-02.png" alt="Mockup manifesto foggiApp in ambiente urbano" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-03.jpg" alt="Poster foggiApp con QR code e area rossa centrale" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-04.jpg" alt="Poster promozionale foggiApp con smartphone e città" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-05.jpg" alt="Layout editoriale Foggia la conosci davvero" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-06.jpg" alt="Scheda funzionalità foggiApp eventi itinerari cultura" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-07.jpg" alt="Poster foggiApp con smartphone e fontana" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-08.jpg" alt="Materiali coordinati stampati foggiApp" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-09.jpg" alt="Cartoncino rosso con logo foggiApp fustellato" loading="lazy" decoding="async"></div>
+          <div class="brand-slide"><img src="assets/brand-identity/gallery-10.jpg" alt="Retro materiali coordinati foggiApp con QR code" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+      <button class="brand-carousel-btn brand-next" type="button" aria-label="Immagine successiva">&#8250;</button>
+    </div>
+    <div class="brand-carousel-status" aria-label="Indicatori galleria"></div>
+    <div class="brand-actions">
+      <a class="brand-download-btn" href="assets/brand-identity/brand-identity-foggiapp.pdf" download>Scarica la Brand Identity</a>
+    </div>
+  </div>
+</section>
+
+<div class="brand-lightbox" aria-hidden="true" role="dialog" aria-label="Anteprima immagine Brand Identity">
+  <button class="brand-lightbox-close" type="button" aria-label="Chiudi anteprima">×</button>
+  <img class="brand-lightbox-img" src="" alt="Anteprima Brand Identity">
+</div>
+
 <section class="cta-section">
   <div class="cta-bg-word">ADESSO</div>
   <span class="section-label reveal">09 — Iniziamo</span>
@@ -951,7 +1185,7 @@ footer { padding: 40px 60px; border-top: 1px solid rgba(0,0,0,.08); display: fle
     var lnk = e.target.closest('a[href]');
     if (!lnk) return;
     var href = lnk.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('http') || lnk.target === '_blank') return;
+    if (!href || href.startsWith('#') || href.startsWith('http') || lnk.target === '_blank' || lnk.hasAttribute('download')) return;
     e.preventDefault();
     if (ov) ov.classList.add('active');
     setTimeout(function () { window.location.href = href; }, 260);
@@ -987,7 +1221,7 @@ document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.cli
   cInner.style.left = mx + 'px'; cInner.style.top = my + 'px';
   requestAnimationFrame(animCursor);
 })();
-document.querySelectorAll('a, button, .feature-card, .value-row, .team-card, .tl-phase-item, .rev-card, .risk-row, .stat-box, .bento-cell').forEach(function (el) {
+document.querySelectorAll('a, button, .feature-card, .value-row, .team-card, .tl-phase-item, .rev-card, .risk-row, .stat-box, .bento-cell, .brand-slide img, .brand-download-btn, .brand-carousel-btn, .brand-lightbox-close').forEach(function (el) {
   el.addEventListener('mouseenter', function () { document.body.classList.add('cursor-hover'); });
   el.addEventListener('mouseleave', function () { document.body.classList.remove('cursor-hover'); });
 });
@@ -1049,6 +1283,86 @@ var tlObs = new IntersectionObserver(function (entries) {
 }, { threshold: 0.3 });
 var tlEl = document.getElementById('timeline-h');
 if (tlEl) tlObs.observe(tlEl);
+
+
+// ── BRAND IDENTITY CAROUSEL + LIGHTBOX ──
+(function () {
+  var carousel = document.querySelector('[data-brand-carousel]');
+  if (!carousel) return;
+
+  var track = carousel.querySelector('.brand-carousel-track');
+  var slides = Array.prototype.slice.call(carousel.querySelectorAll('.brand-slide'));
+  var prev = carousel.querySelector('.brand-prev');
+  var next = carousel.querySelector('.brand-next');
+  var status = document.querySelector('.brand-carousel-status');
+  var lightbox = document.querySelector('.brand-lightbox');
+  var lightboxImg = document.querySelector('.brand-lightbox-img');
+  var closeBtn = document.querySelector('.brand-lightbox-close');
+  var index = 0;
+  var dots = [];
+
+  function buildDots() {
+    if (!status) return;
+    status.innerHTML = '';
+    slides.forEach(function (_, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'brand-dot';
+      dot.setAttribute('aria-label', 'Vai all\'immagine ' + (i + 1));
+      dot.addEventListener('click', function () { goTo(i); });
+      status.appendChild(dot);
+      dots.push(dot);
+    });
+  }
+
+  function update() {
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    if (prev) prev.disabled = index === 0;
+    if (next) next.disabled = index === slides.length - 1;
+    dots.forEach(function (dot, i) { dot.classList.toggle('active', i === index); });
+  }
+
+  function goTo(i) {
+    index = Math.max(0, Math.min(slides.length - 1, i));
+    update();
+  }
+
+  function openLightbox(img) {
+    if (!lightbox || !lightboxImg || !img) return;
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || 'Anteprima Brand Identity';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightbox || !lightboxImg) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  if (prev) prev.addEventListener('click', function () { goTo(index - 1); });
+  if (next) next.addEventListener('click', function () { goTo(index + 1); });
+  slides.forEach(function (slide, i) {
+    var img = slide.querySelector('img');
+    if (!img) return;
+    img.addEventListener('click', function () { index = i; update(); openLightbox(img); });
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (lightbox) lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+    if (!lightbox || !lightbox.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') goTo(index - 1);
+    if (e.key === 'ArrowRight') goTo(index + 1);
+  });
+
+  buildDots();
+  update();
+})();
 
 // ── STAGGER ──
 document.querySelectorAll('.tl-phases .tl-phase-item').forEach(function (el, i) { el.style.transitionDelay = (i * 100) + 'ms'; });
