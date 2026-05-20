@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Borgo Croci · FoggiApp</title>
+<title data-i18n-doc-it="Borgo Croci · FoggiApp" data-i18n-doc-en="Borgo Croci · FoggiApp">Borgo Croci · FoggiApp</title>
+<meta name="description" content="Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/fovea-ui.css">
 </head>
 <body>
@@ -17,478 +18,379 @@
   <p class="pl-name">FoggiApp</p>
   <div class="pl-bar-wrap"><div class="pl-bar"></div></div>
 </div>
-<script>(function(){var l=document.getElementById('page-loader');function h(){l.classList.add('out');setTimeout(function(){l.style.display='none'},550)}var t=setTimeout(h,1000);window.addEventListener('load',function(){clearTimeout(t);setTimeout(h,60)})})();</script>
+<script>(function(){var l=document.getElementById('page-loader');function h(){l.classList.add('out');setTimeout(function(){l.style.display='none'},550)}var t=setTimeout(h,1000);window.addEventListener('load',function(){clearTimeout(t);setTimeout(h,60)})})()</script>
 
-<!-- IFRAME WARNING -->
-<div id="iframe-warning" style="display:none;background:#c05200;color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:700;position:fixed;top:0;width:100%;z-index:9000">&#9888; Anteprima: i file locali non sono visibili. Salva sul PC per vederli.</div>
+<!-- PAGE TRANSITION -->
+<div id="page-ptr"></div>
 
-<!-- HEADER -->
-<header>
-  <div class="hdr-side left">
-    <button class="icon-btn" id="btn-home" aria-label="Torna alla Home">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    </button>
+<!-- ── HEADER ── -->
+<header class="dp-header" id="dp-hdr">
+  <a href="../pagina home/index.html#percorsi" class="dp-hb">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Percorsi
+  </a>
+  <div class="dp-h-logo">
+    <img src="../shared/logo.png" alt="FoggiApp" onerror="this.style.display='none'">
+    <span>Foggi<em>App</em></span>
   </div>
-  <div class="hdr-center">
-    <a href="../pagina home/index.html" style="display:block;margin-bottom:2px">
-      <img src="../shared/logo.png" alt="FoggiApp" style="height:26px;width:auto;margin:0 auto" onerror="this.style.display='none'">
+  <div class="dp-h-actions">
+    <div class="lang-toggle">
+      <button class="active" data-lang="IT">IT</button>
+      <button data-lang="EN">EN</button>
+    </div>
+    <a href="https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica" target="_blank" rel="noopener" class="dp-h-btn" title="Chatbot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
     </a>
-    <h1 data-i18n="title">Borgo Croci</h1>
-    <div class="accent-line"></div>
-  </div>
-  <div class="hdr-side right">
-    <a href="#" class="icon-btn" id="btn-chatbot" target="_blank" aria-label="Chatbot">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
-    </a>
-    <button class="icon-btn" id="btn-menu-open" aria-label="Menu" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <button class="dp-h-btn" id="btn-fav" title="Aggiungi ai preferiti">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     </button>
   </div>
 </header>
 
-<!-- TABS -->
-<nav class="section-options-bar" aria-label="Sezioni">
-        <button class="section-option active" data-action="home"><span data-i18n="menuHome">Home</span></button>
-        <button class="section-option" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
-        <button class="section-option" data-action="video"><span data-i18n="menuVideo">Video</span></button>
-        <button class="section-option" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
-        <button class="section-option" data-action="3d"><span data-i18n="menu3d">Modello 3D</span></button>
+<!-- ── HERO ── -->
+<section class="dp-hero" id="top">
+  <img class="dp-hero-img" id="hero-img" src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg" alt="Borgo Croci"
+       onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'"
+       onload="this.classList.add('loaded')">
+  <div class="dp-hero-overlay">
+    <span class="dp-hero-tag" data-i18n-it="Quartiere Storico" data-i18n-en="Historic District">Quartiere Storico</span>
+    <nav class="dp-breadcrumb" aria-label="Breadcrumb">
+      <a href="../pagina home/index.html">FoggiApp</a>
+      <span class="sep">›</span>
+      <a href="../pagina home/index.html#percorsi">Percorsi</a>
+      <span class="sep">›</span>
+      <span data-i18n-it="Borgo Croci" data-i18n-en="Borgo Croci">Borgo Croci</span>
+    </nav>
+    <h1 class="dp-hero-title" data-i18n-it="Borgo Croci" data-i18n-en="Borgo Croci">Borgo Croci</h1>
+    <p class="dp-hero-sub" data-i18n-it="Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese." data-i18n-en="Foggia's richest neighborhood in history and traditions, heart of the Crocese identity.">Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese.</p>
+  </div>
+</section>
+
+<!-- ── CHIPS ── -->
+<div class="dp-chips-bar">
+  <span class="info-chip">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    45–60 min
+  </span>
+  <span class="info-chip accent" data-i18n-it="Quartiere Storico" data-i18n-en="Historic District">Quartiere Storico</span>
+  <span class="info-chip">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Borgo Croci, Foggia
+  </span>
+  <span class="info-chip" data-i18n-it="Tutti i livelli" data-i18n-en="All levels">Tutti i livelli</span>
+</div>
+
+<!-- ── NAV ANCHOR BAR ── -->
+<nav class="dp-nav" aria-label="Sezioni">
+  <a href="#storia" class="active" data-i18n-it="Storia" data-i18n-en="History">Storia</a>
+  <a href="#galleria" data-i18n-it="Galleria" data-i18n-en="Gallery">Galleria</a>
+  <a href="#video" data-i18n-it="Video" data-i18n-en="Video">Video</a>
+  <a href="#modello3d" data-i18n-it="Modello 3D" data-i18n-en="3D Model">Modello 3D</a>
+  <a href="#mappa" data-i18n-it="Mappa" data-i18n-en="Map">Mappa</a>
 </nav>
 
-<!-- DRAWER OVERLAY -->
-<div id="drawer-overlay"></div>
-
-<!-- DRAWER MENU -->
-<nav id="drawer-menu">
-  <div class="drawer-head">
-    <div class="drawer-head-logo">
-      <img src="../shared/logo.png" alt="FoggiApp" style="height:26px;width:auto" onerror="this.style.display='none'">
-      <span style="font-size:14px;font-weight:800;color:#0b0d2b">Foggi<em style="color:#d93c3e;font-style:normal">App</em></span>
-    </div>
-    <button class="drawer-close" id="btn-menu-close">&times;</button>
+<!-- ── STORIA ── -->
+<section class="dp-section" id="storia">
+  <p class="dp-section-label" data-i18n-it="Storia" data-i18n-en="History">Storia</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Borgo Croci" data-i18n-en="Borgo Croci">Borgo Croci</h2>
+  <div id="text-content" class="reveal rd1">
+    <div class="loader">Caricamento...</div>
   </div>
-  <div class="menu-nav">
-            <button class="menu-item active" data-action="home"><span data-i18n="menuHome">Home</span></button>
-            <button class="menu-item" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
-            <button class="menu-item" data-action="video"><span data-i18n="menuVideo">Video</span></button>
-            <button class="menu-item" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
-            <button class="menu-item" data-action="3d"><span data-i18n="menu3d">Modello 3D</span></button>
-    <button class="menu-item" id="btn-menu-chatbot">Chatbot</button>
+</section>
+
+<!-- ── GALLERIA ── -->
+<section class="dp-section alt" id="galleria">
+  <p class="dp-section-label" data-i18n-it="Galleria immagini" data-i18n-en="Image Gallery">Galleria immagini</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Esplora in immagini" data-i18n-en="Explore through images">Esplora in immagini</h2>
+  <div class="dp-gallery-grid">
+    
+        <div class="dp-gi reveal rd1" data-lb-src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg">
+          <img src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg" alt="img1.jpg" loading="" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'">
+        </div>
+        <div class="dp-gi reveal rd2" data-lb-src="assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg">
+          <img src="assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg" alt="img2.jpg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'">
+        </div>
+        <div class="dp-gi reveal rd3" data-lb-src="assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg">
+          <img src="assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg" alt="img3.jpg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'">
+        </div>
   </div>
-  <div class="drawer-lang">
-    <div class="drawer-lang-label">
-      <span data-i18n="langSel">Lingua di lettura</span>
-      &nbsp;<span id="current-lang-badge" style="background:#d93c3e;color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px">IT</span>
-    </div>
-    <div class="lang-row">
-      <button class="lang-btn active" data-lang="IT">Italiano</button>
-      <button class="lang-btn" data-lang="EN">English</button>
-    </div>
+</section>
+
+<!-- ── VIDEO ── -->
+<section class="dp-section" id="video">
+  <p class="dp-section-label" data-i18n-it="Video" data-i18n-en="Video">Video</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Guarda il video" data-i18n-en="Watch the video">Guarda il video</h2>
+  <div class="dp-video-wrap reveal rd1">
+    <video controls playsinline preload="metadata">
+      <source src="assets/borgo croci .mp4" type="video/mp4">
+      Il tuo browser non supporta il video.
+    </video>
   </div>
-</nav>
+</section>
 
-<!-- MAIN -->
-<main>
-  <section class="panel-left" id="riquadro-3"></section>
-  <section class="panel-right" id="riquadro-4">
-    <div id="text-content"><p style="color:#aaa;padding:36px 24px;font-size:14px">Caricamento...</p></div>
-  </section>
-</main>
+<!-- ── 3D MODEL ── -->
+<section class="dp-section alt" id="modello3d">
+  <p class="dp-section-label" data-i18n-it="Modello 3D interattivo" data-i18n-en="Interactive 3D model">Modello 3D interattivo</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Esplora in 3D" data-i18n-en="Explore in 3D">Esplora in 3D</h2>
+  <div class="dp-video-wrap reveal rd1">
+    <iframe title="Borgo Croci 3D" frameborder="0" allowfullscreen
+      mozallowfullscreen="true" webkitallowfullscreen="true"
+      allow="autoplay; fullscreen; xr-spatial-tracking"
+      loading="lazy"
+      src="https://sketchfab.com/models/c2e4aae984aa462f81993e089648866d/embed"></iframe>
+  </div>
+</section>
 
-<!-- BACK BUTTON -->
-<a href="../pagina home/index.html#percorsi" class="btn-back" aria-label="Torna ai percorsi">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-  Scegli un altro percorso
-</a>
+<!-- ── MAPPA ── -->
+<section class="dp-section" id="mappa">
+  <p class="dp-section-label" data-i18n-it="Dove siamo" data-i18n-en="Location">Dove siamo</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Posizione" data-i18n-en="Location on map">Posizione</h2>
+  <div class="dp-map-wrap reveal rd1">
+    <iframe loading="lazy" allowfullscreen
+      src="https://maps.google.com/maps?q=41.46617399196495,15.540033727729801&z=16&output=embed"></iframe>
+  </div>
+</section>
 
-<!-- TOOLBAR -->
+<!-- ── CTA ── -->
+<section class="dp-cta">
+  <p class="dp-cta-title" data-i18n-it="Cosa vuoi fare dopo?" data-i18n-en="What's next?">Cosa vuoi fare dopo?</p>
+  <p class="dp-cta-sub" data-i18n-it="Continua a esplorare Foggia" data-i18n-en="Keep exploring Foggia">Continua a esplorare Foggia</p>
+  <div class="dp-cta-btns">
+    <a href="../pagina home/index.html" class="dp-cta-btn primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span data-i18n-it="Torna alla Home" data-i18n-en="Back to Home">Torna alla Home</span>
+    </a>
+    <a href="../pagina home/index.html#mappa" class="dp-cta-btn secondary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      <span data-i18n-it="Apri la mappa" data-i18n-en="Open map">Apri la mappa</span>
+    </a>
+    <button class="dp-cta-btn heart" id="cta-fav">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span data-i18n-it="Aggiungi ai preferiti" data-i18n-en="Add to favourites">Aggiungi ai preferiti</span>
+    </button>
+  </div>
+</section>
+
+<!-- ── GALLERY LIGHTBOX ── -->
+<div class="dp-lb" id="dp-lb" role="dialog" aria-modal="true" aria-label="Lightbox galleria">
+  <button class="dp-lb-close" id="lb-close" aria-label="Chiudi">&times;</button>
+  <img id="lb-img" src="" alt="Galleria">
+</div>
+
+<!-- ── BOTTOM TOOLBAR ── -->
 <div class="bottom-toolbar">
   <a href="../pagina home/index.html" class="tb-btn">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     Home
-  </a>
-  <a href="https://comune.foggia.it" target="_blank" rel="noopener" class="tb-btn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    Eventi
   </a>
   <a href="../pagina home/index.html#mappa" class="tb-btn">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
     Mappa
   </a>
   <a href="../pagina home/index.html#percorsi" class="tb-btn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    Preferiti
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Percorsi
   </a>
+  <button class="tb-btn" id="tb-fav">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Preferiti
+  </button>
 </div>
 
 <script>
+/* ── CONFIG ── */
+const PAGE_ID = 'borgo-croci';
+const PAGE_TITLE_IT = 'Borgo Croci';
+const PAGE_TITLE_EN = 'Borgo Croci';
+const TXT_IT = 'txt/borgo_croci.txt';
+const TXT_EN = 'txt/borgo_croci_en.txt';
+const GALLERY_SRCS = ["assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg", "assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg", "assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg"];
+const FALLBACK_IT = `<h2>Il quartiere Borgo Croci di Foggia</h2>
+<h3>Origini e storia</h3>
+<p>Foggia ha visto nel tempo la formazione di diversi borghi storici al di fuori del nucleo medievale originario. Uno di questi è il Borgo Croci, considerato ancora oggi "il quartiere più ricco di storia e tradizioni della città", al punto che i suoi abitanti venivano chiamati <em>crocesi</em> prima ancora che foggiani.</p>
+<p>Il quartiere sorse fuori dall'abitato antico di Foggia, in un'area inizialmente rurale e strategica. Prima della sua formazione vi si estendeva la pianura del Tavoliere, attraversata da importanti percorsi della transumanza. Proprio qui convergevano due regie tratture provenienti dall'Abruzzo, che terminavano alle porte della città.</p>
+<h3>La Chiesa delle Croci</h3>
+<p>Nel 1693 il padre cappuccino Antonio da Olivati giunse a Foggia durante una grave siccità. Organizzò una processione penitenziale fuori città, piantando lungo il percorso sette croci votive. In segno di ringraziamento, sul luogo della processione sorse il Complesso del Calvario, noto come Chiesa delle Croci, che diede il nome all'intero quartiere.</p>
+<p>Il quartiere si sviluppò progressivamente, con una forte identità comunitaria legata alle tradizioni agricole e alla vita di borgo. La festa della Madonna delle Croci, celebrata ogni anno, rappresenta ancora oggi il momento più sentito dalla comunità crocese.</p>`;
+const FALLBACK_EN = `<h2>The Borgo Croci District of Foggia</h2>
+<h3>Origins and History</h3>
+<p>Foggia witnessed over time the formation of several historic districts outside its original medieval core. One of these is Borgo Croci, still considered "the neighborhood richest in history and traditions of the city," to the point that its inhabitants were called <em>crocesi</em> even before being called Foggiani.</p>
+<p>The neighborhood arose outside the ancient settlement of Foggia, in an initially rural and strategic area, crossed by important transhumance routes.</p>
+<h3>The Church of the Crosses</h3>
+<p>In 1693, Capuchin friar Antonio da Olivati came to Foggia during a severe drought. He organized a penitential procession outside the city, planting seven votive crosses along the route. In gratitude, the Calvary Complex, known as the Church of the Crosses, arose at the procession site, giving its name to the entire neighborhood.</p>`;
 
-        /* ==========================================================================
-           1. COSTANTI E CONFIGURAZIONI
-           ========================================================================== */
-        const CONSTANTS = {
-            MAP_LAT: 41.46617399196495, // Coordinate di Borgo Croci, Foggia
-            MAP_LNG: 15.540033727729801,
-            MAP_ZOOM: 16,
-            LOCAL_VIDEO_PATH: 'assets/borgo croci .mp4',
-            BOT_LINK: 'https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica',
-            MODEL_3D_URL: 'https://sketchfab.com/models/c2e4aae984aa462f81993e089648866d/embed', // Nuovo modello 3D Borgo Croci
-            // Fallbacks grafici provvisori (usati SOLO SE manca il file locale o si è in anteprima)
-            FALLBACK_COVER: 'https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=800&q=80',
-            FALLBACK_GAL_1: 'https://images.unsplash.com/photo-1544253155-70fa9a1f81d8?auto=format&fit=crop&w=800&q=80',
-            FALLBACK_GAL_2: 'https://images.unsplash.com/photo-1505322022379-7c3353ee6291?auto=format&fit=crop&w=800&q=80',
-            FALLBACK_GAL_3: 'https://images.unsplash.com/photo-1604312684814-1fc634a4751f?auto=format&fit=crop&w=800&q=80'
-        };
-        const TRANSLATIONS = {
-            IT: {
-                title: "Borgo Croci",
-                menuHome: "Home",
-                menuMap: "Mappa",
-                menuVideo: "Video",
-                menuImages: "Immagini (Galleria)",
-                menu3D: "Modello 3D",
-                menuBot: "Chatbot",
-                langSel: "Lingua di lettura",
-                loading: "Caricamento in corso...",
-                errorLoad: "Impossibile caricare il testo. Assicurati che il file esista nella cartella txt/."
-            },
-            EN: {
-                title: "Borgo Croci",
-                menuHome: "Home",
-                menuMap: "Map",
-                menuVideo: "Video",
-                menuImages: "Images (Gallery)",
-                menu3D: "3D Model",
-                menuBot: "Chatbot",
-                langSel: "Reading Language",
-                loading: "Loading content...",
-                errorLoad: "Unable to load text. Ensure the file exists in the txt/ folder."
-            }
-        };
+/* ── STATE ── */
+var lang = localStorage.getItem('app_lang') || 'IT';
+var favs = JSON.parse(localStorage.getItem('foggiapp_favs') || '[]');
+var isFav = favs.indexOf(PAGE_ID) > -1;
 
-        // Mostra avviso se siamo in un iFrame (es. Preview di Canvas)
-        if (window.self !== window.top) {
-            document.getElementById('iframe-warning').style.display = 'block';
-        }
+/* ── I18N ── */
+function applyLang() {
+  document.documentElement.lang = lang === 'IT' ? 'it' : 'en';
+  document.title = lang === 'IT'
+    ? 'Borgo Croci · FoggiApp'
+    : 'Borgo Croci · FoggiApp';
+  document.querySelectorAll('[data-i18n-it]').forEach(function(el) {
+    el.textContent = lang === 'IT'
+      ? el.getAttribute('data-i18n-it')
+      : el.getAttribute('data-i18n-en');
+  });
+  document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  loadText();
+}
 
-        /* ==========================================================================
-           2. STATO GLOBALE E MULTILINGUA
-           ========================================================================== */
-        let currentLanguage = localStorage.getItem('app_lang') || 'IT';
-        function initLanguage() {
-            setLanguage(currentLanguage);
-            
-            // Event Listeners pulsanti lingua
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const lang = e.target.getAttribute('data-lang');
-                    if(lang !== currentLanguage) setLanguage(lang);
-                });
-            });
-        }
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            localStorage.setItem('app_lang', lang);
-            // Aggiorna UI testi hardcoded
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (TRANSLATIONS[lang][key]) {
-                    el.textContent = TRANSLATIONS[lang][key];
-                }
-            });
-            // Aggiorna titolo documento e badge
-            document.title = TRANSLATIONS[lang].title;
-            document.getElementById('current-lang-badge').textContent = lang;
-            // Aggiorna classi pulsanti lingua
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if(btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-            // Ricarica il testo del riquadro 4
-            loadTextContent();
-        }
-        /* ==========================================================================
-           3. GESTIONE FETCH TESTO (RIQUADRO 4)
-           ========================================================================== */
-        async function loadTextContent() {
-            const textContainer = document.getElementById('text-content');
-            textContainer.innerHTML = `<div class="loader">${TRANSLATIONS[currentLanguage].loading}</div>`;
-            const fileName = currentLanguage === 'IT' ? 'txt/borgo_croci.txt' : 'txt/borgo_croci_en.txt';
-            try {
-                const response = await fetch(fileName);
-                if (!response.ok) throw new Error('File not found');
-                let text = await response.text();
-                
-                // Formattazione base del file txt (sostituisce i ritorni a capo con <br>)
-                text = text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
-                textContainer.innerHTML = `<p>${text}</p>`;
-            } catch (error) {
-                // FALLBACK: Inserimento del testo dal PDF direttamente nel codice
-                console.warn("Fetch fallito o assente. Caricamento testo integrato.");
-                
-                const fallbackIT = `
-                    <h2>Il quartiere Borgo Croci di Foggia: origini, sviluppo urbanistico e vita sociale</h2>
-                    
-                    <h3>Introduzione</h3>
-                    <p>Foggia, capoluogo della Capitanata in Puglia, ha visto nel tempo la formazione di diversi borghi storici al di fuori del nucleo medievale originario. Già dal XVIII secolo, fuori dalla cinta muraria sorsero quartieri popolari spontanei, spesso in corrispondenza di strade di transito o luoghi di culto extraurbani. Uno di questi è il Borgo Croci (detto anche quartiere delle Croci), considerato ancora oggi "il quartiere più ricco di storia e tradizioni della città", al punto che i suoi abitanti venivano chiamati crocesi prima ancora che foggiani. Questa ricerca ricostruisce in dettaglio la storia di Borgo Croci: dalle origini del primo insediamento, al successivo sviluppo urbanistico con i cambiamenti toponomastici, fino agli aspetti sociali e culturali (mestieri, tradizioni religiose, vita di comunità) che hanno caratterizzato il rione. Un capitolo è dedicato infine alle famiglie storiche del quartiere e ai cognomi più significativi, basandosi su fonti documentarie disponibili. L'obiettivo è fornire una relazione completa e fondata su fonti storiche attendibili, privilegiando studi locali, documenti d'archivio e pubblicazioni accademiche, ed escludendo aneddoti privi di riscontro documentario.</p>
-                    
-                    <h3>Capitolo 1: Origini del quartiere delle Croci</h3>
-                    <p>Il quartiere Borgo Croci sorse fuori dall'abitato antico di Foggia, in un'area inizialmente rurale e strategica. Prima della sua formazione vi si estendeva la pianura del Tavoliere, attraversata da importanti percorsi della transumanza. Proprio qui convergevano due regie tratture provenienti dall'Abruzzo, il L'Aquila-Foggia e il Celano-Foggia, che terminavano alle porte della città. A testimoniare l'importanza di questo crocevia vi è l'Epitaffio, monumento eretto nel 1651 all'estremità dell'attuale Via Alessandro Manzoni (presso Piazza Sant'Eligio) per segnare il punto di arrivo dei tratturi reali. L'Epitaffio reca un'iscrizione commemorativa del completamento della "reintegra" dei confini dei tratturi sotto il re spagnolo Filippo IV, a conferma del valore storico di questo luogo legato alla pastorizia e ai traffici di bestiame.</p>
-                    <p>Fu però un evento religioso, legato alla devozione popolare, a dare avvio al primo nucleo abitativo. Nel 1693 il padre cappuccino Antonio da Olivati (o Olivadi) giunse a Foggia durante una grave siccità che stava causando carestia nel Tavoliere. Organizzò allora una processione penitenziale fuori città, piantando lungo il percorso sette croci votive. La tradizione riporta che al termine della Via Crucis miracolosamente si abbatté un temporale che pose fine alla siccità. In segno di ringraziamento, sul luogo della processione sorse il Complesso del Calvario, noto come Chiesa delle Croci. Entro pochi anni la zona delle croci venne recintata spontaneamente dal popolo e sulle sette croci vennero costruite cinque cappelle (due croci furono rimosse per far spazio alla chiesa) insieme a una chiesa barocca e a un monumentale arco trionfale. La chiesa, intitolata ufficialmente "Real Tempio del Monte Calvario sotto il titolo della Santa Croce", fu costruita a partire dal 1693, benedetta nel 1742 e aperta al culto nel 1879. Al suo interno conserva una grande tela settecentesca (la Salita al Calvario, scuola napoletana) e una reliquia del Legno della Croce di Cristo. Questo santuario all'aperto unico nel suo genere e dichiarato poi Monumento Nazionale divenne presto il cuore devozionale dell'area. Attorno ad esso si formò uno dei primi nuclei cittadini extra-moenia, chiamato in seguito Borgo Croci.</p>
-                    <p>Va sottolineato che già prima della costruzione della Chiesa delle Croci l'area era utilizzata come rifugio in occasioni di calamità. Studi storici locali riportano che nelle vicinanze sorsero accampamenti provvisori di popolazione dopo i disastrosi terremoti che colpirono Foggia nel 1456, 1534 e 1731. In ciascuna di queste emergenze gli sfollati eressero rapidamente baracche di legno e paglia fuori città, in condizioni di anarchia edilizia, pur di trovare un ricovero immediato dopo il crollo delle proprie case. Tali rifugi sorsero "dove si poteva", senza piano né regole, creando un agglomerato irregolare di capanne a un solo piano, costruite con materiali di recupero e dimensioni disomogenee. Dopo il terremoto del 1731, quando molti proprietari poterono rientrare in città nelle case ricostruite, quelle baracche periferiche non vennero demolite ma rimasero sul posto. Esse vennero occupate dalle fasce più povere della popolazione (che non avevano altra dimora) e col tempo si consolidarono in un borgo stabile. In questo modo, le origini di Borgo Croci furono segnate sia dalla devozione religiosa (il Calvario del 1693) sia da esigenze abitative di emergenza, convergendo entrambe sul medesimo luogo appena fuori la città.</p>
-                    <p>In sintesi, sul finire del Seicento il Santuario delle Croci costituì il polo fondativo del quartiere, mentre la posizione periferica e aperta dell'area favorì il sorgere di un borgo popolare spontaneo. Il nome stesso del rione deriva dalle croci piantate nel 1693 e dalle cappelle del Calvario. Nella successiva evoluzione storica, Borgo Croci mantenne sempre questo doppio carattere: luogo di intensa religiosità popolare e insieme quartiere di gente semplice, sorto ai margini del centro urbano.</p>
-                    
-                    <h3>Capitolo 2: Sviluppo urbanistico e toponomastica del Borgo Croci</h3>
-                    <p>Il tracciato urbano di Borgo Croci nacque in maniera disordinata, riflettendo le circostanze precarie della sua formazione. A differenza dei quartieri pianificati, il borgo sorse senza un piano regolare: le strade non erano parallele, ma si intrecciavano in vicoli e vicoletti tortuosi, formando quasi una "ragnatela" intricata. Non esistevano allineamenti né larghezze costanti delle vie; spesso anche le facciate opposte di una stessa stretta via non risultavano parallele tra loro. Piccoli slarghi e piazzette nacquero solo per casualità, ad esempio dove qualcuno aveva lasciato uno spazio o dove una baracca era crollata, piuttosto che per un disegno viario coerente. Questa confusione urbanistica è ben documentata: "Borgo Croci è sorto sempre affrettatamente, a carattere di precarietà" - scrive un autore locale - in più fasi successive, con costruzioni tirate su "nell'anarchia più assoluta, sotto l'incubo della paura e della fretta" dopo i grandi terremoti. Ognuno costruiva dove poteva, rispettando appena il vicino che si era sistemato prima; nacquero così fronti edilizi discontinui, tutti ad un solo piano ma di altezze diverse, usando i materiali più vari e spesso di recupero. Questo impianto spontaneo e disorganico ha lasciato un'impronta duratura nella topografia del rione, visibile persino dopo i successivi interventi di consolidamento e ristrutturazione parziale delle case.</p>
-                    <p>Nonostante l'irregolarità, col tempo il borgo si integrò parzialmente al tessuto urbano di Foggia. Le mappe ottocentesche mostrano l'estensione del quartiere. Ad esempio, la Pianta Mongelli (una dettagliata topografia di Foggia redatta intorno al 1840) evidenzia che, verso Nord-Ovest, l'abitato si prolungava ormai fino alla Chiesa delle Croci, pur senza spingersi oltre in direzione del vecchio Convento dei Cappuccini. Ciò indica che a metà Ottocento Borgo Croci era un rione consolidato attorno al Santuario, mentre la campagna aperta iniziava subito dopo. A Sud e Ovest, il quartiere confinava con le ultime case di via Fuiani e con il Piano delle Fosse granarie, un'altra area caratteristica della Foggia pre-moderna.</p>
-                    <p>Durante l'Ottocento l'amministrazione comunale intraprese una sistemazione della toponomastica cittadina, assegnando nomi ufficiali anche ai vicoli del Borgo Croci. In particolare, nei primi anni del XIX secolo si procedette a una revisione generale dei nomi delle strade foggiane. È interessante notare due denominazioni peculiari tuttora esistenti nella zona: Vico del Turcasso e Vico Saraceno. Queste piccole viuzze sembrerebbero richiamare la memoria di antiche presenze saracene a Foggia. Secondo un'ipotesi, la popolazione locale conservava il ricordo di artigiani e mercenari di origine orientale stabilitisi in città secoli prima. Ciò segnala come anche un borgo povero come Croci fosse ormai integrato nella rete viaria ufficiale di Foggia ottocentesca.</p>
-                    <p>Un'importante trasformazione urbana fu l'edificazione di una nuova chiesa parrocchiale per il rione nel tardo Ottocento. A seguito delle leggi di soppressione degli ordini religiosi, i frati Cappuccini decisero di costruire un nuovo convento e una chiesa più vicini al centro abitato. Venne eretta nel quartiere la Chiesa di Sant'Anna, aperta al culto nel 1891. Al suo interno fu portata la storica statua di Sant'Anna, protettrice delle partorienti, venerata dai fedeli di Borgo Croci. L'inaugurazione di Sant'Anna fornì al quartiere un secondo polo religioso dopo la Chiesa delle Croci, divenendo la sede parrocchiale di riferimento.</p>
-                    <p>Nel corso del Novecento, Borgo Croci ha subito ulteriori trasformazioni urbanistiche. Negli anni Trenta del XX secolo sorsero palazzine popolari note come "case di Mussolini". Tuttavia, il problema delle condizioni igienico-sanitarie del borgo restava grave. Dopo la Seconda guerra mondiale, le autorità individuarono Borgo Croci come area da riqualificare. Il "risanamento" culminò negli anni Settanta con un vasto intervento: furono demoliti gran parte dei vecchi edifici e vennero costruiti nuovi complessi di case popolari. L'operazione coinvolse 650 nuovi alloggi finanziati dall'IACP e rappresentò l'opera pubblica più importante realizzata in città. Il risultato fu la trasformazione radicale del tessuto edilizio: al posto delle vecchie casupole sorse un quartiere più moderno, sebbene a prezzo della perdita di parte dell'antico ambiente pittoresco. Rimasero intatte le emergenze monumentali storiche (il Santuario delle Croci e la chiesa di S. Anna).</p>
-                    
-                    <h3>Capitolo 3: Vita sociale e culturale del quartiere</h3>
-                    <p>Sin dalle sue origini, Borgo Croci ebbe una popolazione a forte connotazione popolare. Gli abitanti storici del quartiere erano noti col nome di "terrazzani". Si trattava di nuclei di poveri braccianti giornalieri, raccoglitori e cacciatori che vivevano ai margini della società cittadina. Fonti locali li descrivono come famiglie che campavano vendendo in città i frutti spontanei raccolti nelle campagne e arrotondavano con la caccia di frodo di piccola selvaggina e lumache. Non avendo terreni da coltivare né mestiere fisso, i terrazzani conducevano un'economia di sussistenza. Molti vivevano con il loro asino, che li accompagnava nel trasporto in città di erbe, legna o selvaggina.</p>
-                    <p>Borgo Croci divenne storicamente il quartiere dei terrazzani. Una testimonianza della prima metà dell'Ottocento attesta chiaramente questa ripartizione sociale: i carrettieri si concentravano nel borgo di Gesù e Maria, i contadini a sud-est, mentre Borgo Croci era sinonimo di quel sottoproletariato urbano privo di terra. I terrazzani foggiani costituivano quasi una comunità a sé: vestivano in modo umile, parlavano un dialetto infarcito di espressioni locali e spesso erano guardati con sospetto dal resto della cittadinanza. Lo storico locale Carlo Villani li definì un' "indegna plebaglia facile a maneggiare coltelli e volontariamente ghettizzata nel rione Croci". In effetti, per lungo tempo i crocesi mostrarono un forte attaccamento identitario al borgo, al punto da esitare a trasferirsi altrove anche durante il risanamento degli anni '70.</p>
-                    <p>Accanto alla nomea poco lusinghiera, il quartiere espresse nel tempo anche forme proprie di cultura popolare e solidarietà. I terrazzani praticavano artigianalmente la costruzione di armi da caccia rudimentali (balestre, archi), un'eco dell'antica tradizione saracena. Nel borgo si sviluppò anche una vivace cultura dialettale: molti canti, fiabe e soprannomi foggiani provengono proprio da qui.</p>
-                    <p>La vita religiosa ebbe un ruolo centrale. Il Santuario delle Croci fu sin dall'inizio un luogo di culto molto frequentato. Ogni anno, nel Venerdì Santo, i fedeli partecipavano alla Processione dei Misteri. Presso la Chiesa si costituì una Congrega laicale di Monte Calvario, i cui membri contribuivano a mantenere le cappelle e organizzare funzioni penitenziali. La cripta della chiesa fu persino utilizzata come rifugio segreto per riunioni carbonare dai patrioti foggiani anti-borbonici nei primi decenni dell'Ottocento. Anche la chiesa di Sant'Anna divenne fulcro di nuove tradizioni, specialmente con la processione del 26 luglio in cui le puerpere salutavano la statua dalle finestre dell'Ospedale della Maternità.</p>
-                    <p>Sul piano delle iniziative sociali, negli anni '70 il rione ebbe un proprio Consiglio di Quartiere guidato dall'avvocato Michele Perrone. Nelle parrocchie limitrofe come Sacro Cuore, con l'aiuto di sacerdoti come don Nicola Palmisano e don Michele De Paolis, fiorirono scuole popolari e centri di assistenza. Le assemblee popolari segnarono un raro caso di decisioni prese dal basso: furono i cittadini a concordare i criteri degli sgomberi per il risanamento, dando grande prova di coesione civica.</p>
-                    
-                    <h3>Capitolo 4: Famiglie storiche e cognomi del quartiere</h3>
-                    <p>Il Borgo Croci fu popolato da dinastie familiari locali con cognomi ricorrenti. Non risultano particolari flussi migratori esterni, per cui è probabile che i cognomi più diffusi nel quartiere fossero quelli autoctoni foggiani. Di seguito una breve lista commentata di alcuni cognomi storicamente associati a Foggia e probabilmente diffusi nel Borgo:</p>
-                    <ul>
-                        <li><strong>Russo</strong> - Il cognome più diffuso a Foggia in assoluto, comune in tutto il Sud Italia. Varie famiglie Russo risiedevano verosimilmente a Borgo Croci.</li>
-                        <li><strong>Bruno</strong> - Altro cognome molto diffuso. Famiglie Bruno di ceto popolare compaiono spesso negli atti di inizio '900.</li>
-                        <li><strong>Scopece</strong> - Cognome "spiccatamente foggiano", rarissimo altrove. Indica probabilmente un soprannome dialettale. Le famiglie Scopece sono radicate nel tessuto cittadino e popolare.</li>
-                        <li><strong>Padalino</strong> - Altro cognome quasi esclusivo di Foggia. Compare in documenti anagrafici locali almeno dalla metà dell'800.</li>
-                        <li><strong>La Gatta</strong> - Di probabile origine soprannominale, attestato storicamente in Capitanata. La sua presenza in quartieri poveri è plausibile e storicamente registrata.</li>
-                        <li><strong>Gramazio</strong> - Cognome di ceppo locale. Le famiglie Gramazio compaiono negli elenchi parrocchiali cittadini già a fine '800.</li>
-                        <li><strong>Scarpiello</strong> - Cognome tipico foggiano. Un discendente, Marco Scarpiello, ha raccolto un prezioso archivio fotografico su Borgo Croci, testimoniandone indirettamente la presenza.</li>
-                        <li><strong>D'Angelo</strong> - Cognome ben attestato a Foggia. Diverse famiglie D'Angelo di estrazione contadina/artigiana risiedevano nei borghi periferici.</li>
-                        <li><strong>Carella</strong> e <strong>Fiore</strong> - Cognomi pugliesi presenti in città da secoli, con rami attivi storicamente nel centro e nei borghi popolari.</li>
-                    </ul>
-                    <p>La stabilità plurigenerazionale di molte famiglie nel rione ha fatto sì che ancora oggi alcuni anziani ricordino i soprannomi legati ai vari casati. I cognomi, tramandati all'interno del quartiere, diventavano parte integrante della storia comunitaria.</p>
-                    
-                    <h3>Conclusione</h3>
-                    <p>La vicenda storica del Borgo Croci di Foggia è quella di un quartiere nato ai margini che ha saputo ritagliarsi un posto centrale nell'identità cittadina. Dalle vicende miracolose del 1693 al laboratorio di partecipazione democratica del 1975, il rione Croci ha più volte "scritto pagine" importanti nella cronaca della città. Oggi conserva un'atmosfera particolare: il ricordo delle croci benedette, l'arco del Calvario, e i racconti del tempo delle baracche. Questo studio ricostruisce criticamente il passato del quartiere, ritraendo un luogo che ha mescolato sacro e profano, miseria e speranza, isolamento e integrazione, e ricordando come la storia urbana sia fatta anche di borghi periferici nobilitati dalla tenacia di chi vi ha vissuto.</p>
-                    
-                    <h3>Bibliografia ragionata</h3>
-                    <ul>
-                        <li><strong>Archivio Storico Comunale di Foggia / Anagrafe e Toponomastica:</strong> Riferimenti sulle antiche vie e informazioni istituzionali sulla Chiesa delle Croci (1693).</li>
-                        <li><strong>Archivio di Stato di Foggia - Catasto Onciario 1742:</strong> Fonte primaria sui fuochi e le famiglie foggiane a metà Settecento.</li>
-                        <li><strong>Cronache e memorie Ottocentesche (Carlo Villani):</strong> Dalla sua <i>Cronistoria di Foggia dal 1848 al 1870</i>, fonte per la percezione coeva del rione e gli assalti anticlericali del 1871.</li>
-                        <li><strong>Saverio Russo, <i>Storia di Foggia in età moderna</i> (1991):</strong> Saggio fondamentale per capire la geografia sociale preunitaria e l'articolazione socio-professionale.</li>
-                        <li><strong>Carmine de Leo, <i>Foggia: origine e sviluppo urbano</i> (1985):</strong> Analisi della crescita urbanistica, del centro storico e dei borghi periferici post-terremoto.</li>
-                        <li><strong>Alberto Mangano, articoli su Manganofoggia.it:</strong> Saggi divulgativi ma autorevoli su toponomastica, presenze arabe, e lo sviluppo della città ("testa di cavallo").</li>
-                        <li><strong>Raffaele Iarussi, "I terrazzani e la foggianità" (1985):</strong> Saggio specialistico sull'architettura precaria e la storia urbana e sociale dei terrazzani di Borgo Croci.</li>
-                        <li><strong>Geppe Inserra, blog Lettere Meridiane:</strong> Resoconti dettagliati sul piano di risanamento degli anni '70 e sulle assemblee popolari di quartiere.</li>
-                        <li><strong>Antonio Altieri, "U Scaravatte" (2023):</strong> Articolo divulgativo sulle processioni religiose e l'attacco dei terrazzani nel 1871.</li>
-                        <li><strong>Giovanni Cataleta, ricerca ANCI (Gazzetta del Mezzogiorno):</strong> Fonte per l'analisi statistica dell'incidenza locale dei cognomi foggiani.</li>
-                    </ul>
-                `;
-                
-                const fallbackEN = `
-                    <h2>The Borgo Croci District of Foggia: Origins, Urban Development, and Social Life</h2>
+/* ── TEXT FETCH ── */
+async function loadText() {
+  var tc = document.getElementById('text-content');
+  tc.innerHTML = '<div class="loader">Caricamento...</div>';
+  var file = lang === 'IT' ? TXT_IT : TXT_EN;
+  try {
+    var r = await fetch(file);
+    if (!r.ok) throw new Error('not found');
+    var t = await r.text();
+    t = t.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+    tc.innerHTML = '<p>' + t + '</p>';
+  } catch(e) {
+    tc.innerHTML = lang === 'IT' ? FALLBACK_IT : FALLBACK_EN;
+  }
+}
 
-                    <h3>Introduction</h3>
-                    <p>Foggia, the capital of Capitanata in Apulia, has seen over time the formation of various historical districts outside its original medieval core. Already from the 18th century, spontaneous popular neighborhoods arose outside the city walls, often in correspondence with transit routes or extra-urban places of worship. One of these is Borgo Croci (also known as the Croci district), still considered today "the district richest in history and traditions of the city", to the point that its inhabitants were called 'crocesi' even before 'foggiani'. This research reconstructs in detail the history of Borgo Croci: from the origins of the first settlement, to the subsequent urban development with toponymic changes, up to the social and cultural aspects (trades, religious traditions, community life) that characterized the district. Finally, a chapter is dedicated to the historical families of the neighborhood and the most significant surnames, based on available documentary sources. The aim is to provide a complete report based on reliable historical sources, favoring local studies, archival documents, and academic publications, while excluding anecdotes without documentary evidence.</p>
+/* ── FAVORITES ── */
+function updateFavUI() {
+  [document.getElementById('btn-fav'),
+   document.getElementById('cta-fav'),
+   document.getElementById('tb-fav')].forEach(function(el) {
+    if (!el) return;
+    if (isFav) {
+      el.classList.add('fav-active');
+      if (el.querySelector('svg')) el.querySelector('svg').setAttribute('fill', 'currentColor');
+    } else {
+      el.classList.remove('fav-active');
+      if (el.querySelector('svg')) el.querySelector('svg').setAttribute('fill', 'none');
+    }
+  });
+  var ctaSpan = document.querySelector('#cta-fav span');
+  if (ctaSpan) {
+    ctaSpan.setAttribute('data-i18n-it', isFav ? 'Nei preferiti ♥' : 'Aggiungi ai preferiti');
+    ctaSpan.setAttribute('data-i18n-en', isFav ? 'In favourites ♥' : 'Add to favourites');
+    ctaSpan.textContent = lang === 'IT'
+      ? (isFav ? 'Nei preferiti ♥' : 'Aggiungi ai preferiti')
+      : (isFav ? 'In favourites ♥' : 'Add to favourites');
+  }
+}
+function toggleFav() {
+  isFav = !isFav;
+  if (isFav) {
+    if (favs.indexOf(PAGE_ID) === -1) favs.push(PAGE_ID);
+  } else {
+    favs = favs.filter(function(f) { return f !== PAGE_ID; });
+  }
+  localStorage.setItem('foggiapp_favs', JSON.stringify(favs));
+  updateFavUI();
+}
+['btn-fav','cta-fav','tb-fav'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('click', toggleFav);
+});
 
-                    <h3>Chapter 1: Origins of the Croci District</h3>
-                    <p>The Borgo Croci district arose outside the ancient settlement of Foggia, in an initially rural and strategic area. Before its formation, the Tavoliere plain stretched out here, crossed by important transhumance routes. Right here converged two royal sheep tracks coming from Abruzzo, the L'Aquila-Foggia and the Celano-Foggia, which ended at the gates of the city. Testifying to the importance of this crossroads is the Epitaffio, a monument erected in 1651 at the end of the current Via Alessandro Manzoni (near Piazza Sant'Eligio) to mark the arrival point of the royal tracks. The Epitaffio bears a commemorative inscription of the completion of the "reintegration" of the track borders under the Spanish King Philip IV, confirming the historical value of this place linked to pastoralism and cattle trade.</p>
-                    <p>However, it was a religious event, linked to popular devotion, that initiated the first residential nucleus. In 1693, the Capuchin father Antonio da Olivati (or Olivadi) arrived in Foggia during a severe drought that was causing famine in the Tavoliere. He then organized a penitential procession outside the city, planting seven votive crosses along the route. Tradition reports that at the end of the Way of the Cross, a thunderstorm miraculously struck, ending the drought. As a sign of thanksgiving, the Calvary Complex, known as the Church of the Crosses (Chiesa delle Croci), was built on the site of the procession. Within a few years, the area of the crosses was spontaneously fenced off by the people, and five chapels were built over the seven crosses (two crosses were removed to make way for the church) along with a Baroque church and a monumental triumphal arch. The church, officially named the "Royal Temple of Mount Calvary under the title of the Holy Cross", was built starting in 1693, blessed in 1742, and opened to worship in 1879. Inside it preserves a large eighteenth-century canvas (the Ascent to Calvary, Neapolitan school) and a relic of the Wood of the Cross of Christ. This unique open-air sanctuary, later declared a National Monument, soon became the devotional heart of the area. Around it formed one of the first extra-moenia (outside the walls) city nuclei, later called Borgo Croci.</p>
-                    <p>It should be emphasized that even before the construction of the Church of the Crosses, the area was used as a refuge during calamities. Local historical studies report that temporary population camps arose nearby after the disastrous earthquakes that struck Foggia in 1456, 1534, and 1731. In each of these emergencies, displaced people quickly erected wooden and straw huts outside the city, in conditions of building anarchy, just to find immediate shelter after the collapse of their homes. These shelters arose "wherever possible", without a plan or rules, creating an irregular agglomeration of single-story huts, built with recovered materials and uneven dimensions. After the 1731 earthquake, when many owners were able to return to the city to their rebuilt homes, those peripheral shacks were not demolished but remained in place. They were occupied by the poorest segments of the population (who had no other home) and over time consolidated into a stable village. In this way, the origins of Borgo Croci were marked both by religious devotion (the Calvary of 1693) and by emergency housing needs, both converging on the same place just outside the city.</p>
-                    <p>In summary, at the end of the seventeenth century, the Sanctuary of the Crosses constituted the founding pole of the neighborhood, while the peripheral and open position of the area favored the rise of a spontaneous popular village. The very name of the district derives from the crosses planted in 1693 and the chapels of Calvary. In the subsequent historical evolution, Borgo Croci always maintained this dual character: a place of intense popular religiosity and at the same time a neighborhood of simple people, born on the margins of the urban center.</p>
+/* ── HEADER SCROLL ── */
+var hdr = document.getElementById('dp-hdr');
+window.addEventListener('scroll', function() {
+  hdr.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 
-                    <h3>Chapter 2: Urban Development and Toponymy of Borgo Croci</h3>
-                    <p>The urban layout of Borgo Croci was born in a disorderly manner, reflecting the precarious circumstances of its formation. Unlike planned neighborhoods, the village arose without a regular plan: the streets were not parallel but intertwined in tortuous alleys and narrow lanes, forming almost an intricate "spider web". There were no alignments or constant widths of the streets; often even the opposite facades of the same narrow street were not parallel to each other. Small clearings and little squares were born only by chance, for example where someone had left a space or where a shack had collapsed, rather than by a coherent road design. This urban confusion is well documented: "Borgo Croci has always arisen hastily, with a character of precariousness" - writes a local author - in successive phases, with buildings thrown up "in absolute anarchy, under the nightmare of fear and haste" after the great earthquakes. Everyone built where they could, barely respecting the neighbor who had settled first; thus discontinuous building fronts were born, all single-story but of different heights, using the most varied and often recovered materials. This spontaneous and disorganized layout has left a lasting imprint on the topography of the district, visible even after subsequent interventions of consolidation and partial restructuring of the houses.</p>
-                    <p>Despite the irregularity, over time the village partially integrated into the urban fabric of Foggia. Nineteenth-century maps show the extension of the neighborhood. For example, the Mongelli Map (a detailed topography of Foggia drawn up around 1840) highlights that, towards the North-West, the built-up area now extended to the Church of the Crosses, while not pushing further towards the old Capuchin Convent. This indicates that in the mid-nineteenth century Borgo Croci was a consolidated district around the Sanctuary, while the open countryside began immediately after. To the South and West, the neighborhood bordered the last houses of Via Fuiani and the Piano delle Fosse granarie, another characteristic area of pre-modern Foggia.</p>
-                    <p>During the nineteenth century, the municipal administration undertook a systematization of the city toponymy, assigning official names also to the alleys of Borgo Croci. In particular, in the early years of the nineteenth century, a general revision of the names of Foggia's streets was carried out. It is interesting to note two peculiar denominations still existing in the area: Vico del Turcasso and Vico Saraceno. These small alleys would seem to recall the memory of ancient Saracen presence in Foggia. According to a hypothesis, the local population preserved the memory of artisans and mercenaries of Eastern origin who settled in the city centuries before. This indicates how even a poor village like Croci was now integrated into the official road network of nineteenth-century Foggia.</p>
-                    <p>An important urban transformation was the construction of a new parish church for the district in the late nineteenth century. Following the laws suppressing religious orders, the Capuchin friars decided to build a new convent and church closer to the town. The Church of Sant'Anna was erected in the neighborhood, opened to worship in 1891. Inside, the historical statue of Sant'Anna, protector of women in labor, venerated by the faithful of Borgo Croci, was brought. The inauguration of Sant'Anna provided the neighborhood with a second religious center after the Church of the Crosses, becoming the reference parish seat.</p>
-                    <p>During the twentieth century, Borgo Croci underwent further urban transformations. In the 1930s, popular housing blocks known as "Mussolini's houses" were built. However, the problem of the neighborhood's hygienic-sanitary conditions remained serious. After the Second World War, authorities identified Borgo Croci as an area to be redeveloped. The "reclamation" culminated in the 1970s with a vast intervention: most of the old buildings were demolished, and new public housing complexes were built. The operation involved 650 new apartments financed by the IACP and represented the most important public work carried out in the city. The result was the radical transformation of the building fabric: in place of the old hovels arose a more modern neighborhood, albeit at the cost of losing part of the ancient picturesque environment. The historical monumental highlights remained intact (the Sanctuary of the Crosses and the church of S. Anna).</p>
-
-                    <h3>Chapter 3: Social and Cultural Life of the District</h3>
-                    <p>Since its origins, Borgo Croci had a population with a strong popular connotation. The historical inhabitants of the district were known by the name of "terrazzani". These were nuclei of poor daily laborers, gatherers, and hunters who lived on the margins of city society. Local sources describe them as families who made a living selling spontaneous fruits gathered in the countryside in the city and supplemented their income with the poaching of small game and snails. Having neither land to cultivate nor a fixed trade, the terrazzani led a subsistence economy. Many lived with their donkey, which accompanied them in transporting herbs, wood, or game to the city.</p>
-                    <p>Borgo Croci historically became the neighborhood of the terrazzani. A testimony from the first half of the nineteenth century clearly attests to this social division: the carters concentrated in the village of Gesù e Maria, the peasants in the south-east, while Borgo Croci was synonymous with that landless urban lumpenproletariat. The terrazzani of Foggia constituted almost a community in themselves: they dressed humbly, spoke a dialect peppered with local expressions, and were often viewed with suspicion by the rest of the citizenry. Local historian Carlo Villani defined them as an "unworthy plebs prone to wielding knives and voluntarily ghettoized in the Croci district". In fact, for a long time the 'crocesi' showed a strong identity attachment to the village, to the point of hesitating to move elsewhere even during the reclamation of the 1970s.</p>
-                    <p>Alongside the unflattering reputation, the district also expressed over time its own forms of popular culture and solidarity. The terrazzani handcrafted rudimentary hunting weapons (crossbows, bows), an echo of the ancient Saracen tradition. A lively dialectal culture also developed in the village: many Foggia songs, fairy tales, and nicknames come from here.</p>
-                    <p>Religious life played a central role. The Sanctuary of the Crosses was from the beginning a highly frequented place of worship. Every year, on Good Friday, the faithful participated in the Procession of the Mysteries. At the Church, a lay Congregation of Mount Calvary was formed, whose members contributed to maintaining the chapels and organizing penitential functions. The crypt of the church was even used as a secret refuge for Carbonari meetings by anti-Bourbon patriots of Foggia in the early decades of the nineteenth century. The church of Sant'Anna also became the center of new traditions, especially with the procession on July 26 where women who had recently given birth greeted the statue from the windows of the Maternity Hospital.</p>
-                    <p>In terms of social initiatives, in the 1970s the district had its own Neighborhood Council led by lawyer Michele Perrone. In neighboring parishes like Sacro Cuore, with the help of priests like Don Nicola Palmisano and Don Michele De Paolis, popular schools and assistance centers flourished. Popular assemblies marked a rare case of decisions made from the bottom up: it was the citizens who agreed on the criteria for evictions for the reclamation, providing a great proof of civic cohesion.</p>
-
-                    <h3>Chapter 4: Historical Families and Surnames of the District</h3>
-                    <p>Borgo Croci was populated by local family dynasties with recurring surnames. There were no particular external migratory flows, so it is likely that the most common surnames in the neighborhood were the autochthonous ones of Foggia. Below is a brief commented list of some surnames historically associated with Foggia and probably common in the Borgo:</p>
-                    <ul>
-                        <li><strong>Russo</strong> - The most common surname in Foggia overall, widespread throughout Southern Italy. Various Russo families likely resided in Borgo Croci.</li>
-                        <li><strong>Bruno</strong> - Another very widespread surname. Bruno families of working-class origin often appear in records from the early 1900s.</li>
-                        <li><strong>Scopece</strong> - A "distinctly Foggian" surname, very rare elsewhere. It probably indicates a dialectal nickname. Scopece families are rooted in the city's popular fabric.</li>
-                        <li><strong>Padalino</strong> - Another surname almost exclusive to Foggia. It appears in local registry documents since at least the mid-19th century.</li>
-                        <li><strong>La Gatta</strong> - Of probable nickname origin, historically attested in Capitanata. Its presence in poor neighborhoods is plausible and historically recorded.</li>
-                        <li><strong>Gramazio</strong> - A surname of local lineage. Gramazio families appear in the city's parish lists as early as the late 19th century.</li>
-                        <li><strong>Scarpiello</strong> - A typical Foggia surname. A descendant, Marco Scarpiello, has collected a precious photographic archive on Borgo Croci, indirectly testifying to their presence.</li>
-                        <li><strong>D'Angelo</strong> - A well-attested surname in Foggia. Several D'Angelo families of peasant/artisan extraction resided in the peripheral villages.</li>
-                        <li><strong>Carella</strong> and <strong>Fiore</strong> - Apulian surnames present in the city for centuries, with branches historically active in the center and in popular districts.</li>
-                    </ul>
-                    <p>The multi-generational stability of many families in the district has meant that even today some elderly people remember the nicknames linked to the various households. The surnames, handed down within the neighborhood, became an integral part of community history.</p>
-
-                    <h3>Conclusion</h3>
-                    <p>The historical story of the Borgo Croci district of Foggia is that of a neighborhood born on the margins that was able to carve out a central place in the city's identity. From the miraculous events of 1693 to the laboratory of democratic participation in 1975, the Croci district has repeatedly "written" important pages in the city's chronicles. Today it preserves a particular atmosphere: the memory of the blessed crosses, the arch of Calvary, and the tales of the time of the shacks. This study critically reconstructs the past of the neighborhood, portraying a place that mixed the sacred and the profane, misery and hope, isolation and integration, and reminding us how urban history is also made up of peripheral villages ennobled by the tenacity of those who lived there.</p>
-
-                    <h3>Annotated Bibliography</h3>
-                    <ul>
-                        <li><strong>Historical Municipal Archive of Foggia / Registry and Toponymy:</strong> References on the ancient streets and institutional information on the Church of the Crosses (1693).</li>
-                        <li><strong>State Archive of Foggia - Onciario Cadastre 1742:</strong> Primary source on the households and Foggia families in the mid-eighteenth century.</li>
-                        <li><strong>Nineteenth-century chronicles and memoirs (Carlo Villani):</strong> From his <i>Cronistoria di Foggia dal 1848 al 1870</i>, a source for the contemporary perception of the district and the anticlerical assaults of 1871.</li>
-                        <li><strong>Saverio Russo, <i>Storia di Foggia in età moderna</i> (1991):</strong> Fundamental essay to understand pre-unification social geography and socio-professional articulation.</li>
-                        <li><strong>Carmine de Leo, <i>Foggia: origine e sviluppo urbano</i> (1985):</strong> Analysis of urban growth, the historic center, and post-earthquake peripheral villages.</li>
-                        <li><strong>Alberto Mangano, articles on Manganofoggia.it:</strong> Divulging but authoritative essays on toponymy, Arab presence, and city development ("horse's head").</li>
-                        <li><strong>Raffaele Iarussi, "I terrazzani e la foggianità" (1985):</strong> Specialized essay on the precarious architecture and the urban and social history of the terrazzani of Borgo Croci.</li>
-                        <li><strong>Geppe Inserra, Lettere Meridiane blog:</strong> Detailed accounts of the 1970s redevelopment plan and popular neighborhood assemblies.</li>
-                        <li><strong>Antonio Altieri, "U Scaravatte" (2023):</strong> Informative article on religious processions and the terrazzani attack in 1871.</li>
-                        <li><strong>Giovanni Cataleta, ANCI research (Gazzetta del Mezzogiorno):</strong> Source for statistical analysis of the local incidence of Foggia surnames.</li>
-                    </ul>
-                `;
-                
-                textContainer.innerHTML = currentLanguage === 'IT' ? fallbackIT : fallbackEN;
-            }
-        }
-        /* ==========================================================================
-           4. MENU HAMBURGER E NAVIGAZIONE
-           ========================================================================== */
-        const overlay = document.getElementById('drawer-overlay');
-        const menu = document.getElementById('drawer-menu');
-        const btnOpen = document.getElementById('btn-menu-open');
-        const btnClose = document.getElementById('btn-menu-close');
-        function toggleMenu() {
-            overlay.classList.toggle('open');
-            menu.classList.toggle('open');
-        }
-        btnOpen.addEventListener('click', toggleMenu);
-        btnClose.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-        // Imposta link chatbot nell'header e nel menu
-        document.getElementById('btn-chatbot').href = CONSTANTS.BOT_LINK;
-        document.getElementById('btn-menu-chatbot').addEventListener('click', () => {
-            window.open(CONSTANTS.BOT_LINK, '_blank');
-            toggleMenu();
+/* ── NAV HIGHLIGHT ── */
+(function() {
+  var sections = ['storia','galleria','video','modello3d','mappa'];
+  var navLinks = document.querySelectorAll('.dp-nav a');
+  var io2 = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var id = e.target.id;
+        navLinks.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
         });
-        /* ==========================================================================
-           5. RENDERING DINAMICO (RIQUADRO 3)
-           ========================================================================== */
-        const riquadro3 = document.getElementById('riquadro-3');
-        // Funzione helper per ottenere URL immagine o fallback placeholder d'emergenza
-        function getImgSrc(path, fallbackUrl) {
-            return `src="${path}" onerror="this.onerror=null; this.src='${fallbackUrl}'"`;
-        }
-        const renderFunctions = {
-            home: () => {
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper">
-                        <img class="cover-img" ${getImgSrc('assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg', CONSTANTS.FALLBACK_COVER)} alt="Copertina Borgo Croci">
-                    </div>`;
-            },
-            map: () => {
-                const mapUrl = `https://maps.google.com/maps?q=${CONSTANTS.MAP_LAT},${CONSTANTS.MAP_LNG}&z=${CONSTANTS.MAP_ZOOM}&output=embed`;
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper" style="padding: 20px;">
-                        <div class="ratio-16-9">
-                            <iframe src="${mapUrl}" allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>`;
-            },
-            video: () => {
-                const safeVideoPath = encodeURI(CONSTANTS.LOCAL_VIDEO_PATH);
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper" style="padding: 20px;">
-                        <div class="ratio-16-9" style="background-color: #000;">
-                            <video controls playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius);">
-                                <source src="${safeVideoPath}" type="video/mp4">
-                                Il tuo browser non supporta il tag video.
-                            </video>
-                        </div>
-                    </div>`;
-            },
-            images: () => {
-                riquadro3.innerHTML = `
-                    <div class="gallery-container">
-                        <img id="main-gallery-img" class="gallery-main" ${getImgSrc('assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg', CONSTANTS.FALLBACK_GAL_1)} alt="Galleria Principale">
-                        <div class="gallery-thumbs">
-                            <img class="thumb active" ${getImgSrc('assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg', CONSTANTS.FALLBACK_GAL_1)} onclick="changeGalleryImage(this, 'assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg', '${CONSTANTS.FALLBACK_GAL_1}')">
-                            <img class="thumb" ${getImgSrc('assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg', CONSTANTS.FALLBACK_GAL_2)} onclick="changeGalleryImage(this, 'assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg', '${CONSTANTS.FALLBACK_GAL_2}')">
-                            <img class="thumb" ${getImgSrc('assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg', CONSTANTS.FALLBACK_GAL_3)} onclick="changeGalleryImage(this, 'assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg', '${CONSTANTS.FALLBACK_GAL_3}')">
-                        </div>
-                    </div>`;
-            },
-            '3d': () => {
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper" style="padding: 20px;">
-                        <div class="sketchfab-embed-wrapper" style="width: 100%; height: 100%; display: flex; flex-direction: column;">
-                            <div class="ratio-16-9">
-                                <iframe title="Cappellone Delle Croci (FIX)" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/c2e4aae984aa462f81993e089648866d/embed"> </iframe>
-                            </div>
-                            <p style="font-size: 13px; font-weight: normal; margin: 10px 5px 5px; color: #4A4A4A; text-align: center;"> 
-                                <a href="https://sketchfab.com/3d-models/cappellone-delle-croci-fix-c2e4aae984aa462f81993e089648866d?utm_medium=embed&utm_campaign=share-popup&utm_content=c2e4aae984aa462f81993e089648866d" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> Cappellone Delle Croci (FIX) </a> by <a href="https://sketchfab.com/Peppegiochi871?utm_medium=embed&utm_campaign=share-popup&utm_content=c2e4aae984aa462f81993e089648866d" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> Giuseppe Ferrazzano </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=c2e4aae984aa462f81993e089648866d" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);">Sketchfab</a>
-                            </p>
-                        </div>
-                    </div>`;
-            }
-        };
-        // Gestione cambio immagine galleria (Vanilla JS)
-        window.changeGalleryImage = function(thumbElement, imgPath, fallbackUrl) {
-            // Aggiorna immagine grande
-            const mainImg = document.getElementById('main-gallery-img');
-            mainImg.src = imgPath;
-            // Aggiorna fallback in caso manchi l'asset
-            mainImg.onerror = function() { 
-                this.onerror=null; 
-                this.src = fallbackUrl; 
-            };
-            // Gestisci classe active sulle miniature
-            document.querySelectorAll('.gallery-thumbs .thumb').forEach(t => t.classList.remove('active'));
-            thumbElement.classList.add('active');
-        };
-        function setActiveAction(action) {
-            document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-action') === action);
-            });
-        }
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) io2.observe(el);
+  });
+})();
 
-        // Event listener per voci di menu (drawer + header fisso sezioni)
-        document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const action = e.currentTarget.getAttribute('data-action');
-                
-                // Rimuovi active a tutti e mettilo a quello cliccato
-                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-                e.currentTarget.classList.add('active');
-                if (action === 'home') {
-                    goToMainHomePage();
-                    return;
-                }
+/* ── SCROLL REVEAL ── */
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+}
 
-                // Renderizza contenuto
-                if(renderFunctions[action]) {
-                    renderFunctions[action]();
-                }
+/* ── LIGHTBOX ── */
+var lb = document.getElementById('dp-lb');
+var lbImg = document.getElementById('lb-img');
+var lbSrcs = [];
+var lbIdx = 0;
+document.querySelectorAll('.dp-gi').forEach(function(gi, i) {
+  var src = gi.getAttribute('data-lb-src');
+  lbSrcs.push(src);
+  gi.addEventListener('click', function() { openLB(i); });
+});
+function openLB(i) {
+  lbIdx = i;
+  lbImg.src = lbSrcs[i];
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function nextLB() { lbIdx = (lbIdx + 1) % lbSrcs.length; lbImg.src = lbSrcs[lbIdx]; }
+function prevLB() { lbIdx = (lbIdx - 1 + lbSrcs.length) % lbSrcs.length; lbImg.src = lbSrcs[lbIdx]; }
+document.getElementById('lb-close').addEventListener('click', closeLB);
+lb.addEventListener('click', function(e) { if (e.target === lb) closeLB(); });
+document.addEventListener('keydown', function(e) {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLB();
+  if (e.key === 'ArrowRight') nextLB();
+  if (e.key === 'ArrowLeft') prevLB();
+});
 
-                if (menu.classList.contains('open')) {
-                    toggleMenu();
-                }
-            });
-        });
-        // Home: porta alla pagina principale del progetto
-        function goToMainHomePage() {
-            window.location.href = '../pagina home/index.html';
-        }
+/* ── LANG TOGGLE ── */
+document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    lang = btn.getAttribute('data-lang');
+    localStorage.setItem('app_lang', lang);
+    applyLang();
+  });
+});
 
-        // Tasto home nell'header
-        document.getElementById('btn-home').addEventListener('click', goToMainHomePage);
-        /* ==========================================================================
-           6. INIZIALIZZAZIONE APP
-           ========================================================================== */
-        window.addEventListener('DOMContentLoaded', () => {
-            initLanguage();
-            renderFunctions.home(); // Carica immagine copertina all'avvio
-        });
-    
+/* ── PAGE TRANSITIONS ── */
+document.querySelectorAll('a[href]:not([target="_blank"])').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+    e.preventDefault();
+    var ptr = document.getElementById('page-ptr');
+    ptr.classList.add('go');
+    setTimeout(function() { window.location.href = href; }, 200);
+  });
+});
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', function() {
+  applyLang();
+  updateFavUI();
+});
 </script>
 </body>
 </html>

@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Museo Civico · FoggiApp</title>
+<title data-i18n-doc-it="Museo Civico · FoggiApp" data-i18n-doc-en="Civic Museum · FoggiApp">Museo Civico · FoggiApp</title>
+<meta name="description" content="Il museo che custodisce la memoria storica e artistica di Foggia, dalle origini daunie all'epoca sveva.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/fovea-ui.css">
 </head>
 <body>
@@ -17,351 +18,372 @@
   <p class="pl-name">FoggiApp</p>
   <div class="pl-bar-wrap"><div class="pl-bar"></div></div>
 </div>
-<script>(function(){var l=document.getElementById('page-loader');function h(){l.classList.add('out');setTimeout(function(){l.style.display='none'},550)}var t=setTimeout(h,1000);window.addEventListener('load',function(){clearTimeout(t);setTimeout(h,60)})})();</script>
+<script>(function(){var l=document.getElementById('page-loader');function h(){l.classList.add('out');setTimeout(function(){l.style.display='none'},550)}var t=setTimeout(h,1000);window.addEventListener('load',function(){clearTimeout(t);setTimeout(h,60)})})()</script>
 
-<!-- IFRAME WARNING -->
-<div id="iframe-warning" style="display:none;background:#c05200;color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:700;position:fixed;top:0;width:100%;z-index:9000">&#9888; Anteprima: i file locali non sono visibili. Salva sul PC per vederli.</div>
+<!-- PAGE TRANSITION -->
+<div id="page-ptr"></div>
 
-<!-- HEADER -->
-<header>
-  <div class="hdr-side left">
-    <button class="icon-btn" id="btn-home" aria-label="Torna alla Home">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    </button>
+<!-- ── HEADER ── -->
+<header class="dp-header" id="dp-hdr">
+  <a href="../pagina home/index.html#percorsi" class="dp-hb">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Percorsi
+  </a>
+  <div class="dp-h-logo">
+    <img src="../shared/logo.png" alt="FoggiApp" onerror="this.style.display='none'">
+    <span>Foggi<em>App</em></span>
   </div>
-  <div class="hdr-center">
-    <a href="../pagina home/index.html" style="display:block;margin-bottom:2px">
-      <img src="../shared/logo.png" alt="FoggiApp" style="height:26px;width:auto;margin:0 auto" onerror="this.style.display='none'">
+  <div class="dp-h-actions">
+    <div class="lang-toggle">
+      <button class="active" data-lang="IT">IT</button>
+      <button data-lang="EN">EN</button>
+    </div>
+    <a href="https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica" target="_blank" rel="noopener" class="dp-h-btn" title="Chatbot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
     </a>
-    <h1 data-i18n="title">Museo Civico</h1>
-    <div class="accent-line"></div>
-  </div>
-  <div class="hdr-side right">
-    <a href="#" class="icon-btn" id="btn-chatbot" target="_blank" aria-label="Chatbot">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
-    </a>
-    <button class="icon-btn" id="btn-menu-open" aria-label="Menu" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <button class="dp-h-btn" id="btn-fav" title="Aggiungi ai preferiti">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
     </button>
   </div>
 </header>
 
-<!-- TABS -->
-<nav class="section-options-bar" aria-label="Sezioni">
-        <button class="section-option active" data-action="home"><span data-i18n="menuHome">Home</span></button>
-        <button class="section-option" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
-        <button class="section-option" data-action="video"><span data-i18n="menuVideo">Video</span></button>
-        <button class="section-option" data-action="3d"><span data-i18n="menu3d">3D</span></button>
-        <button class="section-option" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
+<!-- ── HERO ── -->
+<section class="dp-hero" id="top">
+  <img class="dp-hero-img" id="hero-img" src="assets/copertina.jpg" alt="Museo Civico"
+       onerror="this.src='https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80'"
+       onload="this.classList.add('loaded')">
+  <div class="dp-hero-overlay">
+    <span class="dp-hero-tag" data-i18n-it="Cultura & Arte" data-i18n-en="Culture & Art">Cultura & Arte</span>
+    <nav class="dp-breadcrumb" aria-label="Breadcrumb">
+      <a href="../pagina home/index.html">FoggiApp</a>
+      <span class="sep">›</span>
+      <a href="../pagina home/index.html#percorsi">Percorsi</a>
+      <span class="sep">›</span>
+      <span data-i18n-it="Museo Civico" data-i18n-en="Civic Museum">Museo Civico</span>
+    </nav>
+    <h1 class="dp-hero-title" data-i18n-it="Museo Civico" data-i18n-en="Civic Museum">Museo Civico</h1>
+    <p class="dp-hero-sub" data-i18n-it="Il museo che custodisce la memoria storica e artistica di Foggia, dalle origini daunie all'epoca sveva." data-i18n-en="The museum that guards Foggia's historical and artistic memory, from Daunian origins to the Swabian era.">Il museo che custodisce la memoria storica e artistica di Foggia, dalle origini daunie all'epoca sveva.</p>
+  </div>
+</section>
+
+<!-- ── CHIPS ── -->
+<div class="dp-chips-bar">
+  <span class="info-chip">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    60–90 min
+  </span>
+  <span class="info-chip accent" data-i18n-it="Cultura & Arte" data-i18n-en="Culture & Art">Cultura & Arte</span>
+  <span class="info-chip">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Piazza Nigri, Foggia
+  </span>
+  <span class="info-chip" data-i18n-it="Tutti i livelli" data-i18n-en="All levels">Tutti i livelli</span>
+</div>
+
+<!-- ── NAV ANCHOR BAR ── -->
+<nav class="dp-nav" aria-label="Sezioni">
+  <a href="#storia" class="active" data-i18n-it="Storia" data-i18n-en="History">Storia</a>
+  <a href="#galleria" data-i18n-it="Galleria" data-i18n-en="Gallery">Galleria</a>
+  <a href="#video" data-i18n-it="Video" data-i18n-en="Video">Video</a>
+  <a href="#modello3d" data-i18n-it="Modello 3D" data-i18n-en="3D Model">Modello 3D</a>
+  <a href="#mappa" data-i18n-it="Mappa" data-i18n-en="Map">Mappa</a>
 </nav>
 
-<!-- DRAWER OVERLAY -->
-<div id="drawer-overlay"></div>
-
-<!-- DRAWER MENU -->
-<nav id="drawer-menu">
-  <div class="drawer-head">
-    <div class="drawer-head-logo">
-      <img src="../shared/logo.png" alt="FoggiApp" style="height:26px;width:auto" onerror="this.style.display='none'">
-      <span style="font-size:14px;font-weight:800;color:#0b0d2b">Foggi<em style="color:#d93c3e;font-style:normal">App</em></span>
-    </div>
-    <button class="drawer-close" id="btn-menu-close">&times;</button>
+<!-- ── STORIA ── -->
+<section class="dp-section" id="storia">
+  <p class="dp-section-label" data-i18n-it="Storia" data-i18n-en="History">Storia</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Museo Civico" data-i18n-en="Civic Museum">Museo Civico</h2>
+  <div id="text-content" class="reveal rd1">
+    <div class="loader">Caricamento...</div>
   </div>
-  <div class="menu-nav">
-            <button class="menu-item active" data-action="home"><span data-i18n="menuHome">Home</span></button>
-            <button class="menu-item" data-action="map"><span data-i18n="menuMap">Mappa</span></button>
-            <button class="menu-item" data-action="video"><span data-i18n="menuVideo">Video</span></button>
-            <button class="menu-item" data-action="3d"><span data-i18n="menu3d">3D</span></button>
-            <button class="menu-item" data-action="images"><span data-i18n="menuImages">Immagini (Galleria)</span></button>
-    <button class="menu-item" id="btn-menu-chatbot">Chatbot</button>
+</section>
+
+<!-- ── GALLERIA ── -->
+<section class="dp-section alt" id="galleria">
+  <p class="dp-section-label" data-i18n-it="Galleria immagini" data-i18n-en="Image Gallery">Galleria immagini</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Esplora in immagini" data-i18n-en="Explore through images">Esplora in immagini</h2>
+  <div class="dp-gallery-grid">
+    
+        <div class="dp-gi reveal rd1" data-lb-src="assets/copertina.jpg">
+          <img src="assets/copertina.jpg" alt="copertina.jpg" loading="" onerror="this.src='https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80'">
+        </div>
+        <div class="dp-gi reveal rd2" data-lb-src="assets/WhatsApp Image 2026-04-30 at 13.11.46.jpeg">
+          <img src="assets/WhatsApp Image 2026-04-30 at 13.11.46.jpeg" alt="gallery2.jpg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80'">
+        </div>
   </div>
-  <div class="drawer-lang">
-    <div class="drawer-lang-label">
-      <span data-i18n="langSel">Lingua di lettura</span>
-      &nbsp;<span id="current-lang-badge" style="background:#d93c3e;color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:3px">IT</span>
-    </div>
-    <div class="lang-row">
-      <button class="lang-btn active" data-lang="IT">Italiano</button>
-      <button class="lang-btn" data-lang="EN">English</button>
-    </div>
+</section>
+
+<!-- ── VIDEO ── -->
+<section class="dp-section" id="video">
+  <p class="dp-section-label" data-i18n-it="Video" data-i18n-en="Video">Video</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Guarda il video" data-i18n-en="Watch the video">Guarda il video</h2>
+  <div class="dp-video-wrap reveal rd1">
+    <video controls playsinline preload="metadata">
+      <source src="assets/FoggiApp_-_museo_2.mp4" type="video/mp4">
+      Il tuo browser non supporta il video.
+    </video>
   </div>
-</nav>
+</section>
 
-<!-- MAIN -->
-<main>
-  <section class="panel-left" id="riquadro-3"></section>
-  <section class="panel-right" id="riquadro-4">
-    <div id="text-content"><p style="color:#aaa;padding:36px 24px;font-size:14px">Caricamento...</p></div>
-  </section>
-</main>
+<!-- ── 3D MODEL ── -->
+<section class="dp-section alt" id="modello3d">
+  <p class="dp-section-label" data-i18n-it="Modello 3D interattivo" data-i18n-en="Interactive 3D model">Modello 3D interattivo</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Esplora in 3D" data-i18n-en="Explore in 3D">Esplora in 3D</h2>
+  <div class="dp-video-wrap reveal rd1">
+    <iframe title="Museo Civico 3D" frameborder="0" allowfullscreen
+      mozallowfullscreen="true" webkitallowfullscreen="true"
+      allow="autoplay; fullscreen; xr-spatial-tracking"
+      loading="lazy"
+      src="https://sketchfab.com/models/dd7280d0abee4e4892f8ad709e33add5/embed"></iframe>
+  </div>
+</section>
 
-<!-- BACK BUTTON -->
-<a href="../pagina home/index.html#percorsi" class="btn-back" aria-label="Torna ai percorsi">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-  Scegli un altro percorso
-</a>
+<!-- ── MAPPA ── -->
+<section class="dp-section" id="mappa">
+  <p class="dp-section-label" data-i18n-it="Dove siamo" data-i18n-en="Location">Dove siamo</p>
+  <h2 class="dp-section-title reveal" data-i18n-it="Posizione" data-i18n-en="Location on map">Posizione</h2>
+  <div class="dp-map-wrap reveal rd1">
+    <iframe loading="lazy" allowfullscreen
+      src="https://maps.google.com/maps?q=41.465244185438635,15.545172254742855&z=16&output=embed"></iframe>
+  </div>
+</section>
 
-<!-- TOOLBAR -->
+<!-- ── CTA ── -->
+<section class="dp-cta">
+  <p class="dp-cta-title" data-i18n-it="Cosa vuoi fare dopo?" data-i18n-en="What's next?">Cosa vuoi fare dopo?</p>
+  <p class="dp-cta-sub" data-i18n-it="Continua a esplorare Foggia" data-i18n-en="Keep exploring Foggia">Continua a esplorare Foggia</p>
+  <div class="dp-cta-btns">
+    <a href="../pagina home/index.html" class="dp-cta-btn primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span data-i18n-it="Torna alla Home" data-i18n-en="Back to Home">Torna alla Home</span>
+    </a>
+    <a href="../pagina home/index.html#mappa" class="dp-cta-btn secondary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      <span data-i18n-it="Apri la mappa" data-i18n-en="Open map">Apri la mappa</span>
+    </a>
+    <button class="dp-cta-btn heart" id="cta-fav">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span data-i18n-it="Aggiungi ai preferiti" data-i18n-en="Add to favourites">Aggiungi ai preferiti</span>
+    </button>
+  </div>
+</section>
+
+<!-- ── GALLERY LIGHTBOX ── -->
+<div class="dp-lb" id="dp-lb" role="dialog" aria-modal="true" aria-label="Lightbox galleria">
+  <button class="dp-lb-close" id="lb-close" aria-label="Chiudi">&times;</button>
+  <img id="lb-img" src="" alt="Galleria">
+</div>
+
+<!-- ── BOTTOM TOOLBAR ── -->
 <div class="bottom-toolbar">
   <a href="../pagina home/index.html" class="tb-btn">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     Home
-  </a>
-  <a href="https://comune.foggia.it" target="_blank" rel="noopener" class="tb-btn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    Eventi
   </a>
   <a href="../pagina home/index.html#mappa" class="tb-btn">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
     Mappa
   </a>
   <a href="../pagina home/index.html#percorsi" class="tb-btn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    Preferiti
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Percorsi
   </a>
+  <button class="tb-btn" id="tb-fav">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Preferiti
+  </button>
 </div>
 
 <script>
+/* ── CONFIG ── */
+const PAGE_ID = 'museo-civico';
+const PAGE_TITLE_IT = 'Museo Civico';
+const PAGE_TITLE_EN = 'Civic Museum';
+const TXT_IT = 'txt/museo_civico.txt';
+const TXT_EN = 'txt/museo_civico_en.txt';
+const GALLERY_SRCS = ["assets/copertina.jpg", "assets/WhatsApp Image 2026-04-30 at 13.11.46.jpeg"];
+const FALLBACK_IT = `<h2>Il Museo Civico di Foggia</h2>
+<p>Il sistema museale di Foggia riflette la storia complessa della città, dalle origini daunie all'epoca sveva fino alla contemporaneità. Il Museo Civico di Palazzo Arpi custodisce la memoria storica e archeologica del territorio, con collezioni che spaziano dalla preistoria all'era moderna.</p>
+<p>Il museo ospita una ricca collezione di reperti dauni, tra cui le celebri <em>stele daunie</em>, lastre funerarie scolpite con scene di vita quotidiana e simboli religiosi risalenti all'VIII-VI secolo a.C. Queste opere rappresentano una delle testimonianze più significative della cultura daunia e dell'arte funeraria dell'Italia preromana.</p>
+<p>L'epoca sveva è rappresentata da reperti legati al regno di Federico II, che fece di Foggia una delle capitali del suo impero. Il palazzo imperiale, di cui rimane solo un archivolto nella piazza principale, è testimoniato da numerosi reperti conservati nel museo.</p>
+<p>Il percorso espositivo include anche sezioni dedicate all'arte medievale e moderna, con dipinti, sculture e documenti storici che raccontano la storia di Foggia dall'alto medioevo fino all'Ottocento.</p>`;
+const FALLBACK_EN = `<h2>The Civic Museum of Foggia</h2>
+<p>Foggia's museum system reflects the city's complex history, from Daunian origins to the Swabian era up to the present day. The Civic Museum of Palazzo Arpi preserves the historical and archaeological memory of the territory, with collections ranging from prehistory to the modern era.</p>
+<p>The museum houses a rich collection of Daunian artifacts, including the famous <em>Daunian stelae</em>, sculpted funerary slabs with scenes of daily life and religious symbols dating back to the 8th-6th century BC. These works represent one of the most significant testimonies of Daunian culture and funerary art of pre-Roman Italy.</p>
+<p>The Swabian era is represented by artifacts linked to the kingdom of Frederick II, who made Foggia one of the capitals of his empire. The imperial palace, of which only an archivolt remains in the main square, is documented by numerous artifacts preserved in the museum.</p>`;
 
-        /* ==========================================================================
-           1. COSTANTI E CONFIGURAZIONI
-           ========================================================================== */
-        const CONSTANTS = {
-            MAP_LAT: 41.465244185438635,
-            MAP_LNG: 15.545172254742855,
-            MAP_ZOOM: 16,
-            LOCAL_VIDEO_PATH: 'assets/FoggiApp_-_museo_2.mp4',
-            BOT_LINK: 'https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica',
-            MODEL_3D_URL: 'https://sketchfab.com/models/dd7280d0abee4e4892f8ad709e33add5/embed',
-            FALLBACK_COVER: 'https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=800&q=80',
-            FALLBACK_GAL_1: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=600&q=80',
-            FALLBACK_GAL_2: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=600&q=80'
-        };
-        const TRANSLATIONS = {
-            IT: {
-                title: "Museo Civico",
-                menuHome: "Home",
-                menuMap: "Mappa",
-                menuVideo: "Video",
-                menu3D: "3D",
-                menuImages: "Immagini (Galleria)",
-                menuBot: "Chatbot",
-                langSel: "Lingua di lettura",
-                loading: "Caricamento in corso...",
-                errorLoad: "Impossibile caricare il testo. Assicurati che il file esista nella cartella txt/."
-            },
-            EN: {
-                title: "Museo Civico",
-                menuHome: "Home",
-                menuMap: "Map",
-                menuVideo: "Video",
-                menu3D: "3D",
-                menuImages: "Immagini (Galleria)",
-                menuBot: "Chatbot",
-                langSel: "Reading Language",
-                loading: "Loading content...",
-                errorLoad: "Unable to load text. Ensure the file exists in the txt/ folder."
-            }
-        };
+/* ── STATE ── */
+var lang = localStorage.getItem('app_lang') || 'IT';
+var favs = JSON.parse(localStorage.getItem('foggiapp_favs') || '[]');
+var isFav = favs.indexOf(PAGE_ID) > -1;
 
-        // Mostra avviso se siamo in un iFrame (es. Preview di Canvas)
-        if (window.self !== window.top) {
-            document.getElementById('iframe-warning').style.display = 'block';
-        }
+/* ── I18N ── */
+function applyLang() {
+  document.documentElement.lang = lang === 'IT' ? 'it' : 'en';
+  document.title = lang === 'IT'
+    ? 'Museo Civico · FoggiApp'
+    : 'Civic Museum · FoggiApp';
+  document.querySelectorAll('[data-i18n-it]').forEach(function(el) {
+    el.textContent = lang === 'IT'
+      ? el.getAttribute('data-i18n-it')
+      : el.getAttribute('data-i18n-en');
+  });
+  document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  loadText();
+}
 
-        /* ==========================================================================
-           2. STATO GLOBALE E MULTILINGUA
-           ========================================================================== */
-        let currentLanguage = localStorage.getItem('app_lang') || 'IT';
-        function initLanguage() {
-            setLanguage(currentLanguage);
+/* ── TEXT FETCH ── */
+async function loadText() {
+  var tc = document.getElementById('text-content');
+  tc.innerHTML = '<div class="loader">Caricamento...</div>';
+  var file = lang === 'IT' ? TXT_IT : TXT_EN;
+  try {
+    var r = await fetch(file);
+    if (!r.ok) throw new Error('not found');
+    var t = await r.text();
+    t = t.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+    tc.innerHTML = '<p>' + t + '</p>';
+  } catch(e) {
+    tc.innerHTML = lang === 'IT' ? FALLBACK_IT : FALLBACK_EN;
+  }
+}
 
-            // Event Listeners pulsanti lingua
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const lang = e.target.getAttribute('data-lang');
-                    if(lang !== currentLanguage) setLanguage(lang);
-                });
-            });
-        }
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            localStorage.setItem('app_lang', lang);
-            // Aggiorna UI testi hardcoded
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (TRANSLATIONS[lang][key]) {
-                    el.textContent = TRANSLATIONS[lang][key];
-                }
-            });
-            // Aggiorna titolo documento e badge
-            document.title = TRANSLATIONS[lang].title;
-            document.getElementById('current-lang-badge').textContent = lang;
-            // Aggiorna classi pulsanti lingua
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if(btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-            // Ricarica il testo del riquadro 4
-            loadTextContent();
-        }
-        /* ==========================================================================
-           3. GESTIONE FETCH TESTO (RIQUADRO 4)
-           ========================================================================== */
-        async function loadTextContent() {
-            const textContainer = document.getElementById('text-content');
-            textContainer.innerHTML = `<div class="loader">${TRANSLATIONS[currentLanguage].loading}</div>`;
-            const fileName = currentLanguage === 'IT' ? 'txt/museo_civico.txt' : 'txt/museo_civico_en.txt';
-            try {
-                const response = await fetch(fileName);
-                if (!response.ok) throw new Error('File not found');
-                let text = await response.text();
+/* ── FAVORITES ── */
+function updateFavUI() {
+  [document.getElementById('btn-fav'),
+   document.getElementById('cta-fav'),
+   document.getElementById('tb-fav')].forEach(function(el) {
+    if (!el) return;
+    if (isFav) {
+      el.classList.add('fav-active');
+      if (el.querySelector('svg')) el.querySelector('svg').setAttribute('fill', 'currentColor');
+    } else {
+      el.classList.remove('fav-active');
+      if (el.querySelector('svg')) el.querySelector('svg').setAttribute('fill', 'none');
+    }
+  });
+  var ctaSpan = document.querySelector('#cta-fav span');
+  if (ctaSpan) {
+    ctaSpan.setAttribute('data-i18n-it', isFav ? 'Nei preferiti ♥' : 'Aggiungi ai preferiti');
+    ctaSpan.setAttribute('data-i18n-en', isFav ? 'In favourites ♥' : 'Add to favourites');
+    ctaSpan.textContent = lang === 'IT'
+      ? (isFav ? 'Nei preferiti ♥' : 'Aggiungi ai preferiti')
+      : (isFav ? 'In favourites ♥' : 'Add to favourites');
+  }
+}
+function toggleFav() {
+  isFav = !isFav;
+  if (isFav) {
+    if (favs.indexOf(PAGE_ID) === -1) favs.push(PAGE_ID);
+  } else {
+    favs = favs.filter(function(f) { return f !== PAGE_ID; });
+  }
+  localStorage.setItem('foggiapp_favs', JSON.stringify(favs));
+  updateFavUI();
+}
+['btn-fav','cta-fav','tb-fav'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('click', toggleFav);
+});
 
-                // Formattazione base del file txt (sostituisce i ritorni a capo con <br>)
-                text = text.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
-                textContainer.innerHTML = `<p>${text}</p>`;
-            } catch (error) {
-                // FALLBACK: Inserimento del testo dal PDF direttamente nel codice
-                console.warn("Fetch fallito o assente. Caricamento testo integrato.");
+/* ── HEADER SCROLL ── */
+var hdr = document.getElementById('dp-hdr');
+window.addEventListener('scroll', function() {
+  hdr.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 
-                const fallbackIT = `
-                    <h2>Sistema museale di Foggia</h2>
-                    <p>Il sistema museale di Foggia riflette la storia complessa della città, dalle origini daunie all’epoca sveva fino alla contemporaneità. Il Museo Civico di Palazzo Arpi custodisce la memoria storica e archeologica del territorio, ma la nascita del Nuovo Museo Nazionale dei Tesori della Daunia impone una ridefinizione della sua identità, orientandolo maggiormente sulla storia urbana e federiciana. La Pinacoteca “Il 9cento” valorizza l’arte del Novecento, ampliando l’offerta culturale oltre l’archeologia. Il Polo Scientifico-Naturalistico, con il Museo di Storia Naturale e il Museo Interattivo delle Scienze, svolge un ruolo chiave nella didattica scientifica e nel contrasto alla povertà educativa. Nonostante le potenzialità, il sistema presenta criticità gestionali e istituzionali dovute alla frammentazione tra enti. Per il futuro è necessaria una strategia unitaria, basata su coordinamento, innovazione tecnologica, accessibilità e valorizzazione sostenibile del patrimonio culturale.</p>`;
-
-                const fallbackEN = `
-                    <h2>Foggia museum system</h2>
-                    <p>The museum system of Foggia reflects the city’s complex history, from Daunian origins to the Swabian age and contemporary times. The Civic Museum of Palazzo Arpi preserves the historical and archaeological memory of the territory, but the creation of the New National Museum of Daunia Treasures calls for a redefinition of its identity, orienting it more toward urban and Frederick II history. The “Il 9cento” Art Gallery enhances 20th-century art, broadening cultural offerings beyond archaeology. The Scientific-Naturalistic Hub, with the Natural History Museum and the Interactive Science Museum, plays a key role in science education and in combating educational poverty. Despite its potential, the system has management and institutional criticalities due to fragmentation among entities. A unified strategy is needed for the future, based on coordination, technological innovation, accessibility, and sustainable enhancement of cultural heritage.</p>`;
-
-                textContainer.innerHTML = currentLanguage === 'IT' ? fallbackIT : fallbackEN;
-            }
-        }
-        /* ==========================================================================
-           4. MENU HAMBURGER E NAVIGAZIONE
-           ========================================================================== */
-        const overlay = document.getElementById('drawer-overlay');
-        const menu = document.getElementById('drawer-menu');
-        const btnOpen = document.getElementById('btn-menu-open');
-        const btnClose = document.getElementById('btn-menu-close');
-        function toggleMenu() {
-            overlay.classList.toggle('open');
-            menu.classList.toggle('open');
-        }
-        btnOpen.addEventListener('click', toggleMenu);
-        btnClose.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-        // Imposta link chatbot nell'header e nel menu
-        document.getElementById('btn-chatbot').href = CONSTANTS.BOT_LINK;
-        document.getElementById('btn-menu-chatbot').addEventListener('click', () => {
-            window.open(CONSTANTS.BOT_LINK, '_blank');
-            toggleMenu();
+/* ── NAV HIGHLIGHT ── */
+(function() {
+  var sections = ['storia','galleria','video','modello3d','mappa'];
+  var navLinks = document.querySelectorAll('.dp-nav a');
+  var io2 = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var id = e.target.id;
+        navLinks.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
         });
-        /* ==========================================================================
-           5. RENDERING DINAMICO (RIQUADRO 3)
-           ========================================================================== */
-        const riquadro3 = document.getElementById('riquadro-3');
-        // Funzione helper per ottenere URL immagine o fallback placeholder d'emergenza
-        function getImgSrc(path, fallbackUrl) {
-            return `src="${path}" onerror="this.onerror=null; this.src='${fallbackUrl}'"`;
-        }
-        const renderFunctions = {
-            home: () => {
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper">
-                        <img class="cover-img" ${getImgSrc('assets/copertina.jpg', CONSTANTS.FALLBACK_COVER)} alt="Copertina Museo Civico">
-                    </div>`;
-            },
-            map: () => {
-                const mapUrl = `https://maps.google.com/maps?q=${CONSTANTS.MAP_LAT},${CONSTANTS.MAP_LNG}&z=${CONSTANTS.MAP_ZOOM}&output=embed`;
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper" style="padding: 20px;">
-                        <div class="ratio-16-9">
-                            <iframe src="${mapUrl}" allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>`;
-            },
-            video: () => {
-                const safeVideoPath = encodeURI(CONSTANTS.LOCAL_VIDEO_PATH);
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper" style="padding: 20px;">
-                        <div class="ratio-16-9" style="background-color: #000;">
-                            <video controls playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius);">
-                                <source src="${safeVideoPath}" type="video/mp4">
-                                Il tuo browser non supporta il tag video.
-                            </video>
-                        </div>
-                    </div>`;
-            },
-                        images: () => {
-                riquadro3.innerHTML = `
-                    <div class="gallery-container">
-                        <img id="main-gallery-img" class="gallery-main" ${getImgSrc('assets/copertina.jpg', CONSTANTS.FALLBACK_COVER)} alt="Galleria Museo Civico" style="width:100%;flex:1;object-fit:cover;display:block;min-height:200px;cursor:pointer;">
-                        <div class="gallery-thumbnails" style="display:flex;gap:2px;background:#000;padding:2px;flex-shrink:0;">
-                            <img class="thumb active" ${getImgSrc('assets/copertina.jpg', CONSTANTS.FALLBACK_COVER)} onclick="changeGalleryImage(this, 'assets/copertina.jpg', '${CONSTANTS.FALLBACK_COVER}')" style="flex:1;height:70px;object-fit:cover;cursor:pointer;">
-                            <img class="thumb" ${getImgSrc('assets/WhatsApp Image 2026-04-30 at 13.11.46.jpeg', CONSTANTS.FALLBACK_GAL_1)} onclick="changeGalleryImage(this, 'assets/WhatsApp Image 2026-04-30 at 13.11.46.jpeg', '${CONSTANTS.FALLBACK_GAL_1}')" style="flex:1;height:70px;object-fit:cover;cursor:pointer;">
-                        </div>
-                    </div>`;
-            },
-            '3d': () => {
-                riquadro3.innerHTML = `
-                    <div class="content-wrapper" style="padding: 20px;">
-                        <div class="sketchfab-embed-wrapper" style="width: 100%; height: 100%; display: flex; flex-direction: column;">
-                            <div class="ratio-16-9">
-                                <iframe title="Testa Medusa Ipogeo Arpi" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/dd7280d0abee4e4892f8ad709e33add5/embed"> </iframe>
-                            </div>
-                            <p style="font-size: 13px; font-weight: normal; margin: 10px 5px 5px; color: #4A4A4A; text-align: center;">
-                                <a href="https://sketchfab.com/3d-models/testa-medusa-ipogeo-arpi-dd7280d0abee4e4892f8ad709e33add5?utm_medium=embed&utm_campaign=share-popup&utm_content=dd7280d0abee4e4892f8ad709e33add5" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> Testa Medusa Ipogeo Arpi </a> by <a href="https://sketchfab.com/gb.prof.69?utm_medium=embed&utm_campaign=share-popup&utm_content=dd7280d0abee4e4892f8ad709e33add5" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);"> gb.prof.69 </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=dd7280d0abee4e4892f8ad709e33add5" target="_blank" rel="nofollow" style="font-weight: bold; color: var(--acid-berry);">Sketchfab</a>
-                            </p>
-                        </div>
-                    </div>`;
-            }
-        };
-        function setActiveAction(action) {
-            document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-action') === action);
-            });
-        }
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) io2.observe(el);
+  });
+})();
 
-        // Event listener per voci di menu (drawer + header fisso sezioni)
-        document.querySelectorAll('.menu-item[data-action], .section-option[data-action]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const action = e.currentTarget.getAttribute('data-action');
+/* ── SCROLL REVEAL ── */
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+}
 
-                // Rimuovi active a tutti e mettilo a quello cliccato
-                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-                e.currentTarget.classList.add('active');
-                if (action === 'home') {
-                    goToMainHomePage();
-                    return;
-                }
+/* ── LIGHTBOX ── */
+var lb = document.getElementById('dp-lb');
+var lbImg = document.getElementById('lb-img');
+var lbSrcs = [];
+var lbIdx = 0;
+document.querySelectorAll('.dp-gi').forEach(function(gi, i) {
+  var src = gi.getAttribute('data-lb-src');
+  lbSrcs.push(src);
+  gi.addEventListener('click', function() { openLB(i); });
+});
+function openLB(i) {
+  lbIdx = i;
+  lbImg.src = lbSrcs[i];
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function nextLB() { lbIdx = (lbIdx + 1) % lbSrcs.length; lbImg.src = lbSrcs[lbIdx]; }
+function prevLB() { lbIdx = (lbIdx - 1 + lbSrcs.length) % lbSrcs.length; lbImg.src = lbSrcs[lbIdx]; }
+document.getElementById('lb-close').addEventListener('click', closeLB);
+lb.addEventListener('click', function(e) { if (e.target === lb) closeLB(); });
+document.addEventListener('keydown', function(e) {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLB();
+  if (e.key === 'ArrowRight') nextLB();
+  if (e.key === 'ArrowLeft') prevLB();
+});
 
-                // Renderizza contenuto
-                if(renderFunctions[action]) {
-                    renderFunctions[action]();
-                }
+/* ── LANG TOGGLE ── */
+document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    lang = btn.getAttribute('data-lang');
+    localStorage.setItem('app_lang', lang);
+    applyLang();
+  });
+});
 
-                if (menu.classList.contains('open')) {
-                    toggleMenu();
-                }
-            });
-        });
-        // Home: porta alla pagina principale del progetto
-        function goToMainHomePage() {
-            window.location.href = '../pagina home/index.html';
-        }
+/* ── PAGE TRANSITIONS ── */
+document.querySelectorAll('a[href]:not([target="_blank"])').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
+    e.preventDefault();
+    var ptr = document.getElementById('page-ptr');
+    ptr.classList.add('go');
+    setTimeout(function() { window.location.href = href; }, 200);
+  });
+});
 
-        // Tasto home nell'header
-        document.getElementById('btn-home').addEventListener('click', goToMainHomePage);
-        /* ==========================================================================
-           6. INIZIALIZZAZIONE APP
-           ========================================================================== */
-        window.addEventListener('DOMContentLoaded', () => {
-            initLanguage();
-            renderFunctions.home(); // Carica immagine copertina all'avvio
-        });
-    
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', function() {
+  applyLang();
+  updateFavUI();
+});
 </script>
 </body>
 </html>
