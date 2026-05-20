@@ -1,1 +1,38 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta http-equiv="refresh" content="0;url=./pagina%20home/index.html"><title>FoggiApp</title></head><body><script>window.location.replace("./pagina%20home/index.html")</script></body></html>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="0;url=./pagina%20home/index.html">
+<title>FoggiApp — Foggia tra Storia, Mito e Tradizione</title>
+<meta name="description" content="Esplora Foggia tra storia, mito e tradizione con FoggiApp — la webapp culturale della città del Tavoliere.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;background:#FAFAF9;color:#1C1C1E;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:24px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:380px}
+  .logo-ring{width:80px;height:80px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+  .logo-ring img{width:56px;height:auto}
+  h1{font-size:28px;font-weight:800;letter-spacing:-.6px;line-height:1.1;margin-bottom:10px}
+  h1 em{color:#C94B4B;font-style:normal}
+  p{font-size:14px;color:#6E6E73;line-height:1.6;margin-bottom:28px}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:#C94B4B;color:#fff;padding:14px 28px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;transition:transform .2s,background .18s}
+  .btn:hover{background:#A83838;transform:translateY(-2px)}
+  .dots{display:flex;gap:6px;justify-content:center;margin-bottom:32px}
+  .dot{width:6px;height:6px;border-radius:50%;background:#C94B4B;animation:pulse 1.4s ease-in-out infinite}
+  .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+  @keyframes pulse{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+</style>
+<script>window.location.replace('./pagina%20home/index.html')</script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo-ring">
+      <img src="./pagina home/assets/logo.png" alt="FoggiApp" onerror="this.style.display='none'">
+    </div>
+    <h1>Foggi<em>App</em></h1>
+    <p>Caricamento in corso…<br>Verrai reindirizzato automaticamente.</p>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <a href="./pagina home/index.html" class="btn">Entra nell'app →</a>
+  </div>
+</body>
+</html>

@@ -4,19 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FoggiApp · Esplora la Città</title>
-<meta name="description" content="FoggiApp — Esplora la storia, i luoghi e la cultura di Foggia.">
+<meta name="description" content="FoggiApp — La web app per esplorare storia, cultura e monumenti di Foggia. Percorsi interattivi, mappa e contenuti multimediali.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --brand:#C94B4B;--brand-dk:#A83838;--brand-lt:rgba(201,75,75,.08);
+  --brand:#C94B4B;--brand-dk:#A83838;--brand-lt:rgba(201,75,75,.08);--brand-glow:rgba(201,75,75,.22);
   --text-1:#1C1C1E;--text-2:#3A3A3C;--text-3:#6E6E73;--text-4:#AEAEB2;
-  --bg:#FAFAF9;--surface:#FFFFFF;--s2:#F2F1EF;
+  --bg:#FAFAF9;--surface:#FFFFFF;--s2:#F2F1EF;--s3:#E8E7E4;
   --border:rgba(0,0,0,.07);--border-m:rgba(0,0,0,.11);
-  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);--ease-b:cubic-bezier(.34,1.56,.64,1);
   --nav:60px;--tb:60px;
+  --r-sm:10px;--r:14px;--r-lg:20px;--r-xl:28px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,.06),0 0 0 .5px rgba(0,0,0,.04);
+  --shadow-md:0 4px 20px rgba(0,0,0,.08),0 1px 4px rgba(0,0,0,.04);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.1),0 4px 16px rgba(0,0,0,.06);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -26,124 +30,152 @@ img{max-width:100%;display:block}
 button{border:none;background:none;cursor:pointer;font-family:var(--font)}
 
 /* LOADER */
-#ld{position:fixed;inset:0;z-index:9999;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s var(--ease),visibility .5s var(--ease)}
+#ld{position:fixed;inset:0;z-index:9999;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .55s var(--ease),visibility .55s var(--ease)}
 #ld.out{opacity:0;visibility:hidden;pointer-events:none}
-.ld-logo{width:clamp(80px,15vw,110px);opacity:0;transform:scale(.7) translateY(10px);animation:ldIn .65s cubic-bezier(.34,1.56,.64,1) .1s forwards}
+.ld-logo{width:clamp(80px,15vw,110px);opacity:0;transform:scale(.7) translateY(10px);animation:ldIn .65s var(--ease-b) .1s forwards}
 @keyframes ldIn{to{opacity:1;transform:scale(1) translateY(0)}}
-.ld-name{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text-3);opacity:0;margin-top:16px;animation:ldFd .4s ease .65s forwards}
+.ld-name{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--text-4);opacity:0;margin-top:16px;animation:ldFd .4s ease .65s forwards}
 @keyframes ldFd{to{opacity:1}}
 .ld-bar-w{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--border)}
-.ld-bar{height:100%;width:0;background:var(--brand);animation:ldBar 1.1s cubic-bezier(.4,0,.2,1) .05s forwards;border-radius:0 1px 1px 0}
+.ld-bar{height:100%;width:0;background:var(--brand);animation:ldBar 1.2s cubic-bezier(.4,0,.2,1) .05s forwards;border-radius:0 1px 1px 0}
 @keyframes ldBar{to{width:100%}}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(250,250,249,.92);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border)}
-.n-logo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--text-1);white-space:nowrap;letter-spacing:-.3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(250,250,249,.92);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.n-logo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--text-1);white-space:nowrap;letter-spacing:-.4px}
 .n-logo img{height:30px;width:auto;flex-shrink:0}
 .n-logo .app{color:var(--brand)}
-.n-links{display:flex;gap:4px;list-style:none}
-.n-links a{font-size:13px;font-weight:500;color:var(--text-2);padding:6px 12px;border-radius:8px;transition:background .18s,color .18s}
+.n-links{display:flex;gap:2px;list-style:none}
+.n-links a{font-size:13px;font-weight:500;color:var(--text-2);padding:7px 13px;border-radius:var(--r-sm);transition:background .18s,color .18s}
 .n-links a:hover{background:var(--s2);color:var(--text-1)}
-.n-cta{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#fff;background:var(--brand);padding:9px 18px;border-radius:10px;transition:background .18s,transform .2s var(--ease-b),box-shadow .2s}
-.n-cta:hover{background:var(--brand-dk);transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,75,75,.25)}
-.hamburger{display:none;flex-direction:column;gap:5px;padding:6px;width:38px;height:38px;align-items:center;justify-content:center;border-radius:10px;transition:background .18s}
+.n-right{display:flex;align-items:center;gap:8px}
+.n-cta{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#fff;background:var(--brand);padding:9px 18px;border-radius:var(--r);transition:background .18s,transform .2s var(--ease-b),box-shadow .2s}
+.n-cta:hover{background:var(--brand-dk);transform:translateY(-1px);box-shadow:0 4px 16px var(--brand-glow)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:6px;width:38px;height:38px;align-items:center;justify-content:center;border-radius:var(--r-sm);transition:background .18s}
 .hamburger:hover{background:var(--s2)}
 .hamburger span{display:block;width:18px;height:1.5px;background:var(--text-1);transition:transform .3s var(--ease),opacity .2s,width .3s}
 .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0;width:0}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-#mm{position:fixed;top:var(--nav);left:0;right:0;z-index:490;background:rgba(250,250,249,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);max-height:0;overflow:hidden;opacity:0;transition:max-height .35s var(--ease),opacity .25s}
-#mm.open{max-height:280px;opacity:1}
-#mm ul{list-style:none;padding:8px 16px 16px}
+#mm{position:fixed;top:var(--nav);left:0;right:0;z-index:490;background:rgba(250,250,249,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);max-height:0;overflow:hidden;opacity:0;transition:max-height .35s var(--ease),opacity .25s}
+#mm.open{max-height:340px;opacity:1}
+#mm ul{list-style:none;padding:8px 16px 20px}
 #mm li{border-bottom:1px solid var(--border)}
 #mm li:last-child{border-bottom:none}
-#mm a{display:block;padding:12px 4px;font-size:14px;font-weight:500;color:var(--text-1);transition:color .18s}
+#mm a{display:block;padding:14px 4px;font-size:15px;font-weight:500;color:var(--text-1);transition:color .18s}
 #mm a:hover{color:var(--brand)}
+#mm .mm-bp{color:var(--brand);font-weight:600}
 
 /* HERO */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 52px 80px;position:relative;overflow:hidden;background:#111 url('./assets/foggia.jpg') center/cover no-repeat}
-.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.18) 38%,rgba(0,0,0,.72) 100%)}
-.h-eye{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:20px;animation:fadeUp .7s var(--ease) 1.6s both}
-.h-eye::before{content:'';width:20px;height:1px;background:var(--brand)}
-.h-title{position:relative;z-index:2;font-size:clamp(36px,6vw,84px);font-weight:800;line-height:.96;letter-spacing:-2.5px;color:#fff;animation:fadeUp .8s var(--ease) 1.75s both}
-.h-title em{font-style:italic;font-weight:700;color:rgba(255,255,255,.72)}
-.h-desc{position:relative;z-index:2;max-width:460px;font-size:15px;line-height:1.85;color:rgba(255,255,255,.58);margin-top:24px;animation:fadeUp .7s var(--ease) 1.9s both}
-.h-btns{position:relative;z-index:2;display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;animation:fadeUp .7s var(--ease) 2.05s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hbtn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:13px 22px;border-radius:12px;transition:transform .2s var(--ease-b),box-shadow .2s,background .18s;letter-spacing:-.1px}
-.hbtn-p{background:var(--brand);color:#fff;box-shadow:0 6px 24px rgba(201,75,75,.3)}
-.hbtn-p:hover{background:var(--brand-dk);transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,75,75,.4)}
-.hbtn-s{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px)}
-.hbtn-s:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 88px;position:relative;overflow:hidden;background:#111 url('./assets/foggia.jpg') center/cover no-repeat}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.12) 35%,rgba(0,0,0,.75) 100%)}
+.h-badge{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:24px;animation:fadeUp .7s var(--ease) 1.5s both}
+.h-badge::before{content:'';width:20px;height:1px;background:var(--brand);flex-shrink:0}
+.h-title{position:relative;z-index:2;font-size:clamp(38px,6.5vw,90px);font-weight:800;line-height:.93;letter-spacing:-2.5px;color:#fff;animation:fadeUp .8s var(--ease) 1.65s both}
+.h-title em{font-style:italic;font-weight:700;color:rgba(255,255,255,.68)}
+.h-desc{position:relative;z-index:2;max-width:480px;font-size:15px;line-height:1.85;color:rgba(255,255,255,.52);margin-top:26px;animation:fadeUp .7s var(--ease) 1.8s both}
+.h-btns{position:relative;z-index:2;display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;animation:fadeUp .7s var(--ease) 1.95s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hbtn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:13px 22px;border-radius:var(--r-lg);transition:transform .2s var(--ease-b),box-shadow .2s,background .18s;letter-spacing:-.1px;-webkit-tap-highlight-color:transparent}
+.hbtn-p{background:var(--brand);color:#fff;box-shadow:0 6px 28px var(--brand-glow)}
+.hbtn-p:hover{background:var(--brand-dk);transform:translateY(-2px);box-shadow:0 12px 36px rgba(201,75,75,.42)}
+.hbtn-s{background:rgba(255,255,255,.11);color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px)}
+.hbtn-s:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+.hbtn:active{transform:scale(.96)!important}
 
 /* STATS */
-.stats{background:var(--surface);display:flex;flex-wrap:wrap;border-bottom:1px solid var(--border)}
-.stat{flex:1 1 22%;text-align:center;padding:24px 12px;border-right:1px solid var(--border)}
+.stats{background:var(--surface);display:flex;flex-wrap:wrap;border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.stat{flex:1 1 22%;text-align:center;padding:26px 12px;border-right:1px solid var(--border)}
 .stat:last-child{border-right:none}
-.stat-n{font-size:clamp(22px,3vw,38px);font-weight:800;letter-spacing:-1.5px;color:var(--text-1)}
+.stat-n{font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-1.8px;color:var(--text-1);line-height:1}
 .stat-n span{color:var(--brand)}
-.stat-l{font-size:11px;font-weight:500;color:var(--text-3);margin-top:4px}
+.stat-l{font-size:11px;font-weight:500;color:var(--text-3);margin-top:5px;letter-spacing:.1px}
 
-/* SECTIONS */
-.sec{padding:88px 52px}
-.sec.bg-l{background:var(--bg)}.sec.bg-w{background:var(--surface)}
-.sec-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
-.sec-tag::before{content:'';width:16px;height:1.5px;background:var(--brand);border-radius:1px;flex-shrink:0}
-.sec-h{font-size:clamp(24px,3.5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--text-1)}
+/* SECTION ATOMS */
+.sec{padding:96px 56px}
+.sec.bg-l{background:var(--bg)}
+.sec.bg-w{background:var(--surface)}
+.sec.bg-dk{background:var(--text-1)}
+.sec-tag{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.sec-tag::before{content:'';width:18px;height:1.5px;background:var(--brand);border-radius:1px;flex-shrink:0}
+.sec-tag.c{justify-content:center}
+.sec-tag.c::before{display:none}
+.sec-h{font-size:clamp(26px,3.8vw,52px);font-weight:800;letter-spacing:-1.8px;line-height:1.02;color:var(--text-1)}
 .sec-h.wh{color:#fff}
-.sec-sub{font-size:15px;color:var(--text-3);line-height:1.75;max-width:520px;margin-top:14px}
-.sec-sub.wh{color:rgba(255,255,255,.5)}
-.sec-hd{margin-bottom:52px}
-.sec-hd.c{text-align:center}.sec-hd.c .sec-sub{margin:14px auto 0}
-.sec-hd.c .sec-tag{justify-content:center;display:flex}
-.sec-hd.c .sec-tag::before{display:none}
+.sec-sub{font-size:15px;color:var(--text-3);line-height:1.8;max-width:520px;margin-top:14px}
+.sec-sub.wh{color:rgba(255,255,255,.45)}
+.sec-hd{margin-bottom:56px}
+.sec-hd.c{text-align:center}
+.sec-hd.c .sec-sub{margin:14px auto 0}
+.mw{max-width:1200px;margin:0 auto}
 
-/* CARDS */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1160px;margin:0 auto}
+/* PERCORSI CARDS */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:20px;max-width:1200px;margin:0 auto}
 .card-wrap{position:relative}
-.card{display:flex;flex-direction:column;background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06),0 0 0 .5px rgba(0,0,0,.04);transition:transform .3s var(--ease),box-shadow .3s var(--ease);cursor:pointer;-webkit-tap-highlight-color:transparent}
-.card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06)}
-.card:active{transform:scale(.98);transition:transform .12s}
-.ci{height:200px;overflow:hidden;position:relative;display:block;flex-shrink:0}
-.ci img{width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease)}
-.card:hover .ci img{transform:scale(1.07)}
-.cbadge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.52);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px}
+.card{display:flex;flex-direction:column;background:var(--surface);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .35s var(--ease),box-shadow .35s var(--ease);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.card:active{transform:scale(.98)!important;transition:transform .12s}
+.ci{height:210px;overflow:hidden;position:relative;display:block;flex-shrink:0}
+.ci img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.card:hover .ci img{transform:scale(1.08)}
+.cbadge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.52);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:6px}
 .cb{padding:24px 22px 22px;flex:1;display:flex;flex-direction:column}
-.ct{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand);margin-bottom:7px}
-.cb h3{font-size:16px;font-weight:700;letter-spacing:-.3px;color:var(--text-1);margin-bottom:8px;line-height:1.3}
-.cb p{font-size:13px;line-height:1.75;color:var(--text-3);flex:1;margin-bottom:18px}
+.ct{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
+.cb h3{font-size:16px;font-weight:700;letter-spacing:-.3px;color:var(--text-1);margin-bottom:9px;line-height:1.3}
+.cb p{font-size:13px;line-height:1.78;color:var(--text-3);flex:1;margin-bottom:20px}
 .clink{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--brand);transition:gap .25s var(--ease)}
 .card:hover .clink{gap:10px}
+.fav-star{position:absolute;top:10px;right:10px;z-index:5;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.14);transition:transform .2s var(--ease-b),background .18s}
+.fav-star:hover{background:#fff;transform:scale(1.18)}
+.fav-star:active{transform:scale(.9)}
+
+/* PROJECT SECTION */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:1200px;margin:0 auto 60px}
+.pf-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 24px;transition:box-shadow .3s,transform .3s var(--ease)}
+.pf-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.pf-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--brand-lt);margin-bottom:16px}
+.pf-icon svg{color:var(--brand)}
+.pf-h{font-size:15px;font-weight:700;color:var(--text-1);margin-bottom:8px;letter-spacing:-.2px}
+.pf-p{font-size:13px;line-height:1.75;color:var(--text-3)}
+.project-desc{max-width:640px;margin:0 auto 56px;text-align:center}
+.project-desc p{font-size:16px;line-height:1.85;color:var(--text-2)}
+.project-quote{margin-top:24px;padding:20px 28px;border-left:3px solid var(--brand);background:var(--brand-lt);border-radius:0 var(--r) var(--r) 0}
+.project-quote p{font-size:14px;line-height:1.75;color:var(--text-2);font-style:italic}
+
+/* LINK CARDS (utility) */
 .link-ci{height:130px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.licon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.licon{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.14)}
 
 /* MAP */
-.map-sec{background:var(--text-1);padding:80px 0 0}
-.map-hd{text-align:center;padding:0 24px 48px}
-.map-wrap{position:relative;height:500px;overflow:hidden}
+.map-sec{background:var(--text-1);padding:88px 0 0}
+.map-hd{text-align:center;padding:0 24px 52px}
+.map-wrap{position:relative;height:520px;overflow:hidden}
 #foggia-leaflet-map{width:100%;height:100%}
-.lf-popup .leaflet-popup-content-wrapper{background:var(--text-1);color:#fff;border-radius:10px;padding:0;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.06)}
+.lf-popup .leaflet-popup-content-wrapper{background:var(--text-1);color:#fff;border-radius:12px;padding:0;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.07)}
 .lf-popup .leaflet-popup-content{margin:0;padding:12px 16px}
 .lf-popup .leaflet-popup-tip{background:var(--text-1)}
 .lf-popup a{color:#fff;text-decoration:none;font-family:var(--font);font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px}
 
 /* VIDEO */
-.vid-wrap{max-width:820px;margin:0 auto}
-.vid-box{position:relative;padding-top:56.25%;background:#111;overflow:hidden;border-radius:16px;box-shadow:0 24px 72px rgba(0,0,0,.12);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.vid-box:hover{transform:translateY(-3px);box-shadow:0 32px 80px rgba(0,0,0,.15)}
-.vid-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;border-radius:16px}
-.vid-cap{font-size:14px;line-height:1.85;color:var(--text-3);max-width:600px;margin:24px auto 0;text-align:center}
+.vid-wrap{max-width:860px;margin:0 auto}
+.vid-box{position:relative;padding-top:56.25%;background:#111;overflow:hidden;border-radius:var(--r-lg);box-shadow:var(--shadow-lg);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.vid-box:hover{transform:translateY(-3px);box-shadow:var(--shadow-xl,0 32px 80px rgba(0,0,0,.15))}
+.vid-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;border-radius:var(--r-lg)}
+.vid-cap{font-size:14px;line-height:1.85;color:var(--text-3);max-width:580px;margin:24px auto 0;text-align:center}
 
 /* FOOTER */
-footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer{background:var(--text-1);padding:40px 56px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .fl{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:#fff;white-space:nowrap;letter-spacing:-.3px}
 .fl img{height:26px;width:auto;filter:brightness(0) invert(1)}
 .fl .app{color:var(--brand)}
-.fc{font-size:12px;color:rgba(255,255,255,.3)}
+.fc{font-size:12px;color:rgba(255,255,255,.28);text-align:right}
+.fc a{color:rgba(255,255,255,.5);transition:color .18s}
+.fc a:hover{color:rgba(255,255,255,.85)}
 
 /* TOOLBAR */
-.toolbar{position:fixed;bottom:0;left:0;right:0;z-index:600;height:var(--tb);background:rgba(250,250,249,.94);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--border);display:flex;align-items:stretch;box-shadow:0 -1px 0 var(--border)}
-.tb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:600;color:var(--text-4);text-decoration:none;transition:color .18s;position:relative;-webkit-tap-highlight-color:transparent}
+.toolbar{position:fixed;bottom:0;left:0;right:0;z-index:600;height:var(--tb);background:rgba(250,250,249,.96);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-top:1px solid var(--border);display:flex;align-items:stretch}
+.tb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:600;color:var(--text-4);text-decoration:none;transition:color .18s;position:relative;-webkit-tap-highlight-color:transparent;cursor:pointer;border:none;background:none;font-family:var(--font)}
 .tb svg{transition:transform .2s var(--ease-b)}
 .tb::after{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--brand);border-radius:0 0 2px 2px;transform:scaleX(0);transition:transform .2s var(--ease)}
 .tb.active,.tb:hover{color:var(--brand)}
@@ -154,49 +186,53 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
 /* FAV */
 .fov{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:700;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .fov.open{opacity:1;visibility:visible}
-.fsh{position:fixed;bottom:var(--tb);left:0;right:0;z-index:800;background:var(--surface);border-radius:20px 20px 0 0;max-height:70vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .35s var(--ease);box-shadow:0 -8px 40px rgba(0,0,0,.12)}
+.fsh{position:fixed;bottom:var(--tb);left:0;right:0;z-index:800;background:var(--surface);border-radius:24px 24px 0 0;max-height:72vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s var(--ease);box-shadow:0 -8px 48px rgba(0,0,0,.12)}
 .fsh.open{transform:translateY(0)}
 .fsh-h{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
 .fsh-t{font-size:15px;font-weight:700;color:var(--text-1);display:flex;align-items:center;gap:8px;letter-spacing:-.2px}
 .fsh-x{width:30px;height:30px;border-radius:8px;font-size:20px;color:var(--text-3);display:flex;align-items:center;justify-content:center;transition:background .18s,color .18s}
 .fsh-x:hover{background:var(--s2);color:var(--brand)}
-.fsh-b{flex:1;overflow-y:auto;padding:8px 16px 20px}
-.fsh-empty{text-align:center;padding:36px 16px;color:var(--text-3);font-size:13px;line-height:1.75}
-.fi{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
+.fsh-b{flex:1;overflow-y:auto;padding:8px 16px 24px}
+.fsh-empty{text-align:center;padding:40px 16px;color:var(--text-3);font-size:13px;line-height:1.75}
+.fi{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
 .fi:last-child{border-bottom:none}
 .fi-ico{width:40px;height:40px;border-radius:10px;flex-shrink:0;background:var(--brand-lt);display:flex;align-items:center;justify-content:center}
 .fi-a{flex:1;text-decoration:none}
 .fi-n{font-size:13px;font-weight:600;color:var(--text-1)}
 .fi-s{font-size:11px;color:var(--text-3);margin-top:2px}
-.fi-d{width:26px;height:26px;border-radius:6px;font-size:17px;color:var(--text-4);display:flex;align-items:center;justify-content:center;transition:color .18s,background .18s;flex-shrink:0}
+.fi-d{width:28px;height:28px;border-radius:7px;font-size:18px;color:var(--text-4);display:flex;align-items:center;justify-content:center;transition:color .18s,background .18s;flex-shrink:0;cursor:pointer}
 .fi-d:hover{color:var(--brand);background:var(--brand-lt)}
-.fav-star{position:absolute;top:10px;right:10px;z-index:5;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .2s var(--ease-b),background .18s}
-.fav-star:hover{background:#fff;transform:scale(1.15)}
 
-/* PAGE TRANSITION */
+/* TRANSITIONS */
 #ptr{position:fixed;inset:0;z-index:8500;background:var(--surface);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease}
 #ptr.go{opacity:1;visibility:visible}
 
-/* ANIM */
-@keyframes revUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.rv{animation:revUp .6s var(--ease) both}
+/* SCROLL REVEAL */
+@keyframes revUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.rv{animation:revUp .65s var(--ease) both}
 .rv1{animation-delay:.05s}.rv2{animation-delay:.12s}.rv3{animation-delay:.19s}.rv4{animation-delay:.26s}
 
 /* RESPONSIVE */
-@media(max-width:860px){
+@media(max-width:900px){
   nav{padding:0 16px}.n-links,.n-cta{display:none}.hamburger{display:flex}
-  .hero{padding:0 20px 60px;min-height:92svh}
-  .sec{padding:64px 20px}
-  footer{padding:24px 20px;flex-direction:column;text-align:center}
+  .hero{padding:0 24px 68px;min-height:94svh}
+  .sec{padding:72px 24px}
+  footer{padding:28px 24px;flex-direction:column;text-align:center}.fc{text-align:center}
   .stat{flex:1 1 45%}
 }
 @media(max-width:560px){
-  :root{--nav:56px;--tb:56px}
-  .h-title{font-size:clamp(30px,9vw,46px);letter-spacing:-1.5px}
-  .h-btns{gap:8px}.hbtn{font-size:12px;padding:11px 18px}
+  :root{--nav:56px;--tb:58px}
+  .h-title{font-size:clamp(32px,9.5vw,50px);letter-spacing:-1.8px}
+  .h-btns{gap:8px}.hbtn{font-size:12px;padding:11px 18px;border-radius:12px}
   .grid{grid-template-columns:1fr;gap:16px}
-  .stat{flex:1 1 45%;padding:18px 8px}.stat-n{font-size:24px}
-  .sec-h{font-size:clamp(22px,7vw,36px)}
+  .project-grid{grid-template-columns:1fr}
+  .stat{flex:1 1 45%;padding:18px 8px}.stat-n{font-size:26px}
+  .sec-h{font-size:clamp(24px,7vw,38px)}
+  .map-wrap{height:380px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rv{animation:none;opacity:1}
 }
 </style>
 </head>
@@ -208,10 +244,10 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
   <p class="ld-name">Esplora Foggia</p>
   <div class="ld-bar-w"><div class="ld-bar"></div></div>
 </div>
-<script>(function(){var l=document.getElementById('ld');function h(){l.classList.add('out');setTimeout(function(){l.style.display='none'},550)}var t=setTimeout(h,1200);window.addEventListener('load',function(){clearTimeout(t);setTimeout(h,60)})})()</script>
+<script>(function(){var l=document.getElementById('ld');function h(){l.classList.add('out');setTimeout(function(){l.style.display='none'},580)}var t=setTimeout(h,1300);window.addEventListener('load',function(){clearTimeout(t);setTimeout(h,80)})})()</script>
 
 <!-- NAVBAR -->
-<nav>
+<nav id="main-nav">
   <a href="#" class="n-logo">
     <img src="./assets/logo.png" alt="FoggiApp" onerror="this.style.display='none'">
     <span>Foggi<span class="app">App</span></span>
@@ -219,59 +255,112 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
   <ul class="n-links">
     <li><a href="#percorsi">Percorsi</a></li>
     <li><a href="#mappa">Mappa</a></li>
-    <li><a href="#presentazione">Progetto</a></li>
+    <li><a href="#progetto">Progetto</a></li>
+    <li><a href="../buissness_plain/index.html">Business Plan</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:8px">
-    <a href="#percorsi" class="n-cta">Esplora</a>
-    <button class="hamburger" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="n-right">
+    <a href="#percorsi" class="n-cta">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      Esplora
+    </a>
+    <button class="hamburger" id="hbg" aria-label="Apri menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div id="mm">
+<div id="mm" role="navigation" aria-label="Menu mobile">
   <ul>
     <li><a href="#percorsi">I Percorsi</a></li>
     <li><a href="#mappa">Mappa</a></li>
-    <li><a href="#presentazione">Il Progetto</a></li>
-    <li><a href="../buissness_plain/index.html">Business Plan</a></li>
+    <li><a href="#progetto">Il Progetto</a></li>
+    <li><a href="../buissness_plain/index.html" class="mm-bp">Business Plan</a></li>
   </ul>
 </div>
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <p class="h-eye">Progetto Storico &amp; Digitale</p>
+  <p class="h-badge">Progetto Storico &amp; Digitale · Classe 5AT</p>
   <h1 class="h-title">Esplora Foggia<br>tra <em>Storia, Mito</em><br>e Tradizione</h1>
   <p class="h-desc">Un viaggio immersivo attraverso i secoli: dalla leggenda dell&rsquo;Iconavetere ai fasti federiciani, fino al Borgo Croci.</p>
   <div class="h-btns">
     <a href="#percorsi" class="hbtn hbtn-p">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      Esplora la città
+      Esplora i percorsi
     </a>
     <a href="#mappa" class="hbtn hbtn-s">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
       Apri la mappa
+    </a>
+    <a href="../buissness_plain/index.html" class="hbtn hbtn-s">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Business Plan
     </a>
   </div>
 </section>
 
 <!-- STATS -->
-<div class="stats">
+<div class="stats" id="stats-bar">
   <div class="stat rv rv1"><div class="stat-n">XI<span>°</span></div><div class="stat-l">Secolo di fondazione</div></div>
   <div class="stat rv rv2"><div class="stat-n">4</div><div class="stat-l">Percorsi interattivi</div></div>
   <div class="stat rv rv3"><div class="stat-n">1731</div><div class="stat-l">Anno del terremoto</div></div>
   <div class="stat rv rv4"><div class="stat-n">3<span>D</span></div><div class="stat-l">Modelli tridimensionali</div></div>
 </div>
 
+<!-- IL PROGETTO -->
+<section id="progetto" class="sec bg-w">
+  <div class="sec-hd c rv mw">
+    <span class="sec-tag c">La webapp</span>
+    <h2 class="sec-h">Cos&rsquo;è FoggiApp?</h2>
+    <p class="sec-sub">Una piattaforma digitale per valorizzare il patrimonio storico e culturale di Foggia. Progettata per turisti, cittadini e studenti.</p>
+  </div>
+  <div class="project-grid">
+    <div class="pf-card rv rv1">
+      <div class="pf-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3 class="pf-h">Percorsi Interattivi</h3>
+      <p class="pf-p">Quattro esperienze tematiche complete di video, gallery fotografica, modelli 3D e mappe interattive.</p>
+    </div>
+    <div class="pf-card rv rv2">
+      <div class="pf-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      </div>
+      <h3 class="pf-h">Mappa Digitale</h3>
+      <p class="pf-p">Esplora i punti di interesse direttamente sulla mappa interattiva. Ogni segnaposto apre il percorso corrispondente.</p>
+    </div>
+    <div class="pf-card rv rv3">
+      <div class="pf-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3 class="pf-h">Preferiti Personali</h3>
+      <p class="pf-p">Salva i tuoi percorsi preferiti e accedivi rapidamente. I dati rimangono sul tuo dispositivo, senza account.</p>
+    </div>
+    <div class="pf-card rv rv4">
+      <div class="pf-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <h3 class="pf-h">Contenuti Multimediali</h3>
+      <p class="pf-p">Video documentari, gallerie fotografiche e modelli tridimensionali Sketchfab dei luoghi più significativi.</p>
+    </div>
+  </div>
+  <div class="project-quote rv mw" style="max-width:680px;margin:0 auto">
+    <p>&ldquo;FoggiApp nasce in classe e cresce per Foggia. Un progetto della classe 5AT, anno scolastico 2025/2026, per valorizzare la storia e la cultura della nostra città con strumenti digitali moderni.&rdquo;</p>
+  </div>
+</section>
+
 <!-- PERCORSI -->
 <section id="percorsi" class="sec bg-l">
-  <div class="sec-hd c rv">
-    <span class="sec-tag">Moduli interattivi</span>
+  <div class="sec-hd c rv mw">
+    <span class="sec-tag c">Moduli interattivi</span>
     <h2 class="sec-h">Scegli il tuo percorso</h2>
-    <p class="sec-sub">Esplora luoghi, gallerie, modelli 3D e video documentari della città.</p>
+    <p class="sec-sub">Esplora luoghi, gallerie, modelli 3D e video documentari della città di Foggia.</p>
   </div>
   <div class="grid" id="percorsi-grid">
 
     <div class="card-wrap rv rv1">
       <a href="../nascita di foggia/index.html" class="card" data-fav-href="../nascita di foggia/index.html">
-        <div class="ci"><img src="./assets/origini.jpg" alt="Le origini di Foggia" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544253155-70fa9a1f81d8?auto=format&fit=crop&w=600&q=80'"><span class="cbadge">Secolo XI</span></div>
+        <div class="ci">
+          <img src="./assets/origini.jpg" alt="Le origini di Foggia" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544253155-70fa9a1f81d8?auto=format&fit=crop&w=600&q=80'">
+          <span class="cbadge">Secolo XI</span>
+        </div>
         <div class="cb">
           <p class="ct">Storia &amp; Leggenda</p>
           <h3>Le Origini e la Leggenda</h3>
@@ -283,7 +372,10 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
 
     <div class="card-wrap rv rv2">
       <a href="../cappellone delle croci/index.html" class="card" data-fav-href="../cappellone delle croci/index.html">
-        <div class="ci"><img src="./assets/croci.jpg" alt="Cappellone delle Croci" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=600&q=80'"><span class="cbadge">Secolo XVII</span></div>
+        <div class="ci">
+          <img src="./assets/croci.jpg" alt="Cappellone delle Croci" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=600&q=80'">
+          <span class="cbadge">Secolo XVII</span>
+        </div>
         <div class="cb">
           <p class="ct">Architettura &amp; Fede</p>
           <h3>Il Cappellone delle Croci</h3>
@@ -295,7 +387,10 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
 
     <div class="card-wrap rv rv3">
       <a href="../croci/index.html" class="card" data-fav-href="../croci/index.html">
-        <div class="ci"><img src="./assets/rifondata.jpg" alt="La città rifondata" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1604312684814-1fc634a4751f?auto=format&fit=crop&w=600&q=80'"><span class="cbadge">Anno 1731</span></div>
+        <div class="ci">
+          <img src="./assets/rifondata.jpg" alt="La città rifondata" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1604312684814-1fc634a4751f?auto=format&fit=crop&w=600&q=80'">
+          <span class="cbadge">Anno 1731</span>
+        </div>
         <div class="cb">
           <p class="ct">Resilienza &amp; Memoria</p>
           <h3>La Città Ri-fondata</h3>
@@ -307,11 +402,14 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
 
     <div class="card-wrap rv rv4">
       <a href="../museo civico/index.html" class="card" data-fav-href="../museo civico/index.html">
-        <div class="ci"><img src="./assets/museo-civico.jpg" alt="Museo Civico" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=600&q=80'"><span class="cbadge">Patrimonio</span></div>
+        <div class="ci">
+          <img src="../museo civico/assets/copertina.jpg" alt="Museo Civico" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=600&q=80'">
+          <span class="cbadge">Patrimonio</span>
+        </div>
         <div class="cb">
           <p class="ct">Museo &amp; Cultura</p>
           <h3>Museo Civico di Foggia</h3>
-          <p>Collezioni permanenti, reperti romani e oggetti d'arte che raccontano secoli di storia locale.</p>
+          <p>Collezioni permanenti, reperti romani e oggetti d&rsquo;arte che raccontano secoli di storia locale.</p>
           <span class="clink">Esplora <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </div>
       </a>
@@ -320,40 +418,47 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
   </div>
 </section>
 
-<!-- LINKS UTILI -->
+<!-- COLLEGAMENTI UTILI -->
 <section class="sec bg-w">
-  <div class="sec-hd rv">
+  <div class="sec-hd rv mw">
     <span class="sec-tag">Mobilità &amp; Servizi</span>
     <h2 class="sec-h">Collegamenti utili</h2>
-    <p class="sec-sub">Raggiungi Foggia e muoviti in città con i principali servizi di trasporto.</p>
+    <p class="sec-sub">Raggiungi Foggia e muoviti in città con i principali servizi di trasporto e istituzionali.</p>
   </div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+  <div class="grid mw" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
 
     <div class="card-wrap rv rv1">
-      <a href="https://www.trenitalia.com" target="_blank" rel="noopener noreferrer" class="card">
+      <a href="https://www.trenitalia.com" target="_blank" rel="noopener noreferrer" class="card" aria-label="Trenitalia - prenota treni">
         <div class="ci link-ci"><div class="licon" style="background:linear-gradient(135deg,#c22b2b,#e84040)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h5l3 3v5h-8V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div></div>
         <div class="cb"><h3>Trenitalia</h3><p>Prenota treni e consulta orari per raggiungere Foggia da tutta Italia.</p><span class="clink">Vai al sito <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
       </a>
     </div>
 
     <div class="card-wrap rv rv2">
-      <a href="https://ataf.fg.it" target="_blank" rel="noopener noreferrer" class="card">
+      <a href="https://ataf.fg.it" target="_blank" rel="noopener noreferrer" class="card" aria-label="ATAF Bus Foggia">
         <div class="ci link-ci"><div class="licon" style="background:linear-gradient(135deg,#c75000,#e86c00)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h5l3 3v5h-8V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div></div>
         <div class="cb"><h3>ATAF Bus</h3><p>Linee urbane ed extraurbane dell&rsquo;Azienda Trasporti di Foggia.</p><span class="clink">Vai al sito <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
       </a>
     </div>
 
     <div class="card-wrap rv rv3">
-      <a href="https://ferroviedelgargano.com/it-it/Home/page_id/9" target="_blank" rel="noopener noreferrer" class="card">
+      <a href="https://ferroviedelgargano.com/it-it/Home/page_id/9" target="_blank" rel="noopener noreferrer" class="card" aria-label="Ferrovie del Gargano">
         <div class="ci link-ci"><div class="licon" style="background:linear-gradient(135deg,#1a6b3c,#2e9e5b)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div></div>
         <div class="cb"><h3>Ferrovie del Gargano</h3><p>Collegamento ferroviario tra Foggia, il Gargano e le zone limitrofe.</p><span class="clink">Vai al sito <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
       </a>
     </div>
 
     <div class="card-wrap rv rv4">
-      <a href="https://taxifoggia.it" target="_blank" rel="noopener noreferrer" class="card">
+      <a href="https://taxifoggia.it" target="_blank" rel="noopener noreferrer" class="card" aria-label="Taxi Foggia">
         <div class="ci link-ci"><div class="licon" style="background:linear-gradient(135deg,#7c4d00,#c47a00)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-3"/><circle cx="8.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div></div>
         <div class="cb"><h3>Servizio Taxi</h3><p>Prenota un taxi a Foggia per spostamenti rapidi e comodi in città.</p><span class="clink">Vai al sito <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
+      </a>
+    </div>
+
+    <div class="card-wrap rv" style="animation-delay:.33s">
+      <a href="https://comune.foggia.it" target="_blank" rel="noopener noreferrer" class="card" aria-label="Comune di Foggia">
+        <div class="ci link-ci"><div class="licon" style="background:linear-gradient(135deg,#1a3a6b,#2e5fb0)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><path d="M12 1v3M6 7V3M18 7V3"/></svg></div></div>
+        <div class="cb"><h3>Comune di Foggia</h3><p>Portale istituzionale del Comune di Foggia: servizi, eventi e notizie ufficiali.</p><span class="clink">Vai al sito <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></div>
       </a>
     </div>
 
@@ -363,99 +468,122 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
 <!-- MAPPA -->
 <section id="mappa" class="map-sec">
   <div class="map-hd rv">
-    <span class="sec-tag" style="color:rgba(255,255,255,.4);justify-content:center">Esplora</span>
+    <span class="sec-tag c" style="color:rgba(255,255,255,.38)">Esplora</span>
     <h2 class="sec-h wh">Foggia sulla mappa</h2>
-    <p class="sec-sub wh" style="margin:12px auto 0">Seleziona un segnaposto per aprire il percorso corrispondente.</p>
+    <p class="sec-sub wh" style="margin:14px auto 0">Seleziona un segnaposto per aprire il percorso corrispondente.</p>
   </div>
   <div class="map-wrap">
-    <div id="foggia-leaflet-map"></div>
+    <div id="foggia-leaflet-map" role="application" aria-label="Mappa interattiva di Foggia"></div>
   </div>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script>
   (function(){
-    if(typeof L==='undefined')return;
+    if(typeof L==='undefined'){document.getElementById('foggia-leaflet-map').innerHTML='<p style="color:rgba(255,255,255,.4);text-align:center;padding:40px;font-size:14px">Mappa non disponibile. Controlla la connessione.</p>';return}
     var map=L.map('foggia-leaflet-map',{zoomControl:true,scrollWheelZoom:false}).setView([41.4645,15.5448],14);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',maxZoom:19}).addTo(map);
     function mkIcon(c){return L.divIcon({className:'',iconAnchor:[15,38],popupAnchor:[0,-40],html:'<div style="width:30px;height:38px;display:flex;flex-direction:column;align-items:center"><div style="width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:'+c+';box-shadow:0 4px 14px rgba(0,0,0,.35)"></div><div style="width:2px;height:8px;background:'+c+';margin-top:-1px;border-radius:1px"></div></div>'})}
     var pts=[
       {lat:41.4632,lng:15.5444,t:'Le Origini di Foggia',u:'../nascita di foggia/index.html'},
       {lat:41.4658,lng:15.5444,t:'Il Cappellone delle Croci',u:'../cappellone delle croci/index.html'},
-      {lat:41.4652,lng:15.5452,t:'Museo Civico di Foggia',u:'../museo civico/index.html'}
+      {lat:41.4652,lng:15.5452,t:'Museo Civico di Foggia',u:'../museo civico/index.html'},
+      {lat:41.4662,lng:15.5401,t:'Borgo Croci',u:'../croci/index.html'}
     ];
     pts.forEach(function(p){
-      L.marker([p.lat,p.lng],{icon:mkIcon('#C94B4B')}).addTo(map).bindPopup('<a href="'+p.u+'">'+p.t+' →</a>',{className:'lf-popup'});
+      L.marker([p.lat,p.lng],{icon:mkIcon('#C94B4B')}).addTo(map).bindPopup('<a href="'+p.u+'">'+p.t+' &rarr;</a>',{className:'lf-popup'});
     });
   })();
   </script>
 </section>
 
-<!-- VIDEO -->
-<section id="presentazione" class="sec bg-l">
-  <div class="sec-hd c rv">
-    <span class="sec-tag">Presentazione</span>
-    <h2 class="sec-h">Il Progetto</h2>
+<!-- VIDEO / PRESENTAZIONE -->
+<section class="sec bg-l">
+  <div class="sec-hd c rv mw">
+    <span class="sec-tag c">Presentazione</span>
+    <h2 class="sec-h">Il Progetto in video</h2>
     <p class="sec-sub">Scopri FoggiApp attraverso la guida del nostro narratore virtuale.</p>
   </div>
   <div class="vid-wrap rv">
-    <div class="vid-box"><video controls playsinline><source src="./assets/video.mp4" type="video/mp4">Video non disponibile.</video></div>
+    <div class="vid-box">
+      <video controls playsinline preload="none" aria-label="Video di presentazione FoggiApp">
+        <source src="./assets/video.mp4" type="video/mp4">
+        Video non disponibile nel tuo browser.
+      </video>
+    </div>
   </div>
-  <p class="vid-cap rv">Un&rsquo;esperienza digitale unica per scoprire Foggia: storia, arte, tradizioni e cultura locale.</p>
-  <div style="text-align:center;margin-top:32px" class="rv">
-    <a href="../buissness_plain/index.html" class="hbtn hbtn-p" style="display:inline-flex">Business Plan <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  <p class="vid-cap rv">Un&rsquo;esperienza digitale unica per scoprire Foggia: storia, arte, tradizioni e cultura locale. Realizzato dalla classe 5AT, A.S.&nbsp;2025/2026.</p>
+  <div style="text-align:center;margin-top:40px" class="rv">
+    <a href="../buissness_plain/index.html" class="hbtn hbtn-p" style="display:inline-flex">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Scopri il Business Plan
+    </a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="fl"><img src="./assets/logo.png" alt="FoggiApp" onerror="this.style.display='none'"><span>Foggi<span class="app">App</span></span></div>
-  <p class="fc">Progetto storico &amp; digitale &middot; Classe 5AT &middot; A.S.&nbsp;2025/2026</p>
+  <div class="fl">
+    <img src="./assets/logo.png" alt="FoggiApp" onerror="this.style.display='none'">
+    <span>Foggi<span class="app">App</span></span>
+  </div>
+  <p class="fc">Progetto storico &amp; digitale &middot; Classe 5AT &middot; A.S.&nbsp;2025/2026<br><a href="../buissness_plain/index.html">Business Plan</a></p>
 </footer>
 
 <!-- TOOLBAR -->
-<div class="toolbar">
-  <a href="#top" class="tb active" id="tb-home" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">
+<div class="toolbar" role="navigation" aria-label="Navigazione rapida">
+  <button class="tb active" id="tb-home" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Torna in cima">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     Home
-  </a>
-  <a href="https://comune.foggia.it" target="_blank" rel="noopener" class="tb">
+  </button>
+  <a href="https://comune.foggia.it" target="_blank" rel="noopener" class="tb" aria-label="Comune di Foggia - eventi">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     Eventi
   </a>
-  <button class="tb" onclick="document.getElementById('mappa').scrollIntoView({behavior:'smooth'})">
+  <button class="tb" onclick="document.getElementById('mappa').scrollIntoView({behavior:'smooth'})" aria-label="Vai alla mappa">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
     Mappa
   </button>
-  <button class="tb" id="tb-fav">
+  <button class="tb" id="tb-fav" aria-label="Apri preferiti">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
     Preferiti
   </button>
 </div>
 
 <!-- FAV SHEET -->
-<div class="fov" id="fov"></div>
+<div class="fov" id="fov" role="dialog" aria-modal="true" aria-label="Preferiti"></div>
 <div class="fsh" id="fsh">
   <div class="fsh-h">
     <span class="fsh-t">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      Preferiti
+      I miei preferiti
     </span>
-    <button class="fsh-x" id="fsh-x">&#215;</button>
+    <button class="fsh-x" id="fsh-x" aria-label="Chiudi preferiti">&#215;</button>
   </div>
   <div class="fsh-b" id="fsh-b"></div>
 </div>
 
 <!-- PAGE TRANSITION -->
-<div id="ptr"></div>
+<div id="ptr" aria-hidden="true"></div>
 
 <script>
 (function(){
+  /* navbar scroll */
+  var nav=document.getElementById('main-nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+
   /* hamburger */
   var hbg=document.getElementById('hbg'),mm=document.getElementById('mm');
-  hbg.addEventListener('click',function(){hbg.classList.toggle('open');mm.classList.toggle('open')});
-  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');mm.classList.remove('open')})});
+  hbg.addEventListener('click',function(){
+    var open=hbg.classList.toggle('open');
+    mm.classList.toggle('open',open);
+    hbg.setAttribute('aria-expanded',open);
+  });
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');mm.classList.remove('open');hbg.setAttribute('aria-expanded','false')})});
 
-  /* fav system */
+  /* close mobile menu on outside click */
+  document.addEventListener('click',function(e){if(mm.classList.contains('open')&&!mm.contains(e.target)&&!hbg.contains(e.target)){hbg.classList.remove('open');mm.classList.remove('open');hbg.setAttribute('aria-expanded','false')}});
+
+  /* ── FAV SYSTEM ── */
   var FAV_KEY='foggiapp_favs';
   function getFavs(){try{return JSON.parse(localStorage.getItem(FAV_KEY)||'[]')}catch(e){return[]}}
   function saveFavs(f){localStorage.setItem(FAV_KEY,JSON.stringify(f))}
@@ -477,13 +605,13 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
 
   function renderFavList(){
     var list=document.getElementById('fsh-b'),favs=getFavs();
-    if(!favs.length){list.innerHTML='<div class="fsh-empty"><p>Nessun preferito salvato.<br>Tocca ☆ su una card per aggiungere.</p></div>';return}
+    if(!favs.length){list.innerHTML='<div class="fsh-empty"><p style="font-size:32px;margin-bottom:12px">☆</p><p>Nessun preferito salvato.<br>Tocca la stella su una card per aggiungere.</p></div>';return}
     list.innerHTML=favs.map(function(f){
-      return'<div class="fi"><div class="fi-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="#C94B4B" stroke="#C94B4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><a href="'+f.href+'" class="fi-a"><div class="fi-n">'+f.name+'</div><div class="fi-s">'+f.sub+'</div></a><button class="fi-d" onclick="remFav(\''+f.href.replace(/'/g,"\\'")+'\')" aria-label="Rimuovi">&#215;</button></div>';
+      return'<div class="fi"><div class="fi-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="#C94B4B" stroke="#C94B4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><a href="'+f.href+'" class="fi-a"><div class="fi-n">'+f.name+'</div><div class="fi-s">'+f.sub+'</div></a><button class="fi-d" onclick="remFav(\''+f.href.replace(/'/g,"\\'")+'\')" aria-label="Rimuovi dai preferiti">&#215;</button></div>';
     }).join('');
   }
 
-  /* inject stars */
+  /* inject star buttons */
   document.querySelectorAll('.card[data-fav-href]').forEach(function(card){
     var h=card.getAttribute('data-fav-href');
     var n=(card.querySelector('h3')||{}).textContent||'Percorso';
@@ -508,19 +636,25 @@ footer{background:var(--text-1);padding:32px 52px;display:flex;align-items:cente
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(e){if(e.isIntersecting){e.target.style.animationPlayState='running';io.unobserve(e.target)}})
-    },{threshold:.1});
+    },{threshold:.08,rootMargin:'0px 0px -32px 0px'});
     document.querySelectorAll('.rv').forEach(function(el){el.style.animationPlayState='paused';io.observe(el)});
   }
 
   /* page transition */
   var ptr=document.getElementById('ptr');
-  document.querySelectorAll('a[href]:not([target="_blank"]):not([href^="#"])').forEach(function(a){
+  document.querySelectorAll('a[href]:not([target="_blank"]):not([href^="#"]):not([href^="mailto"])').forEach(function(a){
     a.addEventListener('click',function(e){
       var h=a.getAttribute('href');
-      if(!h||h.indexOf('http')===0||h.indexOf('mailto')===0)return;
-      e.preventDefault();ptr.classList.add('go');setTimeout(function(){window.location.href=h},220);
+      if(!h||h.indexOf('http')===0)return;
+      e.preventDefault();
+      ptr.classList.add('go');
+      setTimeout(function(){window.location.href=h},230);
     });
   });
+
+  /* active toolbar on scroll */
+  var tbHome=document.getElementById('tb-home');
+  window.addEventListener('scroll',function(){tbHome.classList.toggle('active',window.scrollY<200)},{passive:true});
 })();
 </script>
 </body>
