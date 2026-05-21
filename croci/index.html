@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n-doc-it="Borgo Croci · FoggiApp" data-i18n-doc-en="Borgo Croci · FoggiApp">Borgo Croci · FoggiApp</title>
+<title>Borgo Croci · FoggiApp</title>
 <meta name="description" content="Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,157 +24,130 @@
 <div id="page-ptr"></div>
 
 <!-- ── HEADER ── -->
-<header class="dp-header" id="dp-hdr">
-  <a href="../pagina home/index.html#percorsi" class="dp-hb">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    Percorsi
-  </a>
-  <div class="dp-h-logo">
-    <img src="../shared/logo.png" alt="FoggiApp" onerror="this.style.display='none'">
-    <span>Foggi<em>App</em></span>
+<header id="main-hdr">
+  <div class="hdr-side left">
+    <a href="../pagina home/index.html#percorsi" class="icon-btn" aria-label="Torna ai percorsi" id="btn-back">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    </a>
   </div>
-  <div class="dp-h-actions">
-    <div class="lang-toggle">
+  <div class="hdr-center">
+    <a href="../pagina home/index.html">
+      <img src="../shared/logo.png" alt="FoggiApp" style="height:26px;width:auto;margin:0 auto 2px" onerror="this.style.display='none'">
+    </a>
+    <h1 id="hdr-title">Borgo Croci</h1>
+    <div class="accent-line"></div>
+  </div>
+  <div class="hdr-side right">
+    <div class="ht-lang">
       <button class="active" data-lang="IT">IT</button>
       <button data-lang="EN">EN</button>
     </div>
-    <a href="https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica" target="_blank" rel="noopener" class="dp-h-btn" title="Chatbot">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
+    <a href="https://chatgpt.com/g/g-69986fc4696c81918db5e370afe193a4-direttore-giuda-artistica" target="_blank" rel="noopener" class="icon-btn" aria-label="Chatbot">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
     </a>
-    <button class="dp-h-btn" id="btn-fav" title="Aggiungi ai preferiti">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    </button>
   </div>
 </header>
 
-<!-- ── HERO ── -->
-<section class="dp-hero" id="top">
-  <img class="dp-hero-img" id="hero-img" src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg" alt="Borgo Croci"
-       onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'"
-       onload="this.classList.add('loaded')">
-  <div class="dp-hero-overlay">
-    <span class="dp-hero-tag" data-i18n-it="Quartiere Storico" data-i18n-en="Historic District">Quartiere Storico</span>
-    <nav class="dp-breadcrumb" aria-label="Breadcrumb">
-      <a href="../pagina home/index.html">FoggiApp</a>
-      <span class="sep">›</span>
-      <a href="../pagina home/index.html#percorsi">Percorsi</a>
-      <span class="sep">›</span>
-      <span data-i18n-it="Borgo Croci" data-i18n-en="Borgo Croci">Borgo Croci</span>
-    </nav>
-    <h1 class="dp-hero-title" data-i18n-it="Borgo Croci" data-i18n-en="Borgo Croci">Borgo Croci</h1>
-    <p class="dp-hero-sub" data-i18n-it="Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese." data-i18n-en="Foggia's richest neighborhood in history and traditions, heart of the Crocese identity.">Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese.</p>
-  </div>
-</section>
-
-<!-- ── CHIPS ── -->
-<div class="dp-chips-bar">
-  <span class="info-chip">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    45–60 min
-  </span>
-  <span class="info-chip accent" data-i18n-it="Quartiere Storico" data-i18n-en="Historic District">Quartiere Storico</span>
-  <span class="info-chip">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    Borgo Croci, Foggia
-  </span>
-  <span class="info-chip" data-i18n-it="Tutti i livelli" data-i18n-en="All levels">Tutti i livelli</span>
-</div>
-
-<!-- ── NAV ANCHOR BAR ── -->
-<nav class="dp-nav" aria-label="Sezioni">
-  <a href="#storia" class="active" data-i18n-it="Storia" data-i18n-en="History">Storia</a>
-  <a href="#galleria" data-i18n-it="Galleria" data-i18n-en="Gallery">Galleria</a>
-  <a href="#video" data-i18n-it="Video" data-i18n-en="Video">Video</a>
-  <a href="#modello3d" data-i18n-it="Modello 3D" data-i18n-en="3D Model">Modello 3D</a>
-  <a href="#mappa" data-i18n-it="Mappa" data-i18n-en="Map">Mappa</a>
+<!-- ── TAB BAR ── -->
+<nav class="section-options-bar" aria-label="Sezioni" id="tab-bar">
+  <button class="section-option active" data-tab="home">Home</button>
+  <button class="section-option" data-tab="map">Mappa</button>
+  <button class="section-option" data-tab="video">Video</button>
+  <button class="section-option" data-tab="images">Immagini</button>
+  <button class="section-option" data-tab="3d">Modello 3D</button>
 </nav>
 
-<!-- ── STORIA ── -->
-<section class="dp-section" id="storia">
-  <p class="dp-section-label" data-i18n-it="Storia" data-i18n-en="History">Storia</p>
-  <h2 class="dp-section-title reveal" data-i18n-it="Borgo Croci" data-i18n-en="Borgo Croci">Borgo Croci</h2>
-  <div id="text-content" class="reveal rd1">
-    <div class="loader">Caricamento...</div>
-  </div>
-</section>
+<!-- ── MAIN (tab panels) ── -->
+<main>
 
-<!-- ── GALLERIA ── -->
-<section class="dp-section alt" id="galleria">
-  <p class="dp-section-label" data-i18n-it="Galleria immagini" data-i18n-en="Image Gallery">Galleria immagini</p>
-  <h2 class="dp-section-title reveal" data-i18n-it="Esplora in immagini" data-i18n-en="Explore through images">Esplora in immagini</h2>
-  <div class="dp-gallery-grid">
-    
-        <div class="dp-gi reveal rd1" data-lb-src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg">
-          <img src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg" alt="img1.jpg" loading="" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'">
-        </div>
-        <div class="dp-gi reveal rd2" data-lb-src="assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg">
-          <img src="assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg" alt="img2.jpg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'">
-        </div>
-        <div class="dp-gi reveal rd3" data-lb-src="assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg">
-          <img src="assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg" alt="img3.jpg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?auto=format&fit=crop&w=1200&q=80'">
-        </div>
-  </div>
-</section>
+  <!-- HOME: vertical article -->
+  <div class="tab-panel active" id="tab-home">
 
-<!-- ── VIDEO ── -->
-<section class="dp-section" id="video">
-  <p class="dp-section-label" data-i18n-it="Video" data-i18n-en="Video">Video</p>
-  <h2 class="dp-section-title reveal" data-i18n-it="Guarda il video" data-i18n-en="Watch the video">Guarda il video</h2>
-  <div class="dp-video-wrap reveal rd1">
-    <video controls playsinline preload="metadata">
-      <source src="assets/borgo croci .mp4" type="video/mp4">
-      Il tuo browser non supporta il video.
-    </video>
-  </div>
-</section>
+    <div class="ah-hero">
+      <img id="hero-img" src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg" alt="Borgo Croci"
+           onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?w=1200&q=80'"
+           onload="this.classList.add('loaded')">
+      <div class="ah-overlay">
+        <span class="ah-tag" id="tag-text">Quartiere Storico</span>
+        <h1 class="ah-title" id="hero-title">Borgo Croci</h1>
+        <p class="ah-sub" id="hero-sub">Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese.</p>
+      </div>
+    </div>
 
-<!-- ── 3D MODEL ── -->
-<section class="dp-section alt" id="modello3d">
-  <p class="dp-section-label" data-i18n-it="Modello 3D interattivo" data-i18n-en="Interactive 3D model">Modello 3D interattivo</p>
-  <h2 class="dp-section-title reveal" data-i18n-it="Esplora in 3D" data-i18n-en="Explore in 3D">Esplora in 3D</h2>
-  <div class="dp-video-wrap reveal rd1">
-    <iframe title="Borgo Croci 3D" frameborder="0" allowfullscreen
-      mozallowfullscreen="true" webkitallowfullscreen="true"
-      allow="autoplay; fullscreen; xr-spatial-tracking"
-      loading="lazy"
-      src="https://sketchfab.com/models/c2e4aae984aa462f81993e089648866d/embed"></iframe>
-  </div>
-</section>
+    <div class="ah-chips">
+      <span class="info-chip">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        45–60 min
+      </span>
+      <span class="info-chip accent" id="chip-tag">Quartiere Storico</span>
+      <span class="info-chip">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Borgo Croci, Foggia
+      </span>
+      <span class="info-chip">Tutti i livelli</span>
+    </div>
 
-<!-- ── MAPPA ── -->
-<section class="dp-section" id="mappa">
-  <p class="dp-section-label" data-i18n-it="Dove siamo" data-i18n-en="Location">Dove siamo</p>
-  <h2 class="dp-section-title reveal" data-i18n-it="Posizione" data-i18n-en="Location on map">Posizione</h2>
-  <div class="dp-map-wrap reveal rd1">
-    <iframe loading="lazy" allowfullscreen
-      src="https://maps.google.com/maps?q=41.46617399196495,15.540033727729801&z=16&output=embed"></iframe>
-  </div>
-</section>
+    <div class="ah-divider"><span id="div-storia">STORIA</span></div>
+    <div class="ah-body" id="text-content">
+      <div class="ah-loader">Caricamento...</div>
+    </div>
 
-<!-- ── CTA ── -->
-<section class="dp-cta">
-  <p class="dp-cta-title" data-i18n-it="Cosa vuoi fare dopo?" data-i18n-en="What's next?">Cosa vuoi fare dopo?</p>
-  <p class="dp-cta-sub" data-i18n-it="Continua a esplorare Foggia" data-i18n-en="Keep exploring Foggia">Continua a esplorare Foggia</p>
-  <div class="dp-cta-btns">
-    <a href="../pagina home/index.html" class="dp-cta-btn primary">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span data-i18n-it="Torna alla Home" data-i18n-en="Back to Home">Torna alla Home</span>
-    </a>
-    <a href="../pagina home/index.html#mappa" class="dp-cta-btn secondary">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-      <span data-i18n-it="Apri la mappa" data-i18n-en="Open map">Apri la mappa</span>
-    </a>
-    <button class="dp-cta-btn heart" id="cta-fav">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <span data-i18n-it="Aggiungi ai preferiti" data-i18n-en="Add to favourites">Aggiungi ai preferiti</span>
-    </button>
-  </div>
-</section>
+  </div><!-- /tab-home -->
 
-<!-- ── GALLERY LIGHTBOX ── -->
-<div class="dp-lb" id="dp-lb" role="dialog" aria-modal="true" aria-label="Lightbox galleria">
-  <button class="dp-lb-close" id="lb-close" aria-label="Chiudi">&times;</button>
-  <img id="lb-img" src="" alt="Galleria">
+  <!-- MAPPA -->
+  <div class="tab-panel" id="tab-map">
+    <div class="fe-panel">
+      <iframe id="map-iframe" src="" title="Mappa" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="tab-panel" id="tab-video">
+    <div class="fe-panel">
+      <video id="main-video" controls playsinline preload="none">
+        <source src="assets/borgo croci .mp4" type="video/mp4">
+        Il tuo browser non supporta il video.
+      </video>
+    </div>
+  </div>
+
+  <!-- IMMAGINI -->
+  <div class="tab-panel" id="tab-images">
+    <div class="fg-panel">
+      <img id="gallery-main" class="fg-main" src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg"
+           alt="Galleria" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?w=1200&q=80'"
+           onclick="openLB(currentGalleryIdx)">
+      <div class="fg-thumbs" id="gallery-thumbs">
+          <img class="fg-thumb active" src="assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg" alt="img 1" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?w=1200&q=80'" onclick="switchGallery(this, 'assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg')">
+          <img class="fg-thumb" src="assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg" alt="img 2" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?w=1200&q=80'" onclick="switchGallery(this, 'assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg')">
+          <img class="fg-thumb" src="assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg" alt="img 3" onerror="this.src='https://images.unsplash.com/photo-1599939571322-73ec1bc2dcde?w=1200&q=80'" onclick="switchGallery(this, 'assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg')">
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D -->
+  <div class="tab-panel" id="tab-3d">
+    <div class="fe-panel">
+      <iframe id="model3d-iframe" src="" title="Borgo Croci 3D"
+        frameborder="0" allowfullscreen
+        mozallowfullscreen="true" webkitallowfullscreen="true"
+        allow="autoplay; fullscreen; xr-spatial-tracking"
+        loading="lazy"></iframe>
+    </div>
+  </div>
+
+</main>
+
+<!-- BACK BUTTON PILL -->
+<a href="../pagina home/index.html#percorsi" class="btn-back" id="btn-back-pill">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+  Scegli un altro percorso
+</a>
+
+<!-- ── LIGHTBOX ── -->
+<div class="gl-lb" id="gl-lb" role="dialog" aria-modal="true">
+  <button class="gl-lb-close" id="lb-close">&times;</button>
+  <img id="lb-img" src="" alt="Lightbox">
 </div>
 
 <!-- ── BOTTOM TOOLBAR ── -->
@@ -191,60 +164,67 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     Percorsi
   </a>
-  <button class="tb-btn" id="tb-fav">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    Preferiti
-  </button>
+  <a href="../pagina home/index.html#percorsi" class="tb-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    Esplora
+  </a>
 </div>
 
 <script>
 /* ── CONFIG ── */
-const PAGE_ID = 'borgo-croci';
-const PAGE_TITLE_IT = 'Borgo Croci';
-const PAGE_TITLE_EN = 'Borgo Croci';
-const TXT_IT = 'txt/borgo_croci.txt';
-const TXT_EN = 'txt/borgo_croci_en.txt';
-const GALLERY_SRCS = ["assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg", "assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg", "assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg"];
-const FALLBACK_IT = `<h2>Il quartiere Borgo Croci di Foggia</h2>
-<h3>Origini e storia</h3>
-<p>Foggia ha visto nel tempo la formazione di diversi borghi storici al di fuori del nucleo medievale originario. Uno di questi è il Borgo Croci, considerato ancora oggi "il quartiere più ricco di storia e tradizioni della città", al punto che i suoi abitanti venivano chiamati <em>crocesi</em> prima ancora che foggiani.</p>
-<p>Il quartiere sorse fuori dall'abitato antico di Foggia, in un'area inizialmente rurale e strategica. Prima della sua formazione vi si estendeva la pianura del Tavoliere, attraversata da importanti percorsi della transumanza. Proprio qui convergevano due regie tratture provenienti dall'Abruzzo, che terminavano alle porte della città.</p>
-<h3>La Chiesa delle Croci</h3>
-<p>Nel 1693 il padre cappuccino Antonio da Olivati giunse a Foggia durante una grave siccità. Organizzò una processione penitenziale fuori città, piantando lungo il percorso sette croci votive. In segno di ringraziamento, sul luogo della processione sorse il Complesso del Calvario, noto come Chiesa delle Croci, che diede il nome all'intero quartiere.</p>
-<p>Il quartiere si sviluppò progressivamente, con una forte identità comunitaria legata alle tradizioni agricole e alla vita di borgo. La festa della Madonna delle Croci, celebrata ogni anno, rappresenta ancora oggi il momento più sentito dalla comunità crocese.</p>`;
-const FALLBACK_EN = `<h2>The Borgo Croci District of Foggia</h2>
-<h3>Origins and History</h3>
-<p>Foggia witnessed over time the formation of several historic districts outside its original medieval core. One of these is Borgo Croci, still considered "the neighborhood richest in history and traditions of the city," to the point that its inhabitants were called <em>crocesi</em> even before being called Foggiani.</p>
-<p>The neighborhood arose outside the ancient settlement of Foggia, in an initially rural and strategic area, crossed by important transhumance routes.</p>
-<h3>The Church of the Crosses</h3>
-<p>In 1693, Capuchin friar Antonio da Olivati came to Foggia during a severe drought. He organized a penitential procession outside the city, planting seven votive crosses along the route. In gratitude, the Calvary Complex, known as the Church of the Crosses, arose at the procession site, giving its name to the entire neighborhood.</p>`;
+var PAGE_TITLE_IT = 'Borgo Croci';
+var PAGE_TITLE_EN = 'Borgo Croci';
+var PAGE_TAG_IT   = 'Quartiere Storico';
+var PAGE_TAG_EN   = 'Historic District';
+var PAGE_SUB_IT   = `Il quartiere più ricco di storia e tradizioni di Foggia, cuore dell'identità crocese.`;
+var PAGE_SUB_EN   = `Foggia's richest neighborhood in history and traditions — heart of the Crocese identity.`;
+var TXT_IT = 'txt/borgo_croci.txt';
+var TXT_EN = 'txt/borgo_croci_en.txt';
+var MAP_URL = 'https://maps.google.com/maps?q=41.46617399196495,15.540033727729801&z=16&output=embed';
+var MODEL_URL = 'https://sketchfab.com/models/c2e4aae984aa462f81993e089648866d/embed';
+var FALLBACK_IT = `<h2>Il Quartiere Borgo Croci di Foggia</h2>
+<p>Borgo Croci è considerato ancora oggi <strong>"il quartiere più ricco di storia e tradizioni della città"</strong>, al punto che i suoi abitanti venivano chiamati <em>crocesi</em> prima ancora che foggiani. Questo rione storico è nato fuori dall'abitato antico di Foggia, in un'area strategica attraversata da importanti percorsi della transumanza.</p>
+<h3>Le origini: tratturi e processioni</h3>
+<p>All'incrocio di due regie tratture provenienti dall'Abruzzo — il L'Aquila-Foggia e il Celano-Foggia — sorse il primo nucleo del quartiere. Nel 1693 il padre cappuccino Antonio da Olivati organizzò una processione penitenziale per porre fine a una grave siccità, piantando sette croci votive. Sul luogo nacque il Complesso del Calvario, noto come <strong>Chiesa delle Croci</strong>, che diede il nome all'intero quartiere.</p>
+<h3>Identità e comunità</h3>
+<p>Il quartiere si sviluppò progressivamente, con una forte identità comunitaria legata alle tradizioni agricole e alla vita di borgo. La <em>festa della Madonna delle Croci</em>, celebrata ogni anno, rappresenta ancora oggi il momento più sentito dalla comunità crocese, un rito collettivo che unisce generazioni di abitanti.</p>
+<p>L'<strong>Epitaffio</strong>, monumento eretto nel 1651 all'estremità dell'attuale Via Alessandro Manzoni, segna il punto di arrivo dei tratturi reali, a testimonianza del valore storico di questo luogo legato alla pastorizia e ai traffici di bestiame.</p>`;
+var FALLBACK_EN = `<h2>The Borgo Croci District of Foggia</h2>
+<p>Borgo Croci is still considered <strong>"the neighborhood richest in history and traditions of the city"</strong>, to the point that its inhabitants were called <em>crocesi</em> even before being called Foggiani. This historic district was born outside Foggia's ancient settlement, in a strategic area crossed by important transhumance routes.</p>
+<h3>Origins: Sheep-tracks and Processions</h3>
+<p>At the intersection of two royal sheep-tracks from Abruzzo, the neighborhood's first core arose. In 1693, Capuchin friar Antonio da Olivati organized a penitential procession to end a severe drought, planting seven votive crosses. The <strong>Church of the Crosses</strong> arose at that site, giving its name to the entire district.</p>
+<h3>Identity and Community</h3>
+<p>The neighborhood gradually developed with a strong community identity tied to agricultural traditions. The <em>Feast of the Madonna delle Croci</em>, celebrated every year, remains the most heartfelt moment for the Crocese community, a collective rite uniting generations of residents.</p>`;
+var GALLERY_SRCS = ["assets/Gemini_Generated_Image_9ti62u9ti62u9ti6.jpg", "assets/Gemini_Generated_Image_k0yq3kk0yq3kk0yq.jpg", "assets/Gemini_Generated_Image_ju2xarju2xarju2x.jpg"];
 
 /* ── STATE ── */
 var lang = localStorage.getItem('app_lang') || 'IT';
-var favs = JSON.parse(localStorage.getItem('foggiapp_favs') || '[]');
-var isFav = favs.indexOf(PAGE_ID) > -1;
+var activeTab = 'home';
+var currentGalleryIdx = 0;
+var mapLoaded = false, modelLoaded = false;
 
-/* ── I18N ── */
-function applyLang() {
-  document.documentElement.lang = lang === 'IT' ? 'it' : 'en';
-  document.title = lang === 'IT'
-    ? 'Borgo Croci · FoggiApp'
-    : 'Borgo Croci · FoggiApp';
-  document.querySelectorAll('[data-i18n-it]').forEach(function(el) {
-    el.textContent = lang === 'IT'
-      ? el.getAttribute('data-i18n-it')
-      : el.getAttribute('data-i18n-en');
+/* ── LANGUAGE ── */
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('app_lang', lang);
+  document.title = (lang==='IT' ? PAGE_TITLE_IT : PAGE_TITLE_EN) + ' · FoggiApp';
+  document.documentElement.lang = lang==='IT' ? 'it' : 'en';
+  document.getElementById('hdr-title').textContent = lang==='IT' ? PAGE_TITLE_IT : PAGE_TITLE_EN;
+  document.getElementById('hero-title').textContent = lang==='IT' ? PAGE_TITLE_IT : PAGE_TITLE_EN;
+  document.getElementById('hero-sub').textContent   = lang==='IT' ? PAGE_SUB_IT   : PAGE_SUB_EN;
+  document.getElementById('tag-text').textContent   = lang==='IT' ? PAGE_TAG_IT   : PAGE_TAG_EN;
+  document.getElementById('chip-tag').textContent   = lang==='IT' ? PAGE_TAG_IT   : PAGE_TAG_EN;
+  document.getElementById('div-storia').textContent = lang==='IT' ? 'STORIA'       : 'HISTORY';
+  document.querySelectorAll('.ht-lang button').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
   });
-  document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
-  loadText();
+  if (activeTab === 'home') loadText();
 }
 
 /* ── TEXT FETCH ── */
 async function loadText() {
   var tc = document.getElementById('text-content');
-  tc.innerHTML = '<div class="loader">Caricamento...</div>';
+  tc.innerHTML = '<div class="ah-loader">Caricamento...</div>';
   var file = lang === 'IT' ? TXT_IT : TXT_EN;
   try {
     var r = await fetch(file);
@@ -257,121 +237,76 @@ async function loadText() {
   }
 }
 
-/* ── FAVORITES ── */
-function updateFavUI() {
-  [document.getElementById('btn-fav'),
-   document.getElementById('cta-fav'),
-   document.getElementById('tb-fav')].forEach(function(el) {
-    if (!el) return;
-    if (isFav) {
-      el.classList.add('fav-active');
-      if (el.querySelector('svg')) el.querySelector('svg').setAttribute('fill', 'currentColor');
-    } else {
-      el.classList.remove('fav-active');
-      if (el.querySelector('svg')) el.querySelector('svg').setAttribute('fill', 'none');
-    }
-  });
-  var ctaSpan = document.querySelector('#cta-fav span');
-  if (ctaSpan) {
-    ctaSpan.setAttribute('data-i18n-it', isFav ? 'Nei preferiti ♥' : 'Aggiungi ai preferiti');
-    ctaSpan.setAttribute('data-i18n-en', isFav ? 'In favourites ♥' : 'Add to favourites');
-    ctaSpan.textContent = lang === 'IT'
-      ? (isFav ? 'Nei preferiti ♥' : 'Aggiungi ai preferiti')
-      : (isFav ? 'In favourites ♥' : 'Add to favourites');
+/* ── TABS ── */
+function showTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.section-option').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.querySelector('[data-tab="' + tab + '"]').classList.add('active');
+
+  // Back pill: show only on home tab
+  var pill = document.getElementById('btn-back-pill');
+  pill.style.display = tab === 'home' ? '' : 'none';
+
+  // Lazy-load map
+  if (tab === 'map' && !mapLoaded) {
+    document.getElementById('map-iframe').src = MAP_URL;
+    mapLoaded = true;
   }
-}
-function toggleFav() {
-  isFav = !isFav;
-  if (isFav) {
-    if (favs.indexOf(PAGE_ID) === -1) favs.push(PAGE_ID);
-  } else {
-    favs = favs.filter(function(f) { return f !== PAGE_ID; });
+  // Lazy-load 3D
+  if (tab === '3d' && !modelLoaded) {
+    document.getElementById('model3d-iframe').src = MODEL_URL;
+    modelLoaded = true;
   }
-  localStorage.setItem('foggiapp_favs', JSON.stringify(favs));
-  updateFavUI();
+  // Reset video when leaving
+  if (tab !== 'video') {
+    var v = document.getElementById('main-video');
+    if (v && !v.paused) v.pause();
+  }
+  // Load text on first open
+  if (tab === 'home') loadText();
 }
-['btn-fav','cta-fav','tb-fav'].forEach(function(id) {
-  var el = document.getElementById(id);
-  if (el) el.addEventListener('click', toggleFav);
+
+document.querySelectorAll('.section-option[data-tab]').forEach(function(btn) {
+  btn.addEventListener('click', function() { showTab(btn.dataset.tab); });
 });
 
-/* ── HEADER SCROLL ── */
-var hdr = document.getElementById('dp-hdr');
-window.addEventListener('scroll', function() {
-  hdr.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
-
-/* ── NAV HIGHLIGHT ── */
-(function() {
-  var sections = ['storia','galleria','video','modello3d','mappa'];
-  var navLinks = document.querySelectorAll('.dp-nav a');
-  var io2 = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        var id = e.target.id;
-        navLinks.forEach(function(a) {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-        });
-      }
-    });
-  }, { threshold: 0.4 });
-  sections.forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) io2.observe(el);
+/* ── GALLERY ── */
+function switchGallery(el, src) {
+  document.getElementById('gallery-main').src = src;
+  currentGalleryIdx = GALLERY_SRCS.indexOf(src);
+  document.querySelectorAll('.fg-thumb').forEach(function(t) {
+    t.classList.toggle('active', t === el);
   });
-})();
-
-/* ── SCROLL REVEAL ── */
-if ('IntersectionObserver' in window) {
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
-  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
 }
 
 /* ── LIGHTBOX ── */
-var lb = document.getElementById('dp-lb');
+var lb = document.getElementById('gl-lb');
 var lbImg = document.getElementById('lb-img');
-var lbSrcs = [];
-var lbIdx = 0;
-document.querySelectorAll('.dp-gi').forEach(function(gi, i) {
-  var src = gi.getAttribute('data-lb-src');
-  lbSrcs.push(src);
-  gi.addEventListener('click', function() { openLB(i); });
-});
 function openLB(i) {
-  lbIdx = i;
-  lbImg.src = lbSrcs[i];
+  lbImg.src = GALLERY_SRCS[i] || GALLERY_SRCS[0];
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-function closeLB() {
-  lb.classList.remove('open');
-  document.body.style.overflow = '';
-}
-function nextLB() { lbIdx = (lbIdx + 1) % lbSrcs.length; lbImg.src = lbSrcs[lbIdx]; }
-function prevLB() { lbIdx = (lbIdx - 1 + lbSrcs.length) % lbSrcs.length; lbImg.src = lbSrcs[lbIdx]; }
+function closeLB() { lb.classList.remove('open'); document.body.style.overflow = ''; }
 document.getElementById('lb-close').addEventListener('click', closeLB);
 lb.addEventListener('click', function(e) { if (e.target === lb) closeLB(); });
 document.addEventListener('keydown', function(e) {
   if (!lb.classList.contains('open')) return;
   if (e.key === 'Escape') closeLB();
-  if (e.key === 'ArrowRight') nextLB();
-  if (e.key === 'ArrowLeft') prevLB();
+  if (e.key === 'ArrowRight') { lbImg.src = GALLERY_SRCS[(GALLERY_SRCS.indexOf(lbImg.src)+1) % GALLERY_SRCS.length]; }
+  if (e.key === 'ArrowLeft')  { lbImg.src = GALLERY_SRCS[(GALLERY_SRCS.indexOf(lbImg.src)-1+GALLERY_SRCS.length) % GALLERY_SRCS.length]; }
 });
 
+/* ── HEADER SCROLL ── */
+window.addEventListener('scroll', function() {
+  document.getElementById('main-hdr').classList.toggle('scrolled', window.scrollY > 80);
+}, {passive: true});
+
 /* ── LANG TOGGLE ── */
-document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    lang = btn.getAttribute('data-lang');
-    localStorage.setItem('app_lang', lang);
-    applyLang();
-  });
+document.querySelectorAll('.ht-lang button').forEach(function(btn) {
+  btn.addEventListener('click', function() { applyLang(btn.dataset.lang); });
 });
 
 /* ── PAGE TRANSITIONS ── */
@@ -380,16 +315,14 @@ document.querySelectorAll('a[href]:not([target="_blank"])').forEach(function(a) 
     var href = a.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('javascript')) return;
     e.preventDefault();
-    var ptr = document.getElementById('page-ptr');
-    ptr.classList.add('go');
+    document.getElementById('page-ptr').classList.add('go');
     setTimeout(function() { window.location.href = href; }, 200);
   });
 });
 
 /* ── INIT ── */
 window.addEventListener('DOMContentLoaded', function() {
-  applyLang();
-  updateFavUI();
+  applyLang(lang);
 });
 </script>
 </body>
